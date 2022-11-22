@@ -7,7 +7,7 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({ children }) => {
   return (
     <>
       <Head>
-        <title>Primary Layout Example</title>
+        <title>Bekonomix</title>
       </Head>
       <main className={styles.main}>{children}</main>
     </>
