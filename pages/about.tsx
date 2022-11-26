@@ -1,5 +1,4 @@
 import PrimaryLayout from '../components/layout/primary/PrimaryLayout';
-import SidebarLayout from '../components/layout/sidebar/SidebarLayout';
 import { NextPageWithLayout } from './page';
 
 const About: NextPageWithLayout = () => {
@@ -38,7 +37,6 @@ export default About;
 About.getLayout = (page) => {
   return (
     <PrimaryLayout>
-      <SidebarLayout />
       {page}
     </PrimaryLayout>
   );

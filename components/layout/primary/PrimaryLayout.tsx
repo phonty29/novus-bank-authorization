@@ -1,15 +1,24 @@
 import Head from 'next/head';
-import styles from './PrimaryLayout.module.css';
 
-export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {}
+export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
+  justify?: 'items-center' | 'items-start' | 'items-end';
+  title: string;
+}
 
-const PrimaryLayout: React.FC<IPrimaryLayout> = ({ children }) => {
+const PrimaryLayout: React.FC<IPrimaryLayout> = ({ 
+  children,
+  justify = 'items-center', //by default all items are centered
+  title = 'Bekonomix', //by default a page has 'Bekonomix' title
+  ...divProps
+}) => {
   return (
     <>
       <Head>
-        <title>Bekonomix</title>
+        <title>{title}</title>
       </Head>
-      <main className={styles.main}>{children}</main>
+      <div {...divProps} className={`min-h-screen flex flex-col font-roboto ${justify}`}>
+          {children}
+      </div>
     </>
   );
 };

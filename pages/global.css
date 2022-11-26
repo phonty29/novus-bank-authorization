@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base { 
+}
+
+@layer components {
+    .sign-in-form {
+        @apply pt-28 pl-9 pb-5 pr-11 w-[420px] h-[474px] bg-form rounded-2xl shadow-sign-in relative flex flex-col; 
+    }
+    .links-sign-in {
+        @apply absolute top-0 left-0 flex w-full;
+    }
+    .link-sign-in {
+        @apply text-md text-black not-italic font-normal pt-5 pb-2 basis-1/2 text-center;
+    }
+    .green-btn {
+        @apply text-white bg-green;
+    }
+    .text-input {
+        @apply font-normal not-italic text-sm;
+    }
+    .input-field {
+        @apply flex flex-col;
+    }
+    .label-text {
+        @apply text-black text-input mb-3;
+    }
+    .auth-input {
+        @apply box-content bg-grey rounded-lg border border-solid text-input text-grey-txt pl-5 pt-3 pb-3 bg-inherit shadow-gray-300;
+    }
+    .alert-message {
+        @apply text-purple text-xs text-center;
+    }
+}
+
+@layer utilities { 
+}
