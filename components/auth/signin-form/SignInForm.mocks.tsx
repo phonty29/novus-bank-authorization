@@ -1,8 +1,8 @@
 import { ISignInForm } from './SignInForm';
 
 const base: ISignInForm = {
-  username: 'phonty29',
-  password: '*********',
+  usernamePlaceholder: 'phonty29',
+  passwordPlaceholder: '*********',
 };
 
 export const mockSignInFormProps = {
