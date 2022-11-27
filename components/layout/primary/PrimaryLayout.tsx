@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
   justify?: 'items-center' | 'items-start' | 'items-end';
-  title: string;
+  title?: string;
 }
 
 const PrimaryLayout: React.FC<IPrimaryLayout> = ({ 
