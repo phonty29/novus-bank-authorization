@@ -2,12 +2,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {
-  usernamePlaceholder: string;
-  passwordPlaceholder: string;
+  usernamePlaceholder?: string;
+  passwordPlaceholder?: string;
 }
 
 const SignInForm: React.FC<ISignInForm> = ({
-  usernamePlaceholder='phonty29',
+  usernamePlaceholder,
+  passwordPlaceholder
 }) => {
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
@@ -47,6 +48,7 @@ const SignInForm: React.FC<ISignInForm> = ({
           id='password' 
           name='password' 
           className='auth-input' 
+          placeholder={passwordPlaceholder}
           value={password}
           onChange={(e) => {setPassword(e.target.value)}}
         />

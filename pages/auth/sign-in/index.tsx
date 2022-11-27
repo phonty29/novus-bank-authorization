@@ -7,7 +7,7 @@ export interface ISignIn {}
 const SignIn: NextPageWithLayout<ISignIn> = () => {
     return (
         <main className='bg-sign-in min-w-full min-h-screen grid place-items-center'>
-            <SignInForm username='John Doe' password='verycoolpassword'/>
+            <SignInForm usernamePlaceholder='John Doe'/>
         </main>
     );
 };
