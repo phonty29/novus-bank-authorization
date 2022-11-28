@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import AlertMessages from '../../../enums/AlertMessages';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {
   usernamePlaceholder?: string;
@@ -10,11 +11,18 @@ const SignInForm: React.FC<ISignInForm> = ({
   usernamePlaceholder,
   passwordPlaceholder
 }) => {
-  const [username, setUsername] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const send
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    
+  };
 
   return (
-    <form className='sign-in-form'>
+    <form className='sign-in-form' onSubmit={handleSubmit}>
       <div className='links-sign-in'>
         <div className='link-sign-in'>
           <Link href='/'>Sign in</Link>
@@ -36,6 +44,7 @@ const SignInForm: React.FC<ISignInForm> = ({
           placeholder={usernamePlaceholder} 
           value={username}
           onChange={(e) => {setUsername(e.target.value)}}
+          required
         />
       </div>
       <div className='input-field mb-7'>    
@@ -51,17 +60,21 @@ const SignInForm: React.FC<ISignInForm> = ({
           placeholder={passwordPlaceholder}
           value={password}
           onChange={(e) => {setPassword(e.target.value)}}
+          required
         />
       </div>
       <button className='green-btn rounded-lg min-w-full py-3 mb-7'>
         Sign In
       </button>
       <div className='text-center flex-auto'>
-        <Link href='/' className='text-xs text-black'>Forgot password ?</Link>
+        <Link href='/' className='text-xs text-black underline'>Forgot password ?</Link>
       </div>
-      <p className='alert-message'>
-        Fields marked with * are mandatory
-      </p>
+      {
+        isFormValid &&
+        <p className='alert-message'>
+          {AlertMessages.SIGN_IN_WRONG}
+        </p>
+      }
     </form>
   );
 };

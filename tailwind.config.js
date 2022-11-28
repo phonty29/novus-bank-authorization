@@ -12,8 +12,8 @@ module.exports = {
       },
       colors: {
         'purple': "#F30066",
-        'grey': '#A9B1BC',
-        'grey-txt': 'rgba(0, 0, 0, 0.6)',
+        'grey': '#e3e3e3',
+        'grey-txt': '#000'
       },
       backgroundColor: {
         'form': "#F0F2FF",
