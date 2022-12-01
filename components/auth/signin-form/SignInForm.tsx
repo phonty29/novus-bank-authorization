@@ -1,24 +1,22 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import AlertMessages from '../../../enums/AlertMessages';
 
-export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {
-  usernamePlaceholder?: string;
-  passwordPlaceholder?: string;
-}
+export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
 
-const SignInForm: React.FC<ISignInForm> = ({
-  usernamePlaceholder,
-  passwordPlaceholder
-}) => {
+const SignInForm: React.FC<ISignInForm> = () => {
+  const router = useRouter();
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  const send
+  const [alertMessage, setAlertMessage] = useState<string>(AlertMessages.FIELD_IS_EMPTY);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+    router.push(`something`);
+    setIsFormValid(true);
+    setAlertMessage(AlertMessages.SIGN_IN_OTHER);
   };
 
   return (
@@ -41,7 +39,7 @@ const SignInForm: React.FC<ISignInForm> = ({
           id='username' 
           name='username' 
           className='auth-input' 
-          placeholder={usernamePlaceholder} 
+          placeholder={"John Doe"} 
           value={username}
           onChange={(e) => {setUsername(e.target.value)}}
           required
@@ -57,7 +55,6 @@ const SignInForm: React.FC<ISignInForm> = ({
           id='password' 
           name='password' 
           className='auth-input' 
-          placeholder={passwordPlaceholder}
           value={password}
           onChange={(e) => {setPassword(e.target.value)}}
           required
@@ -70,9 +67,9 @@ const SignInForm: React.FC<ISignInForm> = ({
         <Link href='/' className='text-xs text-black underline'>Forgot password ?</Link>
       </div>
       {
-        isFormValid &&
+        !isFormValid &&
         <p className='alert-message'>
-          {AlertMessages.SIGN_IN_WRONG}
+          {alertMessage}
         </p>
       }
     </form>
