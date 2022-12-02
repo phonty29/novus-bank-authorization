@@ -1,33 +1,32 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ISearchData } from '../../../lib/search/types';
+import users from '../../users.json';
 
-interface IApiSearchRequest extends NextApiRequest {
-  body: { searchTerm?: string };
+interface IFakeApiUserRequest extends NextApiRequest {
+  body: { username?: string, password?: string };
 }
 
-export type IApiSearchResponseData = ISearchData[];
+export type IFakeApiUserResponseData = boolean;
 
 export default function handler(
-  req: IApiSearchRequest,
-  res: NextApiResponse<IApiSearchResponseData>
+  req: IFakeApiUserRequest,
+  res: NextApiResponse<IFakeApiUserResponseData>
 ) {
   const {
-    body: { searchTerm },
+    body: { username, password },
   } = req;
 
-  if (req.method === 'POST' && searchTerm && searchTerm.length > 0) {
+  if (req.method === 'POST' && username && password) {
     // Creates a regex search pattern for a case insensitive match from the user's search term
-    const searchPattern = new RegExp(searchTerm, 'i');
-
-    const filteredResults = database.filter((result) => {
-      return (
-        // Check the user's search term again either the title or the text of the database entry
-        searchPattern.test(result.title) || searchPattern.test(result.text)
-      );
-    });
-    res.status(200).json(filteredResults);
+    let flag: boolean = false;
+    users.forEach(user => {
+      if (user.username == username && user.password == password) {
+        flag = true;
+        res.status(200).json(true);
+      }
+    })
+    res.status(401).json(false);
   } else {
-    res.status(400).json([]);
+    res.status(400).json(false);
   }
 }
