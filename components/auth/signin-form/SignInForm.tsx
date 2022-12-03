@@ -1,22 +1,33 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import AlertMessages from '../../../enums/AlertMessages';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
 
-const SignInForm: React.FC<ISignInForm> = () => {
-  const router = useRouter();
+const SignInForm: React.FC<ISignInForm>= () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [alertMessage, setAlertMessage] = useState<string>(AlertMessages.FIELD_IS_EMPTY);
+  const [alertMessage, setAlertMessage] = useState<AlertMessages>(AlertMessages.FIELD_IS_EMPTY);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    router.push(`something`);
-    setIsFormValid(true);
-    setAlertMessage(AlertMessages.SIGN_IN_OTHER);
+    const data = {username, password};
+    const jsonData = JSON.stringify(data);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    };
+
+    console.log(username, password);
+    const response = await fetch(`/api/users`, options);
+    const result = await response.json();
+    if (result) alert(`Hello ${username}`); 
+    else setAlertMessage(AlertMessages.SIGN_IN_WRONG);
+    setIsFormValid(result);
   };
 
   return (
