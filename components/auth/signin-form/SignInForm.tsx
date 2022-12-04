@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import AlertMessages from '../../../enums/AlertMessages';
+import User from '../../../types/auth/users';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
 const USERS_ROUTE = `/api/users`; //I will create another folder and file for holding all routes
@@ -9,11 +10,11 @@ const SignInForm: React.FC<ISignInForm>= () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [alertMessage, setAlertMessage] = useState<AlertMessages>(AlertMessages.FIELD_IS_EMPTY);
+  const [alertMessage, setAlertMessage] = useState<AlertMessages>(AlertMessages.SIGN_IN_FIELD_IS_EMPTY);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = {username, password};
+    const data: User = {username, password};
     const jsonData = JSON.stringify(data);
     const options = {
       method: 'POST',
@@ -24,10 +25,15 @@ const SignInForm: React.FC<ISignInForm>= () => {
     };
 
     const response = await fetch(`${USERS_ROUTE}`, options);
-    const {result} = await response.json();
-    if (result) alert(`Hello ${username}`); 
-    else setAlertMessage(AlertMessages.SIGN_IN_WRONG);
-    setIsFormValid(result);
+    const {success, message} = await response.json();
+    if (success) {
+      alert(`Hello ${username}`);
+      setIsFormValid(true);
+    } 
+    else {
+      setIsFormValid(false);
+      setAlertMessage(message);
+    }
   };
 
   return (

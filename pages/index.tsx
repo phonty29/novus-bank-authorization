@@ -3,7 +3,7 @@ import PrimaryLayout from '../components/layout/primary/PrimaryLayout';
 import clientPromise from '../lib/mongodb';
 import { NextPageWithLayout } from './page';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     await clientPromise
     return {
