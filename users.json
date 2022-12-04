@@ -1,6 +1,10 @@
 [
     {
       "username": "Amedov Bekmuhamet",
-      "password": "coolpassword"
+      "password": "password"
+    },
+    {
+      "username": "Adiar Datkayev",
+      "password": "password"
     }
 ]

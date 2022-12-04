@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AlertMessages from '../../../enums/AlertMessages';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
+const USERS_ROUTE = `/api/users`; //I will create another folder and file for holding all routes
 
 const SignInForm: React.FC<ISignInForm>= () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
@@ -22,9 +23,8 @@ const SignInForm: React.FC<ISignInForm>= () => {
       body: jsonData,
     };
 
-    console.log(username, password);
-    const response = await fetch(`/api/users`, options);
-    const result = await response.json();
+    const response = await fetch(`${USERS_ROUTE}`, options);
+    const {result} = await response.json();
     if (result) alert(`Hello ${username}`); 
     else setAlertMessage(AlertMessages.SIGN_IN_WRONG);
     setIsFormValid(result);
