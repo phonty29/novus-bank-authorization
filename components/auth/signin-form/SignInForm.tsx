@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import AlertMessages from '../../../enums/AlertMessages';
+import SignInMessages from '../../../enums/SignInMessages';
+import { SignInResponseData } from '../../../pages/api/sign-in';
 import User from '../../../types/auth/users';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
@@ -10,7 +11,7 @@ const SignInForm: React.FC<ISignInForm>= () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [alertMessage, setAlertMessage] = useState<AlertMessages>(AlertMessages.SIGN_IN_FIELD_IS_EMPTY);
+  const [alertMessage, setAlertMessage] = useState<SignInMessages>(SignInMessages.SIGN_IN_EMPTY_FIELD);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,14 +26,16 @@ const SignInForm: React.FC<ISignInForm>= () => {
     };
 
     const response = await fetch(`${USERS_ROUTE}`, options);
-    const {success, message} = await response.json();
-    if (success) {
-      alert(`Hello ${username}`);
+    const signInResponse: SignInResponseData = await response.json();
+    if (signInResponse.accessToken) {
+      alert(`${signInResponse.message}`);
+      console.log(signInResponse.accessToken);
+      console.log(signInResponse.refreshToken);
       setIsFormValid(true);
     } 
     else {
       setIsFormValid(false);
-      setAlertMessage(message);
+      setAlertMessage(signInResponse.message);
     }
   };
 

@@ -20,13 +20,16 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
+    "bcrypt": "^5.1.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.12.1",
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -41,6 +44,7 @@
     "@storybook/manager-webpack5": "^6.5.13",
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
+    "@types/jsonwebtoken": "^8.5.9",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",
     "cross-env": "^7.0.3",
