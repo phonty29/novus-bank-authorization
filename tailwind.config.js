@@ -3,23 +3,29 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-  // Ensure these match with .storybook/preview.js
   theme: {
     extend: {
       backgroundImage: {
         'sign-in': "url('/loginbng 1.png')",
-        'green': "linear-gradient(270deg, #000000 5.08%, #076F32 104.24%)",
+        'green-gradient':
+          'linear-gradient(270deg, #000000 5.08%, #076F32 104.24%)',
+        bullet: "url('/on-stage.png')",
+        check: "url('/success.png')",
       },
       colors: {
-        'purple': "#F30066",
-        'grey': '#e3e3e3',
-        'grey-txt': '#000'
+        purple: '#F30066',
+        grey: '#e3e3e3',
+        'grey-txt': '#000',
+        'grey-90': '#e5e5e5',
+        green: '#076F32',
+        'dark-green': '#054820',
       },
       backgroundColor: {
-        'form': "#F0F2FF",
+        form: '#F0F2FF',
       },
       boxShadow: {
         'sign-in': '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        'sign-up': '0px 0px 22px rgba(0, 0, 0, 0.25)',
       },
     },
     screens: {
@@ -33,13 +39,16 @@ module.exports = {
       xs: ['12px', '14px'],
       sm: ['14px', '16px'],
       md: ['18px', '21px'],
+      lg: ['24px', '28px'],
     },
     fontFamily: {
-      'roboto': ['Roboto', 'sans-serif'],
+      roboto: ['Roboto', 'sans-serif'],
     },
     borderRadius: {
-      'lg': '10px',
+      lg: '10px',
+      xl: '15px',
       '2xl': '20px',
+      full: '100%',
     },
   },
   plugins: [],
