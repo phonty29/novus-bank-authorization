@@ -1,9 +1,9 @@
 class UserDTO {
-    id: string;
+  id: string;
 
-    constructor(user) {
-        this.id = user._id;
-    }
+  constructor(user: any) {
+    this.id = user._id;
+  }
 }
 
 export default UserDTO;
