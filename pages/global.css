@@ -22,13 +22,13 @@
     @apply z-50 w-[50px] h-[50px] rounded-full;
   }
   .empty {
-    @apply bg-white border border-[#A9B1BC];
+    @apply bg-white border border-[#A9B1BC] progress-item;
   }
-  .on-stage {
-    @apply bg-bullet bg-center bg-no-repeat;
+  .on-progress {
+    @apply bg-green bg-bullet bg-center bg-no-repeat progress-item;
   }
   .success {
-    @apply bg-check bg-center bg-no-repeat;
+    @apply bg-green bg-check bg-center bg-no-repeat progress-item;
   }
   .sign-up-layout {
     @apply bg-grey-90 min-w-full min-h-screen flex flex-col relative px-9;

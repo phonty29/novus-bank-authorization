@@ -1,8 +1,0 @@
-enum SignUpStages {
-  IDENTIFICATION = 'IDENTIFICATION',
-  VERIFICATION = 'VERIFICATION',
-  CREATION = 'CREATION',
-  SUCCESS = 'SUCCESS',
-}
-
-export default SignUpStages;

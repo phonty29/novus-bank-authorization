@@ -1,14 +1,35 @@
-import styled, { css } from 'styled-components';
-import SignUpStages from '../../../enums/SignUpStages';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+const STAGES: string[] = [
+  'IDENTIFICATION',
+  'VERIFICATION',
+  'CREATION',
+  'SUCCESS',
+];
 
 export interface ISignUpForm extends React.ComponentPropsWithoutRef<'div'> {}
 interface IProgressBar extends React.ComponentProps<'div'> {
-  stage: SignUpStages;
+  currentStage: string;
 }
-interface IProgressBullet extends React.ComponentPropsWithoutRef<''> {
-  isEmpty: boolean;
-  state?: '' | 'on-stage' | 'success';
+interface IProgressBullet extends React.ComponentPropsWithoutRef<'div'> {
+  state: string;
 }
+
+const getProgressLineWidth = (stage: string) => {
+  switch (stage) {
+    case STAGES[0]:
+      return '20%';
+    case STAGES[1]:
+      return '40%';
+    case STAGES[2]:
+      return '60%';
+    case STAGES[3]:
+      return '80%';
+    default:
+      break;
+  }
+};
 
 const Line = styled.div`
   &::before {
@@ -21,79 +42,82 @@ const Line = styled.div`
     top: 0;
     min-width: 20%;
     background-color: #076f32;
-    ${(props) =>
-      props.stage == SignUpStages.IDENTIFICATION &&
-      css`
-        width: 20%;
-      `}
-    ${(props) =>
-      props.stage == SignUpStages.VERIFICATION &&
-      css`
-        width: 40%;
-      `}
-    ${(props) =>
-      props.stage == SignUpStages.CREATION &&
-      css`
-        width: 60%;
-      `}
-    ${(props) =>
-      props.stage == SignUpStages.SUCCESS &&
-      css`
-        width: 80%;
-      `}
+    width: ${(props) => getProgressLineWidth(props.stage)};
   }
 `;
 
 const SignUpForm: React.FC<ISignUpForm> = () => {
+  const [stageIndex, setStageIndex] = useState<number>(0);
+
+  const goToPreviousStage = () => {
+    if (stageIndex === 0) setStageIndex(3);
+    else setStageIndex(stageIndex - 1);
+  };
+
+  const goToNextStage = () => {
+    if (stageIndex === STAGES.length - 1) setStageIndex(0);
+    else setStageIndex(stageIndex + 1);
+  };
+
   return (
     <div className="sign-up-form">
       <h1 className="sign-up-label">Signing up for Online Banking</h1>
-      <ProgressBar stage={SignUpStages.CREATION} />
+      <ProgressBar currentStage={STAGES[stageIndex]} />
+      {stageIndex > 0 && (
+        <button
+          className="mt-10 rounded-xl green-btn px-3 mr-5"
+          onClick={goToPreviousStage}
+        >
+          BACK
+        </button>
+      )}
+      <button
+        className="mt-10 rounded-xl green-btn px-3"
+        onClick={goToNextStage}
+      >
+        NEXT
+      </button>
     </div>
   );
 };
 
 export default SignUpForm;
 
-const ProgressBar: React.FC<IProgressBar> = ({
-  stage = SignUpStages.IDENTIFICATION,
-}) => {
+const ProgressBar: React.FC<IProgressBar> = ({ currentStage = STAGES[0] }) => {
+  const [progressItemStates, setProgressItemsState] = useState<string[]>([
+    'on-progress',
+    'empty',
+    'empty',
+    'empty',
+  ]);
+
+  useEffect(() => {
+    console.log('RERENDER PROGREES BAR');
+    switch (currentStage) {
+      case STAGES[0]:
+        setProgressItemsState(['on-progress', 'empty', 'empty', 'empty']);
+        break;
+      case STAGES[1]:
+        setProgressItemsState(['success', 'on-progress', 'empty', 'empty']);
+        break;
+      case STAGES[2]:
+        setProgressItemsState(['success', 'success', 'on-progress', 'empty']);
+        break;
+      case STAGES[3]:
+        setProgressItemsState(['success', 'success', 'success', 'on-progress']);
+        break;
+      default:
+        break;
+    }
+  }, [currentStage]);
+
   return (
     <div className="sign-up-progress-bar">
-      {stage === SignUpStages.IDENTIFICATION && (
-        <>
-          <ProgressBullet isEmpty={false} state={'on-stage'} />
-          <ProgressBullet isEmpty={true} />
-          <ProgressBullet isEmpty={true} />
-          <ProgressBullet isEmpty={true} />
-        </>
-      )}
-      {stage === SignUpStages.VERIFICATION && (
-        <>
-          <ProgressBullet isEmpty={false} state={'success'} />
-          <ProgressBullet isEmpty={false} state={'on-stage'} />
-          <ProgressBullet isEmpty={true} />
-          <ProgressBullet isEmpty={true} />
-        </>
-      )}
-      {stage === SignUpStages.CREATION && (
-        <>
-          <ProgressBullet isEmpty={false} state={'success'} />
-          <ProgressBullet isEmpty={false} state={'success'} />
-          <ProgressBullet isEmpty={false} state={'on-stage'} />
-          <ProgressBullet isEmpty={true} />
-        </>
-      )}
-      {stage === SignUpStages.SUCCESS && (
-        <>
-          <ProgressBullet isEmpty={false} state={'success'} />
-          <ProgressBullet isEmpty={false} state={'success'} />
-          <ProgressBullet isEmpty={false} state={'success'} />
-          <ProgressBullet isEmpty={false} state={'on-stage'} />
-        </>
-      )}
+      {progressItemStates.map((state, index) => {
+        return <ProgressBullet key={index} state={state} />;
+      })}
       <Line
-        stage={stage}
+        stage={currentStage}
         className="progress-line"
         data-label="progress-line"
       />
@@ -101,14 +125,6 @@ const ProgressBar: React.FC<IProgressBar> = ({
   );
 };
 
-const ProgressBullet: React.FC<IProgressBullet> = ({ isEmpty, state }) => {
-  return (
-    <>
-      {isEmpty ? (
-        <div className="empty progress-item"></div>
-      ) : (
-        <div className={`bg-green ${state} progress-item`}></div>
-      )}
-    </>
-  );
+const ProgressBullet: React.FC<IProgressBullet> = ({ state }) => {
+  return <div className={`${state}`}></div>;
 };

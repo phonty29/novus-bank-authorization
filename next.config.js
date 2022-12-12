@@ -4,6 +4,10 @@ const nextConfig = {
   images: {
     domains: ['i.pravatar.cc'],
   },
+  compiler: {
+    // Enables the styled-components SWC transform
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;
