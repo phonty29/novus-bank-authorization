@@ -9,6 +9,10 @@ const STAGES: string[] = [
 ];
 
 export interface ISignUpForm extends React.ComponentPropsWithoutRef<'div'> {}
+interface ILine {
+  className: string;
+  stage: string;
+}
 interface IProgressBar extends React.ComponentProps<'div'> {
   currentStage: string;
 }
@@ -31,7 +35,11 @@ const getProgressLineWidth = (stage: string) => {
   }
 };
 
-const Line = styled.div`
+const Line: React.FC<ILine> = ({ className, stage }) => {
+  return <div className={`${className}`}></div>;
+};
+
+const ProgressLine = styled(Line)`
   &::before {
     content: '';
     display: flex;
@@ -92,7 +100,6 @@ const ProgressBar: React.FC<IProgressBar> = ({ currentStage = STAGES[0] }) => {
   ]);
 
   useEffect(() => {
-    console.log('RERENDER PROGREES BAR');
     switch (currentStage) {
       case STAGES[0]:
         setProgressItemsState(['on-progress', 'empty', 'empty', 'empty']);
@@ -116,11 +123,7 @@ const ProgressBar: React.FC<IProgressBar> = ({ currentStage = STAGES[0] }) => {
       {progressItemStates.map((state, index) => {
         return <ProgressBullet key={index} state={state} />;
       })}
-      <Line
-        stage={currentStage}
-        className="progress-line"
-        data-label="progress-line"
-      />
+      <ProgressLine className={`progress-line`} stage={currentStage} />
     </div>
   );
 };
