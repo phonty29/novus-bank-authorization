@@ -1,6 +1,6 @@
 export interface IFooter {}
 
-const Footer: React.FC<IFooter> = ({ sampleTextProp }) => {
+const Footer: React.FC<IFooter> = ({}) => {
   return <div className="footer"></div>;
 };
 
