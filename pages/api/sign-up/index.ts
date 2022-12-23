@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import SignUpService from '../../../services/sign-up';
 
 interface SignUpRequestData extends NextApiRequest {}
 
@@ -7,7 +6,7 @@ export type SignUpResponseData = {
   message: string;
 };
 
-const { signUp } = SignUpService;
+// const { signUp } = SignUpService;
 
 export default async function handler(
   req: SignUpRequestData,

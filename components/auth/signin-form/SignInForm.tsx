@@ -6,7 +6,7 @@ import { SignInResponseData } from '../../../pages/api/sign-in';
 import User from '../../../types/auth/users';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
-const USERS_ROUTE = `/api/sign-in`; //I will create another folder and file for holding all routes
+//const USERS_ROUTE = `/api/sign-in`; //I will create another folder and file for holding all routes
 
 const SignInForm: React.FC<ISignInForm> = () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
