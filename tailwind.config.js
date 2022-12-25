@@ -15,13 +15,13 @@ module.exports = {
       colors: {
         purple: '#F30066',
         grey: '#e3e3e3',
-        'grey-txt': '#000',
-        'grey-90': '#e5e5e5',
+        'grey-br': '#a6a6a6',
         green: '#076F32',
         'dark-green': '#054820',
       },
       backgroundColor: {
-        form: '#F0F2FF',
+        field: '#F0F2FF',
+        'sign-up': '#e5e5e5'
       },
       boxShadow: {
         'sign-in': '0px 4px 4px rgba(0, 0, 0, 0.25)',

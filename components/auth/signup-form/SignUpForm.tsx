@@ -27,7 +27,7 @@ const SignUpForm: React.FC<ISignUpForm> = () => {
   return (
     <div className="sign-up-form">
       <h1 className="sign-up-label">Signing up for Online Banking</h1>
-      <ProgressBar currentStage={signUpStages[stageIndex]} />
+      <ProgressBar currentStage={signUpStages[stageIndex]} stages={signUpStages} />
       <SignUpFields currentField={signUpStages[stageIndex]} />
       <Buttons
         isFirstField={
@@ -48,14 +48,14 @@ const Buttons: React.FC<IButtons> = ({
   switchPrev,
 }) => {
   return (
-    <div>
+    <div className="sign-up-buttons">
       {!isFirstField && (
-        <button className="green-btn" onClick={switchPrev}>
-          PREV
+        <button className="sign-up-button" onClick={switchPrev}>
+          Back
         </button>
       )}
-      <button className="green-btn ml-3" onClick={switchNext}>
-        Next
+      <button className="green-btn sign-up-button" onClick={switchNext}>
+        Continue
       </button>
     </div>
   );

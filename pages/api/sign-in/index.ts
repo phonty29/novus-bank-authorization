@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import SignInMessages from "../../../enums/SignInMessages";
+import SignInMessages from "../../../enums/AuthMessages";
 import SignInService from '../../../services/sign-in';
 import User from "../../../types/auth/users";
 

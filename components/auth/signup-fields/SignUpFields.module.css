@@ -1,0 +1,33 @@
+.sign-up-fields {
+    @apply flex justify-between flex-auto mb-[136px];
+}
+.welcome-title {
+    @apply text-green font-bold text-md mb-3.5;
+}
+.fields-desc {
+    @apply text-sm text-[#737272] mb-12;
+}
+.fields-help {
+    @apply w-[335px];
+}
+.account-type {
+    @apply flex items-center;
+}
+.account-field {
+    @apply w-fit mb-9;
+}
+.account-radio-buttons {
+    @apply flex justify-between;
+}
+.help-item {
+    @apply text-[#737272];
+}
+.help-item > *:not(:last-child) {
+    @apply mb-6;
+}
+.help-more-link {
+    @apply text-purple text-xs text-end;
+}
+.help-item-title {
+    @apply text-md font-bold;
+}

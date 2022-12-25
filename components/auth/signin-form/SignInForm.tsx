@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import ApiRoutes from '../../../enums/ApiRoutes';
-import SignInMessages from '../../../enums/SignInMessages';
+import AuthMessages from '../../../enums/AuthMessages';
 import { SignInResponseData } from '../../../pages/api/sign-in';
 import User from '../../../types/auth/users';
 
@@ -12,8 +12,8 @@ const SignInForm: React.FC<ISignInForm> = () => {
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [alertMessage, setAlertMessage] = useState<SignInMessages>(
-    SignInMessages.SIGN_IN_EMPTY_FIELD
+  const [alertMessage, setAlertMessage] = useState<AuthMessages>(
+    AuthMessages.SIGN_IN_EMPTY_FIELD
   );
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

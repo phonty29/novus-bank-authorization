@@ -4,13 +4,16 @@ import ProgressLine from './ProgressLine';
 
 export interface IProgressBar extends React.ComponentProps<'div'> {
   currentStage: string;
+  stages: string[];
 }
 export interface IProgressBullet extends React.ComponentPropsWithoutRef<'div'> {
   state: string;
+  label: string;
 }
 
 const ProgressBar: React.FC<IProgressBar> = ({
   currentStage = SignUpStages.IDENTIFICATION,
+  stages
 }) => {
   const [progressItemStates, setProgressItemsState] = useState<string[]>([
     'on-progress',
@@ -41,15 +44,20 @@ const ProgressBar: React.FC<IProgressBar> = ({
   return (
     <div className="sign-up-progress-bar">
       {progressItemStates.map((state, index) => {
-        return <ProgressBullet key={index} state={state} />;
+        return <ProgressBullet key={index} state={state} label={stages[index]} />;
       })}
       <ProgressLine className={`progress-line`} stage={currentStage} />
     </div>
   );
 };
 
-const ProgressBullet: React.FC<IProgressBullet> = ({ state }) => {
-  return <div className={`${state}`}></div>;
+const ProgressBullet: React.FC<IProgressBullet> = ({ state, label }) => {
+  return (
+    <div className="progress-item">
+      <div className={`${state}`}></div>
+      <span className="progress-item-label">{label}</span>
+    </div>
+  );
 };
 
 export default ProgressBar;
