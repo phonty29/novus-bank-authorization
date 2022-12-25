@@ -1,7 +1,7 @@
 import { ISignUpFields } from './SignUpFields';
 
 const base: ISignUpFields = {
-  sampleTextProp: 'Hello world!',
+  currentField: 'Hello world!',
 };
 
 export const mockSignUpFieldsProps = {
