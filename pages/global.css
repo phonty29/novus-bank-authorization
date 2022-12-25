@@ -24,6 +24,25 @@
   input[type="radio"] {
     @apply mr-3 w-5 h-5 accent-green;
   }
+  .photo-input {
+    @apply hidden;
+  }
+  .photo-input-frame {
+    @apply 
+      w-[340px] 
+      h-[100px] 
+      rounded-[10px] 
+      border 
+      border-solid 
+      border-[#A9B1BC] 
+      bg-white 
+      flex 
+      justify-center 
+      items-center;
+  }
+  .photo-background {
+    @apply bg-photo bg-auto bg-center bg-no-repeat;
+  }
   .footer {
     @apply h-[70px] w-full;
   }

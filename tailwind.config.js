@@ -11,6 +11,7 @@ module.exports = {
           'linear-gradient(270deg, #000000 5.08%, #076F32 104.24%)',
         bullet: "url('/on-stage.png')",
         check: "url('/success.png')",
+        photo: "url('/photo-img.png')",
       },
       colors: {
         purple: '#F30066',
