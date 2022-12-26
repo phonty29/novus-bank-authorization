@@ -31,3 +31,6 @@
 .help-item-title {
     @apply text-md font-bold;
 }
+.email-verified {
+    @apply text-green text-lg font-bold;
+}

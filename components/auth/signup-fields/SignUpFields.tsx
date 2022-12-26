@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 import AuthMessages from "../../../enums/AuthMessages";
 import SignUpStages from "../../../enums/SignUpStages";
 
@@ -8,11 +9,13 @@ export interface ISignUpFields {
 interface IForm extends React.ComponentPropsWithoutRef<'div'> {}
 
 const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
+  const [verificationMethod, setVerificationMethod] = useState<string>("phone");
+
   return (
     <div className="sign-up-fields">
       <div className="fields-form">
-        {currentField === SignUpStages.IDENTIFICATION && (<IdentificationForm />)}
-        {currentField === SignUpStages.VERIFICATION && (<VerificationForm />)}
+        {currentField === SignUpStages.IDENTIFICATION && (<IdentificationForm selectVerificationMethod={setVerificationMethod} />)}
+        {currentField === SignUpStages.VERIFICATION && (<VerificationForm verificationMethod={verificationMethod} />)}
       </div>
       <div className="fields-help">
         <div className="help-item mb-5">
@@ -36,7 +39,7 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
 
 export default SignUpFields;
 
-const IdentificationForm: React.FC<IForm> = () => {
+const IdentificationForm: React.FC<IForm> = ({selectVerificationMethod}) => {
   return (
       <>
         <h2 className="welcome-title">{"Welcome - let's get started"}</h2>
@@ -87,40 +90,87 @@ const IdentificationForm: React.FC<IForm> = () => {
             className="auth-input"
           />
         </div>
+        <div className="input-field mb-7">
+          <label htmlFor="verification-method" className="label-text">
+            Choose a verification method
+            <span className="text-purple"> *</span>
+          </label>
+          <select name="verification-method" id="verification-method" className="auth-input" onChange={(event) => {selectVerificationMethod(event?.target.value)}}>
+            <option value="phone">Send six digits code to phone number</option>
+            <option value="email">Send a link to email</option>
+          </select>
+        </div>        
         <p className="alert-message text-start">{AuthMessages.SIGN_IN_EMPTY_FIELD}</p>
       </>
   );
 }
 
-const VerificationForm: React.FC<IForm> = () => {
+const VerificationForm: React.FC<IForm> = ({verificationMethod}) => {
   return (
       <>
-        <p className="fields-desc">Select an option</p>
-        <div className="input-field mb-7">
-          <label htmlFor="field-photo" className="label-text">
-            Take a selfie
-            <span className="text-purple"> *</span>
-          </label>
-          <input
-            type="file"
-            id="field-photo"
-            name="field-photo"
-            className="photo-input"
-          />
-          <div className="photo-input-frame">
-            <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76" fill="none" >
-              <circle cx="38" cy="38" r="38" fill="url(#paint0_linear_627_32)" />
-              <defs>
-                <linearGradient id="paint0_linear_627_32" x1="38" y1="0" x2="38" y2="76" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#00B34A"/>
-                  <stop offset="1" stopColor="#076F32"/>
-                </linearGradient>
-              </defs>
-              <image href="/photo-img.svg" x="50%" y="50%" transform="translate(-18.5,-16.5)"/>
-            </svg>
+      {verificationMethod==="phone" && (
+        <>
+          <p className="fields-desc">Tell us about your basic details and account requirements</p>
+          <div className="input-field mb-7">
+            <label htmlFor="six-dig-code" className="label-text">
+              Type six digit code which is sent to your phone number
+              <span className="text-purple"> *</span>
+            </label>
+            <input
+              type="number"
+              id="six-dig-code"
+              name="six-dig-code"
+              className="auth-input"
+              required
+            />
           </div>
-        </div>
-        <p className="alert-message text-start">{AuthMessages.SIGN_IN_EMPTY_FIELD}</p>
+          <p className="alert-message text-start">{AuthMessages.SIGN_IN_EMPTY_FIELD}</p>
+        </>
+      )}
+      {
+        verificationMethod==="email" &&
+        (
+          <div className="mt-7 flex items-center">
+              <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-5">
+                <circle cx="16.5" cy="16.5" r="16" fill="url(#paint0_linear_666_740)" stroke="#007F36"/>
+                <defs>
+                    <linearGradient id="paint0_linear_666_740" x1="16.5" y1="0" x2="16.5" y2="33" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#076F32"/>
+                        <stop offset="1" stop-color="#00B34A"/>
+                    </linearGradient>
+                </defs>
+                <image href="/check.svg" x="50%" y="50%" transform="translate(-8,-8)"/>
+            </svg>
+            <p className="email-verified">Email is verified</p>
+          </div>
+        )
+      }
       </>
   );
 }
+
+
+{/* <div className="input-field mb-7">
+<label htmlFor="field-photo" className="label-text">
+  Take a selfie
+  <span className="text-purple"> *</span>
+</label>
+<input
+  type="file"
+  id="field-photo"
+  name="field-photo"
+  className="photo-input"
+/>
+<div className="photo-input-frame">
+  <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76" fill="none" >
+    <circle cx="38" cy="38" r="38" fill="url(#paint0_linear_627_32)" />
+    <defs>
+      <linearGradient id="paint0_linear_627_32" x1="38" y1="0" x2="38" y2="76" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#00B34A"/>
+        <stop offset="1" stopColor="#076F32"/>
+      </linearGradient>
+    </defs>
+    <image href="/photo-img.svg" x="50%" y="50%" transform="translate(-18.5,-16.5)"/>
+  </svg>
+</div>
+</div> */}
