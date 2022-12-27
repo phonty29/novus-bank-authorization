@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
 import IdentificationForm from './IdentificationForm';
@@ -11,8 +10,6 @@ export interface ISignUpFields {
 export interface IForm extends React.ComponentPropsWithoutRef<'div'> {}
 
 const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
-  const [verificationMethod, setVerificationMethod] = useState<string>('phone');
-
   return (
     <div className="sign-up-fields">
       <div className="fields-form">
