@@ -1,36 +1,45 @@
 .sign-up-fields {
-    @apply flex justify-between flex-auto mb-[136px];
+  @apply flex justify-between flex-auto mb-[136px];
 }
 .welcome-title {
-    @apply text-green font-bold text-md mb-3.5;
+  @apply text-green font-bold text-md mb-3.5;
+}
+.fields-form {
+  @apply w-[400px];
 }
 .fields-desc {
-    @apply text-sm text-[#737272] mb-12;
+  @apply text-sm text-[#737272] mb-12;
 }
 .fields-help {
-    @apply w-[335px];
+  @apply w-[335px];
 }
 .account-type {
-    @apply flex items-center;
+  @apply flex items-center;
 }
 .account-field {
-    @apply w-fit mb-9;
+  @apply w-fit mb-9;
 }
 .account-radio-buttons {
-    @apply flex justify-between;
+  @apply flex justify-between;
+}
+.verify-button {
+  @apply w-full text-md py-3 text-center rounded-lg mb-5 cursor-pointer;
+}
+.verify-info {
+  @apply flex justify-between items-start;
 }
 .help-item {
-    @apply text-[#737272];
+  @apply text-[#737272];
 }
 .help-item > *:not(:last-child) {
-    @apply mb-6;
+  @apply mb-6;
 }
 .help-more-link {
-    @apply text-purple text-xs text-end;
+  @apply text-purple text-xs text-end;
 }
 .help-item-title {
-    @apply text-md font-bold;
+  @apply text-md font-bold;
 }
 .email-verified {
-    @apply text-green text-lg font-bold;
+  @apply text-green text-lg font-bold;
 }
