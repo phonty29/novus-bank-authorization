@@ -8,7 +8,7 @@
   @apply w-[400px];
 }
 .fields-desc {
-  @apply text-sm text-[#737272] mb-12;
+  @apply text-sm text-[#737272];
 }
 .fields-help {
   @apply w-[335px];
