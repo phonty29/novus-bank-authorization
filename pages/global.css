@@ -16,20 +16,19 @@
     @apply text-black text-input mb-3;
   }
   .auth-input {
-    @apply box-content bg-field rounded-lg border border-grey-br border-solid text-input text-black pl-5 pt-3 pb-3 shadow-gray-300 placeholder-[#333];
+    @apply box-content bg-field rounded-lg border border-grey-br border-solid text-input text-black px-5 py-3 shadow-gray-300 placeholder-[#333];
   }
   .alert-message {
     @apply text-purple text-xs text-center;
   }
-  input[type="radio"] {
+  input[type='radio'] {
     @apply mr-3 w-5 h-5 accent-green;
   }
   .photo-input {
     @apply hidden;
   }
   .photo-input-frame {
-    @apply 
-      w-[340px] 
+    @apply w-[340px] 
       h-[100px] 
       rounded-[10px] 
       border 
@@ -49,8 +48,8 @@
 }
 
 @layer components {
-  @import "../components/auth/signup-form/SignUpForm.module.css";
-  @import "../components/auth/signin-form/SignInForm.module.css";
+  @import '../components/auth/signup-form/SignUpForm.module.css';
+  @import '../components/auth/signin-form/SignInForm.module.css';
 }
 
 @layer utilities {

@@ -1,5 +1,6 @@
 import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
+import CreationForm from './CreationForm';
 import IdentificationForm from './IdentificationForm';
 import SignUpFieldsHelp from './SignUpFieldsHelp';
 import VerificationForm from './VerificationForm';
@@ -15,6 +16,7 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
       <div className="fields-form">
         {currentField === SignUpStages.IDENTIFICATION && <IdentificationForm />}
         {currentField === SignUpStages.VERIFICATION && <VerificationForm />}
+        {currentField === SignUpStages.CREATION && <CreationForm />}
         <p className="alert-message text-start">
           {AuthMessages.SIGN_IN_EMPTY_FIELD}
         </p>
