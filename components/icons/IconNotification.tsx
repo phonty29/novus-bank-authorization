@@ -21,9 +21,9 @@ const IconNotification: React.FC = () => {
             y2="24"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#076F32" />
-            <stop offset="0.9999" stop-color="#039841" />
-            <stop offset="1" stop-color="#00B34A" />
+            <stop stopColor="#076F32" />
+            <stop offset="0.9999" stopColor="#039841" />
+            <stop offset="1" stopColor="#00B34A" />
           </linearGradient>
         </defs>
       </svg>

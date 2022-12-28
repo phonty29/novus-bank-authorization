@@ -6,6 +6,7 @@ import { IForm } from './SignUpFields';
 const VerificationForm: React.FC<IForm> = () => {
   const [verificationMethod, setVerificationMethod] =
     useState<VerificationMethod>(VerificationMethod.BEFORE_CHOICE);
+  const [buttonText, setButtonText] = useState<string>("a verification");
   const selectRef = useRef<HTMLSelectElement | null>(null);
   const sendVerification = () => {
     if (selectRef.current) {
@@ -14,6 +15,7 @@ const VerificationForm: React.FC<IForm> = () => {
           ? VerificationMethod.PHONE
           : VerificationMethod.EMAIL
       );
+      setButtonText("again");
     }
   };
 
@@ -39,12 +41,10 @@ const VerificationForm: React.FC<IForm> = () => {
         </select>
       </div>
       <div
-        className={`green-btn verify-button ${
-          verificationMethod != VerificationMethod.BEFORE_CHOICE ? 'hidden' : ''
-        }`}
+        className={`green-btn verify-button mb-7`}
         onClick={sendVerification}
       >
-        Send a verification
+        Send {buttonText}
       </div>
       {verificationMethod === VerificationMethod.PHONE && (
         <div className="input-field mb-7">

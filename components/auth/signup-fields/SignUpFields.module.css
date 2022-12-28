@@ -23,7 +23,7 @@
   @apply flex justify-between;
 }
 .verify-button {
-  @apply w-full text-md py-3 text-center rounded-lg mb-5 cursor-pointer;
+  @apply w-[250px] text-md py-3 text-center rounded-lg mb-5 cursor-pointer;
 }
 .verify-info {
   @apply flex justify-between items-start;

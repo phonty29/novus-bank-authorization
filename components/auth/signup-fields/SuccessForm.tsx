@@ -56,6 +56,7 @@ const SuccessForm: React.FC<IForm> = () => {
           id="whatsapp-alerts"
           name="whatsapp-alerts"
           className="auth-checkbox"
+          readOnly
           checked={isWhatsappCheckboxChecked}
         />
         <span
@@ -74,6 +75,7 @@ const SuccessForm: React.FC<IForm> = () => {
           id="email-alerts"
           name="email-alerts"
           className="auth-checkbox"
+          readOnly
           checked={isEmailCheckboxChecked}
         />
         <span
