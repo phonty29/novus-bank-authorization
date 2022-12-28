@@ -3,12 +3,13 @@ import SignUpStages from '../../../enums/SignUpStages';
 import CreationForm from './CreationForm';
 import IdentificationForm from './IdentificationForm';
 import SignUpFieldsHelp from './SignUpFieldsHelp';
+import SuccessForm from './SuccessForm';
 import VerificationForm from './VerificationForm';
 
 export interface ISignUpFields {
   currentField: string;
 }
-export interface IForm extends React.ComponentPropsWithoutRef<'div'> {}
+export interface IForm {}
 
 const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
   return (
@@ -17,6 +18,7 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
         {currentField === SignUpStages.IDENTIFICATION && <IdentificationForm />}
         {currentField === SignUpStages.VERIFICATION && <VerificationForm />}
         {currentField === SignUpStages.CREATION && <CreationForm />}
+        {currentField === SignUpStages.SUCCESS && <SuccessForm />}
         <p className="alert-message text-start">
           {AuthMessages.SIGN_IN_EMPTY_FIELD}
         </p>

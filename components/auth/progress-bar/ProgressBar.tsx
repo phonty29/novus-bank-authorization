@@ -13,7 +13,7 @@ export interface IProgressBullet extends React.ComponentPropsWithoutRef<'div'> {
 
 const ProgressBar: React.FC<IProgressBar> = ({
   currentStage = SignUpStages.IDENTIFICATION,
-  stages
+  stages,
 }) => {
   const [progressItemStates, setProgressItemsState] = useState<string[]>([
     'on-progress',
@@ -44,7 +44,9 @@ const ProgressBar: React.FC<IProgressBar> = ({
   return (
     <div className="sign-up-progress-bar">
       {progressItemStates.map((state, index) => {
-        return <ProgressBullet key={index} state={state} label={stages[index]} />;
+        return (
+          <ProgressBullet key={index} state={state} label={stages[index]} />
+        );
       })}
       <ProgressLine className={`progress-line`} stage={currentStage} />
     </div>

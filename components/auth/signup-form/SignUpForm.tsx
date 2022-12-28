@@ -27,7 +27,10 @@ const SignUpForm: React.FC<ISignUpForm> = () => {
   return (
     <div className="sign-up-form">
       <h1 className="sign-up-label">Signing up for Online Banking</h1>
-      <ProgressBar currentStage={signUpStages[stageIndex]} stages={signUpStages} />
+      <ProgressBar
+        currentStage={signUpStages[stageIndex]}
+        stages={signUpStages}
+      />
       <SignUpFields currentField={signUpStages[stageIndex]} />
       <Buttons
         isFirstField={

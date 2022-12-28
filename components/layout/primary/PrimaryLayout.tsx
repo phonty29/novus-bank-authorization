@@ -5,7 +5,7 @@ export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
   title?: string;
 }
 
-const PrimaryLayout: React.FC<IPrimaryLayout> = ({ 
+const PrimaryLayout: React.FC<IPrimaryLayout> = ({
   children,
   justify = 'items-center', //by default all items are centered
   title = 'Bekonomix', //by default a page has 'Bekonomix' title
@@ -16,8 +16,11 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <div {...divProps} className={`min-h-screen flex flex-col font-roboto ${justify}`}>
-          {children}
+      <div
+        {...divProps}
+        className={`min-h-screen flex flex-col font-roboto ${justify}`}
+      >
+        {children}
       </div>
     </>
   );

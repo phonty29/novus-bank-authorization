@@ -12,11 +12,36 @@
   .input-field {
     @apply flex flex-col;
   }
+  .checkbox-field {
+    @apply flex items-center relative pl-9;
+  }
   .label-text {
     @apply text-black text-input mb-3;
   }
+  .checkbox-label-text {
+    @apply leading-6 mb-0 label-text;
+  }
   .auth-input {
     @apply box-content bg-field rounded-lg border border-grey-br border-solid text-input text-black px-5 py-3 shadow-gray-300 placeholder-[#333];
+  }
+  .auth-checkbox {
+    @apply absolute opacity-0 h-0 w-0 cursor-pointer;
+  }
+  .auth-checkbox ~ .checkmark {
+    @apply absolute top-0 left-0 h-6 w-6 rounded-[5px] bg-field border border-grey-br hover:bg-[#ccc] after:absolute after:content-[''] after:hidden;
+  }
+  .auth-checkbox:checked ~ .checkmark {
+    @apply bg-green after:block;
+  }
+  .checkmark {
+    @apply after:left-[9px] 
+      after:top-[5px] 
+      after:w-[6px] 
+      after:h-[11px] 
+      after:border-white 
+      after:border-r-2 
+      after:border-b-2
+      after:rotate-45;
   }
   .alert-message {
     @apply text-purple text-xs text-center;

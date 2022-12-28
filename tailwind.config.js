@@ -22,7 +22,7 @@ module.exports = {
       },
       backgroundColor: {
         field: '#F0F2FF',
-        'sign-up': '#e5e5e5'
+        'sign-up': '#e5e5e5',
       },
       boxShadow: {
         'sign-in': '0px 4px 4px rgba(0, 0, 0, 0.25)',

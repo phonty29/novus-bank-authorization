@@ -1,8 +1,8 @@
 {
   "extends": [
     "plugin:storybook/recommended",
-    "next", 
-    "next/core-web-vitals", 
+    "next",
+    "next/core-web-vitals",
     "eslint:recommended"
   ],
   "globals": {
@@ -13,7 +13,7 @@
       "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
       "rules": {
         "storybook/hierarchy-separator": "error"
-      }      
+      }
     }
   ],
   "rules": {

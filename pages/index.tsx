@@ -5,7 +5,7 @@ import { NextPageWithLayout } from './page';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    await clientPromise
+    await clientPromise;
     return {
       props: { isConnected: true },
     };
@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       props: { isConnected: false },
     };
   }
-}
+};
 
 const Home: NextPageWithLayout = ({
   isConnected,
@@ -23,7 +23,9 @@ const Home: NextPageWithLayout = ({
   return (
     <section className="bg-gradient-to-r from-cyan-500 to-blue-500">
       <h1>
-        {isConnected ? "You're connected to MongoDB" : "You are NOT connected to MongoDB"}
+        {isConnected
+          ? "You're connected to MongoDB"
+          : 'You are NOT connected to MongoDB'}
       </h1>
     </section>
   );
@@ -32,9 +34,5 @@ const Home: NextPageWithLayout = ({
 export default Home;
 
 Home.getLayout = (page) => {
-  return (
-    <PrimaryLayout>
-      {page}
-    </PrimaryLayout>
-  );
+  return <PrimaryLayout>{page}</PrimaryLayout>;
 };
