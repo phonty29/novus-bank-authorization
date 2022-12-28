@@ -21,10 +21,17 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switc
     phoneNumber: "",
     email: ""
   });
+  const validateCurrentField = (currentField: string) => {
+    switch (currentField) {
+      case SignUpStages.IDENTIFICATION: return validateIdentificationFields(identificationFields);
+      default:
+        break;
+    }
+  }
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(identificationFields);
-    if (validateIdentificationFields(identificationFields)) 
+    if (validateCurrentField(currentField)) 
       switchNext();
   }
   

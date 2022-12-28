@@ -13,10 +13,9 @@ interface IForm {
 }
 
 export const validateIdentificationFields = (state: IdentificationFields): boolean => {
-  const validEmailRegex: RegExp =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  if (state.email.match(validEmailRegex)) 
-    return true;
-  return false;
+  const validPhoneRegex: RegExp = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //eslint-disable-line
+  const validEmailRegex: RegExp =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //eslint-disable-line
+  return validPhoneRegex.test(state.phoneNumber) && validEmailRegex.test(state.email);
 }
 
 const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
