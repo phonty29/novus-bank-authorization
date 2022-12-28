@@ -4,7 +4,7 @@ import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
 import Buttons from './Buttons';
 import CreationForm from './CreationForm';
-import IdentificationForm, { IdentificationFields } from './IdentificationForm';
+import IdentificationForm, { IdentificationFields, validateIdentificationFields } from './IdentificationForm';
 import SignUpFieldsHelp from './SignUpFieldsHelp';
 import SuccessForm from './SuccessForm';
 import VerificationForm from './VerificationForm';
@@ -19,11 +19,13 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switc
   const [identificationFields, setIdentificationFields] = useState<IdentificationFields>({
     accountType: AccountType.SELF,
     phoneNumber: "",
-    email: ","
+    email: ""
   });
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(identificationFields);
+    if (validateIdentificationFields(identificationFields)) 
+      switchNext();
   }
   
   return (
@@ -42,7 +44,6 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switc
             ? true
             : false
         }
-        switchNext={switchNext}
         switchPrev={switchPrev}
         />
       </form>

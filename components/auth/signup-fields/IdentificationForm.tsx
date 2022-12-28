@@ -12,6 +12,13 @@ interface IForm {
   setState: Dispatch<SetStateAction<IdentificationFields>>;
 }
 
+export const validateIdentificationFields = (state: IdentificationFields): boolean => {
+  const validEmailRegex: RegExp =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (state.email.match(validEmailRegex)) 
+    return true;
+  return false;
+}
+
 const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
   const isAccountTypeSelected = (type: AccountType) => type === state.accountType;
   const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void => setState({...state, accountType: event.currentTarget.value});
@@ -52,6 +59,7 @@ const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
           name="field-number"
           placeholder={'Enter mobile number'}
           className="auth-input"
+          value={state.phoneNumber}
           onChange={(event) => {setState({...state, phoneNumber: event.currentTarget.value})}}
           required
         />
@@ -67,6 +75,7 @@ const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
           name="field-email"
           placeholder={'Enter email address'}
           className="auth-input"
+          value={state.email}
           onChange={(event) => {setState({...state, email: event.currentTarget.value})}}
           required
         />

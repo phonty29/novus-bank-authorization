@@ -1,13 +1,10 @@
 export interface IButtons extends React.ComponentPropsWithRef<'div'> {
     isFirstField: boolean;
-    switchNext: () => void;
     switchPrev: () => void;
 }
 
 const Buttons: React.FC<IButtons> = ({
-    isFirstField = true,
-    switchNext,
-    switchPrev,
+    isFirstField = true, switchPrev
   }) => {
     return (
       <div className="sign-up-buttons">
@@ -16,7 +13,7 @@ const Buttons: React.FC<IButtons> = ({
             Back
           </button>
         )}
-        <button type="submit" className="green-btn sign-up-button" onClick={switchNext}>
+        <button type="submit" className="green-btn sign-up-button">
           Continue
         </button>
       </div>

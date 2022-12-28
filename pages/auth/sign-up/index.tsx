@@ -17,7 +17,7 @@ const SignUp: NextPageWithLayout<ISignUp> = () => {
           width="193"
           height="22"
         />
-        <Link href="#" className="link-to-sign-in">
+        <Link href="/auth/sign-in" className="link-to-sign-in">
           sign in
         </Link>
       </header>
