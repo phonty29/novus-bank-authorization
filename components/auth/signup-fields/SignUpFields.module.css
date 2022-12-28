@@ -1,11 +1,11 @@
 .sign-up-fields {
-  @apply flex justify-between flex-auto mb-[136px];
+  @apply flex justify-between flex-auto;
 }
 .welcome-title {
   @apply text-green font-bold text-md mb-3.5;
 }
 .fields-form {
-  @apply min-w-[400px];
+  @apply min-w-[400px] h-full flex flex-col;
 }
 .fields-desc {
   @apply text-sm text-[#737272];
@@ -51,4 +51,7 @@
 }
 .email-verified {
   @apply text-green text-lg font-bold;
+}
+.alert-message-sign-up {
+  @apply alert-message text-start flex-auto;
 }

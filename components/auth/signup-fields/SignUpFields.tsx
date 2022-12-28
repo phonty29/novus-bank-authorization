@@ -1,5 +1,6 @@
 import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
+import Buttons from './Buttons';
 import CreationForm from './CreationForm';
 import IdentificationForm from './IdentificationForm';
 import SignUpFieldsHelp from './SignUpFieldsHelp';
@@ -8,10 +9,12 @@ import VerificationForm from './VerificationForm';
 
 export interface ISignUpFields {
   currentField: string;
+  switchNext: () => void;
+  switchPrev: () => void;
 }
 export interface IForm {}
 
-const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
+const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switchPrev }) => {
   return (
     <div className="sign-up-fields">
       <div className="fields-form">
@@ -19,9 +22,18 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField }) => {
         {currentField === SignUpStages.VERIFICATION && <VerificationForm />}
         {currentField === SignUpStages.CREATION && <CreationForm />}
         {currentField === SignUpStages.SUCCESS && <SuccessForm />}
-        <p className="alert-message text-start">
+        <p className="alert-message-sign-up">
           {AuthMessages.SIGN_IN_EMPTY_FIELD}
         </p>
+        <Buttons
+        isFirstField={
+          currentField === SignUpStages.IDENTIFICATION
+            ? true
+            : false
+        }
+        switchNext={switchNext}
+        switchPrev={switchPrev}
+        />
       </div>
       <SignUpFieldsHelp />
     </div>

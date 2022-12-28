@@ -1,5 +1,5 @@
 .sign-up-form {
-  @apply bg-field shadow-sign-up rounded-xl w-full flex-auto pt-5 px-8 flex flex-col;
+  @apply bg-field shadow-sign-up rounded-xl w-full flex-auto pt-5 px-8 flex flex-col h-[846px];
 }
 .sign-up-label {
   @apply text-lg text-green font-bold;
