@@ -1,6 +1,20 @@
-import { IForm } from './SignUpFields';
+import { Dispatch, SetStateAction } from "react";
+import AccountType from "../../../enums/AccountType";
 
-const IdentificationForm: React.FC<IForm> = () => {
+export interface IdentificationFields {
+  accountType: string;
+  phoneNumber: string;
+  email: string;
+}
+
+interface IForm {
+  state: IdentificationFields;
+  setState: Dispatch<SetStateAction<IdentificationFields>>;
+}
+
+const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
+  const isAccountTypeSelected = (type: AccountType) => type === state.accountType;
+  const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void => setState({...state, accountType: event.currentTarget.value});
   return (
     <>
       <h2 className="welcome-title">{"Welcome - let's get started"}</h2>
@@ -14,15 +28,15 @@ const IdentificationForm: React.FC<IForm> = () => {
         </p>
         <div className="account-radio-buttons">
           <div className="account-type">
-            <input type="radio" id="account-self" name="account-type" />
+            <input type="radio" id="account-self" name="account-type" value={AccountType.SELF} checked={isAccountTypeSelected(AccountType.SELF)} onChange={handleClick}/>
             <label htmlFor="account-self">Self</label>
           </div>
           <div className="account-type">
-            <input type="radio" id="account-business" name="account-type" />
+            <input type="radio" id="account-business" name="account-type" value={AccountType.BUSINESS} checked={isAccountTypeSelected(AccountType.BUSINESS)} onChange={handleClick} />
             <label htmlFor="account-business">Business</label>
           </div>
           <div className="account-type">
-            <input type="radio" id="account-family" name="account-type" />
+            <input type="radio" id="account-family" name="account-type" value={AccountType.FAMILY} checked={isAccountTypeSelected(AccountType.FAMILY)} onChange={handleClick} />
             <label htmlFor="account-family">Family</label>
           </div>
         </div>
@@ -38,6 +52,8 @@ const IdentificationForm: React.FC<IForm> = () => {
           name="field-number"
           placeholder={'Enter mobile number'}
           className="auth-input"
+          onChange={(event) => {setState({...state, phoneNumber: event.currentTarget.value})}}
+          required
         />
       </div>
       <div className="input-field mb-6">
@@ -51,6 +67,8 @@ const IdentificationForm: React.FC<IForm> = () => {
           name="field-email"
           placeholder={'Enter email address'}
           className="auth-input"
+          onChange={(event) => {setState({...state, email: event.currentTarget.value})}}
+          required
         />
       </div>
     </>

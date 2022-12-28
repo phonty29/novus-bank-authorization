@@ -1,8 +1,10 @@
+import { useState } from 'react';
+import AccountType from '../../../enums/AccountType';
 import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
 import Buttons from './Buttons';
 import CreationForm from './CreationForm';
-import IdentificationForm from './IdentificationForm';
+import IdentificationForm, { IdentificationFields } from './IdentificationForm';
 import SignUpFieldsHelp from './SignUpFieldsHelp';
 import SuccessForm from './SuccessForm';
 import VerificationForm from './VerificationForm';
@@ -12,13 +14,22 @@ export interface ISignUpFields {
   switchNext: () => void;
   switchPrev: () => void;
 }
-export interface IForm {}
 
 const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switchPrev }) => {
+  const [identificationFields, setIdentificationFields] = useState<IdentificationFields>({
+    accountType: AccountType.SELF,
+    phoneNumber: "",
+    email: ","
+  });
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(identificationFields);
+  }
+  
   return (
     <div className="sign-up-fields">
-      <div className="fields-form">
-        {currentField === SignUpStages.IDENTIFICATION && <IdentificationForm />}
+      <form className="fields-form" onSubmit={handleSubmit}>
+        {currentField === SignUpStages.IDENTIFICATION && <IdentificationForm state={identificationFields} setState={setIdentificationFields}/>}
         {currentField === SignUpStages.VERIFICATION && <VerificationForm />}
         {currentField === SignUpStages.CREATION && <CreationForm />}
         {currentField === SignUpStages.SUCCESS && <SuccessForm />}
@@ -34,7 +45,7 @@ const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switc
         switchNext={switchNext}
         switchPrev={switchPrev}
         />
-      </div>
+      </form>
       <SignUpFieldsHelp />
     </div>
   );

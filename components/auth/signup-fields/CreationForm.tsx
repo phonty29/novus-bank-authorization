@@ -1,6 +1,5 @@
-import { IForm } from './SignUpFields';
 
-const CreationForm: React.FC<IForm> = () => {
+const CreationForm: React.FC = () => {
   return (
     <>
       <p className="fields-desc mb-5">

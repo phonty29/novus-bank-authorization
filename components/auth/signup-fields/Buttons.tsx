@@ -16,7 +16,7 @@ const Buttons: React.FC<IButtons> = ({
             Back
           </button>
         )}
-        <button className="green-btn sign-up-button" onClick={switchNext}>
+        <button type="submit" className="green-btn sign-up-button" onClick={switchNext}>
           Continue
         </button>
       </div>

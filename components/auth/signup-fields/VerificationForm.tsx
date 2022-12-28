@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react';
 import VerificationMethod from '../../../enums/VerificationMethod';
 import IconNotification from '../../icons/IconNotification';
-import { IForm } from './SignUpFields';
 
-const VerificationForm: React.FC<IForm> = () => {
+const VerificationForm: React.FC = () => {
   const [verificationMethod, setVerificationMethod] =
     useState<VerificationMethod>(VerificationMethod.BEFORE_CHOICE);
   const [buttonText, setButtonText] = useState<string>("a verification");

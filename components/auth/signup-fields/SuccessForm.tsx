@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { IForm } from './SignUpFields';
 
-const SuccessForm: React.FC<IForm> = () => {
+const SuccessForm: React.FC = () => {
   const [isWhatsappCheckboxChecked, setIsWhatsappCheckboxChecked] =
     useState<boolean>(false);
   const [isEmailCheckboxChecked, setIsEmailCheckboxChecked] =
