@@ -1,10 +1,6 @@
-import SignUpStages from '../../../enums/SignUpStages';
 import { IProgressBar } from './ProgressBar';
 
-const base: IProgressBar = {
-  currentStage: SignUpStages.IDENTIFICATION,
-  stages: [],
-};
+const base: IProgressBar = {};
 
 export const mockProgressBarProps = {
   base,
