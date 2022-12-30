@@ -1,10 +1,6 @@
 import { ISignUpFields } from './SignUpFields';
 
-const base: ISignUpFields = {
-  currentField: 'Hello world!',
-  switchNext: () => {},
-  switchPrev: () => {}
-};
+const base: ISignUpFields = {};
 
 export const mockSignUpFieldsProps = {
   base,
