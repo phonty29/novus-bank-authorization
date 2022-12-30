@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AccountType from '../../../enums/AccountType';
 import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
+import { useSignUpContext } from '../../../state/auth/SignUpContext';
 import Buttons from './Buttons';
 import CreationForm from './CreationForm';
 import IdentificationForm, { IdentificationFields, validateIdentificationFields } from './IdentificationForm';
@@ -9,50 +10,39 @@ import SignUpFieldsHelp from './SignUpFieldsHelp';
 import SuccessForm from './SuccessForm';
 import VerificationForm from './VerificationForm';
 
-export interface ISignUpFields {
-  currentField: string;
-  switchNext: () => void;
-  switchPrev: () => void;
-}
+export interface ISignUpFields {}
 
-const SignUpFields: React.FC<ISignUpFields> = ({ currentField, switchNext, switchPrev }) => {
+const SignUpFields: React.FC<ISignUpFields> = () => {
+  const {currentStage, nextStage} = useSignUpContext();
   const [identificationFields, setIdentificationFields] = useState<IdentificationFields>({
     accountType: AccountType.SELF,
     phoneNumber: "",
     email: ""
   });
-  const validateCurrentField = (currentField: string) => {
-    switch (currentField) {
+  const validateCurrentField = () => {
+    switch (currentStage) {
       case SignUpStages.IDENTIFICATION: return validateIdentificationFields(identificationFields);
       default:
-        break;
+        return true;
     }
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (validateCurrentField(currentField)) 
-      switchNext();
+    if (validateCurrentField()) 
+      nextStage();
   }
-  
   return (
     <div className="sign-up-fields">
       <form className="fields-form" onSubmit={handleSubmit}>
-        {currentField === SignUpStages.IDENTIFICATION && <IdentificationForm state={identificationFields} setState={setIdentificationFields}/>}
-        {currentField === SignUpStages.VERIFICATION && <VerificationForm />}
-        {currentField === SignUpStages.CREATION && <CreationForm />}
-        {currentField === SignUpStages.SUCCESS && <SuccessForm />}
+        {currentStage === SignUpStages.IDENTIFICATION && <IdentificationForm state={identificationFields} setState={setIdentificationFields}/>}
+        {currentStage === SignUpStages.VERIFICATION && <VerificationForm />}
+        {currentStage === SignUpStages.CREATION && <CreationForm />}
+        {currentStage === SignUpStages.SUCCESS && <SuccessForm />}
         <p className="alert-message-sign-up">
           {AuthMessages.SIGN_IN_EMPTY_FIELD}
         </p>
-        <Buttons
-        isFirstField={
-          currentField === SignUpStages.IDENTIFICATION
-            ? true
-            : false
-        }
-        switchPrev={switchPrev}
-        />
+        <Buttons />
       </form>
       <SignUpFieldsHelp />
     </div>

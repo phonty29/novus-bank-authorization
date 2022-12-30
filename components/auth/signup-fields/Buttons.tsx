@@ -1,15 +1,14 @@
-export interface IButtons extends React.ComponentPropsWithRef<'div'> {
-    isFirstField: boolean;
-    switchPrev: () => void;
-}
+import SignUpStages from "../../../enums/SignUpStages";
+import { useSignUpContext } from "../../../state/auth/SignUpContext";
 
-const Buttons: React.FC<IButtons> = ({
-    isFirstField = true, switchPrev
-  }) => {
+export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
+
+const Buttons: React.FC<IButtons> = () => {
+    const {currentStage, prevStage} = useSignUpContext();
     return (
       <div className="sign-up-buttons">
-        {!isFirstField && (
-          <button className="sign-up-button" onClick={switchPrev}>
+        {!(currentStage===SignUpStages.IDENTIFICATION) && (
+          <button className="sign-up-button" onClick={prevStage}>
             Back
           </button>
         )}

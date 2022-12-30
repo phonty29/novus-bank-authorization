@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react';
 import SignUpStages from '../../../enums/SignUpStages';
+import { useSignUpContext } from '../../../state/auth/SignUpContext';
 import ProgressLine from './ProgressLine';
 
-export interface IProgressBar extends React.ComponentProps<'div'> {
-  currentStage: string;
-  stages: string[];
-}
+export interface IProgressBar extends React.ComponentProps<'div'> {}
 export interface IProgressBullet extends React.ComponentPropsWithoutRef<'div'> {
   state: string;
   label: string;
 }
 
-const ProgressBar: React.FC<IProgressBar> = ({
-  currentStage = SignUpStages.IDENTIFICATION,
-  stages,
-}) => {
+const ProgressBar: React.FC<IProgressBar> = () => {
+  const {currentStage, stages} = useSignUpContext();
   const [progressItemStates, setProgressItemsState] = useState<string[]>([
     'on-progress',
     'empty',
     'empty',
     'empty',
   ]);
-
   useEffect(() => {
     switch (currentStage) {
       case SignUpStages.IDENTIFICATION:
