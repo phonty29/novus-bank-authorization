@@ -1,7 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import SignUpStages from "../../enums/SignUpStages";
 
-interface ISignUpContext extends React.ComponentPropsWithoutRef<'div'> {
+interface ISignUpProvider extends React.ComponentPropsWithoutRef<'div'> {}
+
+interface ISignUpContext {
     currentStage: string;
     stages: string[];
     nextStage: () => void;
@@ -15,7 +17,7 @@ const SignUpContext = createContext<ISignUpContext>({
     prevStage: () => {}
 });
 
-export const SignUpProvider: React.FC<ISignUpContext> = ({ children }) => {
+export const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
     const [stageIndex, setStageIndex] = useState<number>(0);
 
     const signUpStages = Object.keys(SignUpStages).map((key) => key);
@@ -40,8 +42,8 @@ export const SignUpProvider: React.FC<ISignUpContext> = ({ children }) => {
     );
 };
 
-export function useSignUpContext() {
+function useSignUpContext() {
     return useContext(SignUpContext);
 }
 
-export default SignUpContext;
+export default useSignUpContext;

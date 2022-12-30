@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AccountType from '../../../enums/AccountType';
 import AuthMessages from '../../../enums/AuthMessages';
 import SignUpStages from '../../../enums/SignUpStages';
-import { useSignUpContext } from '../../../state/auth/SignUpContext';
+import useSignUpContext from '../../../state/auth/SignUpContext';
 import Buttons from './Buttons';
 import CreationForm from './CreationForm';
 import IdentificationForm, { IdentificationFields, validateIdentificationFields } from './IdentificationForm';
