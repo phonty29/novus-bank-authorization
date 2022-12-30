@@ -17,7 +17,7 @@ const SignUpContext = createContext<ISignUpContext>({
     prevStage: () => {}
 });
 
-export const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
+const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
     const [stageIndex, setStageIndex] = useState<number>(0);
 
     const signUpStages = Object.keys(SignUpStages).map((key) => key);
@@ -42,8 +42,8 @@ export const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
     );
 };
 
-function useSignUpContext() {
+export function useSignUpContext() {
     return useContext(SignUpContext);
 }
 
-export default useSignUpContext;
+export default SignUpProvider;

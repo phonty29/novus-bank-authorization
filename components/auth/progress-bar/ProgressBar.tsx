@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import SignUpStages from '../../../enums/SignUpStages';
-import useSignUpContext from '../../../state/auth/SignUpContext';
+import { useSignUpContext } from '../../../state/auth/SignUpContext';
 import ProgressLine from './ProgressLine';
 
 export interface IProgressBar extends React.ComponentProps<'div'> {}

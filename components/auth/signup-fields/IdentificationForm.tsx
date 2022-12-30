@@ -1,26 +1,12 @@
-import { Dispatch, SetStateAction } from "react";
 import AccountType from "../../../enums/AccountType";
+import { useFieldsContext } from "../../../state/auth/FieldsContext";
 
-export interface IdentificationFields {
-  accountType: string;
-  phoneNumber: string;
-  email: string;
-}
-
-interface IForm {
-  state: IdentificationFields;
-  setState: Dispatch<SetStateAction<IdentificationFields>>;
-}
-
-export const validateIdentificationFields = (state: IdentificationFields): boolean => {
-  const validPhoneRegex: RegExp = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //eslint-disable-line
-  const validEmailRegex: RegExp =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //eslint-disable-line
-  return validPhoneRegex.test(state.phoneNumber) && validEmailRegex.test(state.email);
-}
-
-const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
-  const isAccountTypeSelected = (type: AccountType) => type === state.accountType;
-  const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void => setState({...state, accountType: event.currentTarget.value});
+const IdentificationForm: React.FC = () => {
+  const {identificationState, setIdentificationState} = useFieldsContext();
+  const isAccountTypeSelected = (type: AccountType) => type === identificationState.accountType;
+  const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void => 
+    setIdentificationState({...identificationState, accountType: event.currentTarget.value});
+  
   return (
     <>
       <h2 className="welcome-title">{"Welcome - let's get started"}</h2>
@@ -58,8 +44,8 @@ const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
           name="field-number"
           placeholder={'Enter mobile number'}
           className="auth-input"
-          value={state.phoneNumber}
-          onChange={(event) => {setState({...state, phoneNumber: event.currentTarget.value})}}
+          value={identificationState.phoneNumber}
+          onChange={(event) => {setIdentificationState({...identificationState, phoneNumber: event.currentTarget.value})}}
           required
         />
       </div>
@@ -74,8 +60,8 @@ const IdentificationForm: React.FC<IForm> = ({state, setState}) => {
           name="field-email"
           placeholder={'Enter email address'}
           className="auth-input"
-          value={state.email}
-          onChange={(event) => {setState({...state, email: event.currentTarget.value})}}
+          value={identificationState.email}
+          onChange={(event) => {setIdentificationState({...identificationState, email: event.currentTarget.value})}}
           required
         />
       </div>

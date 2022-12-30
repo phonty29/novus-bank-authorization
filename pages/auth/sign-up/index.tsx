@@ -3,7 +3,7 @@ import Link from 'next/link';
 import SignUpForm from '../../../components/auth/signup-form/SignUpForm';
 import PrimaryLayout from '../../../components/layout/primary/PrimaryLayout';
 import Footer from '../../../components/navigation/footer/Footer';
-import { SignUpProvider } from '../../../state/auth/SignUpContext';
+import SignUpProvider from '../../../state/auth/SignUpContext';
 import { NextPageWithLayout } from '../../page';
 
 export interface ISignUp {}
