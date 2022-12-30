@@ -9,7 +9,7 @@ interface ISignUpContext extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 const SignUpContext = createContext<ISignUpContext>({
-    currentStage: SignUpStages.IDENTIFICATION,
+    currentStage: "",
     stages: [],
     nextStage: () => {},
     prevStage: () => {}
