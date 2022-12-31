@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import VerificationMethod from '../../../lib/enums/VerificationMethod';
+import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import IconNotification from '../../icons/IconNotification';
 
 const VerificationForm: React.FC = () => {
-  const [verificationMethod, setVerificationMethod] =
-    useState<VerificationMethod>(VerificationMethod.BEFORE_CHOICE);
+  const {verificationMethod, setVerificationMethod} = useFieldsContext();
   const [buttonText, setButtonText] = useState<string>("a verification");
   const selectRef = useRef<HTMLSelectElement | null>(null);
   const sendVerification = () => {
