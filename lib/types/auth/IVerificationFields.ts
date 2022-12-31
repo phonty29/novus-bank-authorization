@@ -4,7 +4,7 @@ interface IVerificationFields {
     verificationMethod: VerificationMethod;
 }
 
-export const verificationFieldsFieldsInitialState = {
+export const verificationFieldsFieldsInitialState: IVerificationFields = {
     verificationMethod: VerificationMethod.BEFORE_CHOICE
 }
 

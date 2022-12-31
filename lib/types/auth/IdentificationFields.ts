@@ -6,7 +6,7 @@ interface IdentificationFields {
     email: string;
 }
 
-export const identificationFieldsInitialState = {
+export const identificationFieldsInitialState: IdentificationFields = {
     accountType: AccountType.SELF,
     phoneNumber: "",
     email: ""
