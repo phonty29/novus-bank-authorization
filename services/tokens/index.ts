@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import UserDTO from '../../dto/user';
+import UserDTO from '../../lib/dto/user';
 
 class TokenService {
   tokenGen(payload: UserDTO) {

@@ -1,5 +1,5 @@
-import AuthMessages from '../../../enums/AuthMessages';
-import SignUpStages from '../../../enums/SignUpStages';
+import AuthMessages from '../../../lib/enums/AuthMessages';
+import SignUpStages from '../../../lib/enums/SignUpStages';
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import { useSignUpContext } from '../../../state/auth/SignUpContext';
 import Buttons from './Buttons';

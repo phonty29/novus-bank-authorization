@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import SignUpStages from '../../../enums/SignUpStages';
+import SignUpStages from '../../../lib/enums/SignUpStages';
 import { useSignUpContext } from '../../../state/auth/SignUpContext';
 import ProgressLine from './ProgressLine';
 

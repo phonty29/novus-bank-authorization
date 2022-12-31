@@ -1,3 +1,4 @@
+import CountriesDropdown from "./CountriesDropdown";
 
 const CreationForm: React.FC = () => {
   return (
@@ -77,16 +78,7 @@ const CreationForm: React.FC = () => {
         </div>
       </div>
       <div className="fields-raw mb-7">
-        <div className="raw-field">
-          <label htmlFor="country" className="label-text">
-            Country
-            <span className="text-purple"> *</span>
-          </label>
-          <select name="country" id="country" className="auth-input w-fit">
-            <option value="USA">USA</option>
-            <option value="UK">UK</option>
-          </select>
-        </div>
+        <CountriesDropdown />
         <div className="raw-field">
           <label htmlFor="city" className="label-text">
             City

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import SignUpStages from "../../enums/SignUpStages";
+import SignUpStages from "../../lib/enums/SignUpStages";
 
 interface ISignUpProvider extends React.ComponentPropsWithoutRef<'div'> {}
 

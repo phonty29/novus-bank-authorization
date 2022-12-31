@@ -1,4 +1,4 @@
-import AccountType from "../../../enums/AccountType";
+import AccountType from "../../../lib/enums/AccountType";
 import { useFieldsContext } from "../../../state/auth/FieldsContext";
 
 const IdentificationForm: React.FC = () => {

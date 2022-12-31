@@ -1,4 +1,4 @@
-import SignUpStages from "../../../enums/SignUpStages";
+import SignUpStages from "../../../lib/enums/SignUpStages";
 import { useSignUpContext } from "../../../state/auth/SignUpContext";
 
 export interface IButtons extends React.ComponentPropsWithRef<'div'> {}

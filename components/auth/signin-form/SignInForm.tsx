@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import ApiRoutes from '../../../enums/ApiRoutes';
-import AuthMessages from '../../../enums/AuthMessages';
+import ApiRoutes from '../../../lib/enums/ApiRoutes';
+import AuthMessages from '../../../lib/enums/AuthMessages';
+import User from '../../../lib/types/auth/users';
 import { SignInResponseData } from '../../../pages/api/sign-in';
-import User from '../../../types/auth/users';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
 //const USERS_ROUTE = `/api/sign-in`; //I will create another folder and file for holding all routes

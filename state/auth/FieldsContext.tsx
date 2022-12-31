@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
-import SignUpStages from "../../enums/SignUpStages";
-import IdentificationFields, { identificationFieldsInitialState } from "../../types/auth/IdentificationFields";
+import SignUpStages from "../../lib/enums/SignUpStages";
+import IdentificationFields, { identificationFieldsInitialState } from "../../lib/types/auth/IdentificationFields";
 
 interface IFieldsProvider extends React.ComponentPropsWithoutRef<'div'> {}
 

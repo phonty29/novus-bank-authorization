@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import VerificationMethod from '../../../enums/VerificationMethod';
+import VerificationMethod from '../../../lib/enums/VerificationMethod';
 import IconNotification from '../../icons/IconNotification';
 
 const VerificationForm: React.FC = () => {
