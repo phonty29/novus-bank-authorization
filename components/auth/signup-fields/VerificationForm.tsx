@@ -4,16 +4,17 @@ import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import IconNotification from '../../icons/IconNotification';
 
 const VerificationForm: React.FC = () => {
-  const {verificationMethod, setVerificationMethod} = useFieldsContext();
+  const {verificationState, setVerificationState} = useFieldsContext();
   const [buttonText, setButtonText] = useState<string>("a verification");
   const selectRef = useRef<HTMLSelectElement | null>(null);
   const sendVerification = () => {
     if (selectRef.current) {
-      setVerificationMethod(
+      setVerificationState({
+        ...verificationState, verificationMethod:
         selectRef.current.value === VerificationMethod.PHONE
           ? VerificationMethod.PHONE
           : VerificationMethod.EMAIL
-      );
+      });
       setButtonText("again");
     }
   };
@@ -31,7 +32,7 @@ const VerificationForm: React.FC = () => {
           className="auth-input"
           ref={selectRef}
           defaultValue={VerificationMethod.PHONE}
-          disabled={verificationMethod != VerificationMethod.BEFORE_CHOICE}
+          disabled={verificationState.verificationMethod != VerificationMethod.BEFORE_CHOICE}
         >
           <option value={VerificationMethod.PHONE}>
             Send code to phone number
@@ -45,7 +46,7 @@ const VerificationForm: React.FC = () => {
       >
         Send {buttonText}
       </div>
-      {verificationMethod === VerificationMethod.PHONE && (
+      {verificationState.verificationMethod === VerificationMethod.PHONE && (
         <div className="input-field mb-7">
           <label htmlFor="six-digit-code" className="label-text">
             Write the six-digit code that we sent to the phone number
@@ -61,7 +62,7 @@ const VerificationForm: React.FC = () => {
           />
         </div>
       )}
-      {verificationMethod === VerificationMethod.EMAIL && (
+      {verificationState.verificationMethod === VerificationMethod.EMAIL && (
         <div className="verify-info">
           <p className="fields-desc mb-5 mr-3">
             We send a link to your email address. Please check and click on the
