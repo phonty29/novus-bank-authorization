@@ -34,10 +34,11 @@
     @apply bg-green after:block;
   }
   .checkmark {
-    @apply after:left-[9px] 
-      after:top-[5px] 
+    @apply 
+      after:left-[8px] 
+      after:top-[4px] 
       after:w-[6px] 
-      after:h-[11px] 
+      after:h-[12px] 
       after:border-white 
       after:border-r-2 
       after:border-b-2
@@ -53,7 +54,8 @@
     @apply hidden;
   }
   .photo-input-frame {
-    @apply w-[340px] 
+    @apply 
+      w-[340px] 
       h-[100px] 
       rounded-[10px] 
       border 

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useFieldsContext } from '../../../state/auth/FieldsContext';
 
 const SuccessForm: React.FC = () => {
-  const [isWhatsappCheckboxChecked, setIsWhatsappCheckboxChecked] =
-    useState<boolean>(false);
-  const [isEmailCheckboxChecked, setIsEmailCheckboxChecked] =
-    useState<boolean>(false);
+  const {successState, setSuccessState} = useFieldsContext();
+  const setEmailNotification = (): void => {
+    setSuccessState({...successState, emailNotification: !successState.emailNotification});
+  }
+
   return (
     <>
       <p className="fields-desc mb-5">
@@ -20,7 +21,12 @@ const SuccessForm: React.FC = () => {
           id="field-username"
           name="field-username"
           placeholder={'Enter username'}
+          value={successState.userFields.username}
+          onChange={(e) => {
+            setSuccessState({...successState, userFields: {...successState.userFields, username: e.target.value}})
+          }}
           className="auth-input"
+          required
         />
       </div>
       <div className="input-field mb-5">
@@ -33,7 +39,12 @@ const SuccessForm: React.FC = () => {
           id="field-password"
           name="field-password"
           placeholder={'Enter password'}
+          value={successState.userFields.password}
+          onChange={(e) => {
+            setSuccessState({...successState, userFields: {...successState.userFields, password: e.target.value}})
+          }}
           className="auth-input"
+          required
         />
       </div>
       <div className="input-field mb-5">
@@ -46,27 +57,13 @@ const SuccessForm: React.FC = () => {
           id="field-verify-password"
           name="field-verify-password"
           placeholder={'Repeat new password'}
-          className="auth-input"
-        />
-      </div>
-      <div className="checkbox-field mb-7">
-        <input
-          type="checkbox"
-          id="whatsapp-alerts"
-          name="whatsapp-alerts"
-          className="auth-checkbox"
-          readOnly
-          checked={isWhatsappCheckboxChecked}
-        />
-        <span
-          className="checkmark"
-          onClick={() => {
-            setIsWhatsappCheckboxChecked((prev) => !prev);
+          value={successState.repeatedPassword}
+          onChange={(e) => {
+            setSuccessState({...successState, repeatedPassword: e.target.value})
           }}
-        ></span>
-        <label className="checkbox-label-text">
-          I agree to enable whatsApp alerts.
-        </label>
+          className="auth-input"
+          required
+        />
       </div>
       <div className="checkbox-field mb-12">
         <input
@@ -75,15 +72,13 @@ const SuccessForm: React.FC = () => {
           name="email-alerts"
           className="auth-checkbox"
           readOnly
-          checked={isEmailCheckboxChecked}
+          checked={successState.emailNotification}
         />
         <span
           className="checkmark"
-          onClick={() => {
-            setIsEmailCheckboxChecked((prev) => !prev);
-          }}
+          onClick={setEmailNotification}
         ></span>
-        <label className="checkbox-label-text">
+        <label className="checkbox-label-text" onClick={setEmailNotification}>
           I agree to enable promotion emails from Novus Bank and partners.
         </label>
       </div>
