@@ -3,17 +3,17 @@ import {
   Dispatch,
   SetStateAction,
   useContext,
-  useState,
+  useState
 } from 'react';
 import SignUpStages from '../../lib/enums/SignUpStages';
 import ICreationFields, {
-  creationFieldsInitialState,
+  creationFieldsInitialState
 } from '../../lib/types/auth/ICreationFields';
 import IdentificationFields, {
-  identificationFieldsInitialState,
+  identificationFieldsInitialState
 } from '../../lib/types/auth/IdentificationFields';
 import IVerificationFields, {
-  verificationFieldsFieldsInitialState,
+  verificationFieldsFieldsInitialState
 } from '../../lib/types/auth/IVerificationFields';
 
 interface IFieldsProvider extends React.ComponentPropsWithoutRef<'div'> {}
@@ -58,10 +58,16 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
     );
   };
 
+  const validateCreationFields = (): boolean => {
+    return true;
+  }
+
   const validateFields = (currentStage: string) => {
     switch (currentStage) {
       case SignUpStages.IDENTIFICATION:
         return validateIdentificationFields();
+      case SignUpStages.CREATION:
+        return validateCreationFields();
       default:
         return true;
     }

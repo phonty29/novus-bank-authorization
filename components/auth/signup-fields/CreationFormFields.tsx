@@ -131,6 +131,10 @@ export const GenderDropdown: React.FC = () => {
 
 export const DateField: React.FC = () => {
   const { creationState, setCreationState } = useFieldsContext();
+  const formatDate = (date: Date) => {
+    return date.toJSON().substring(0,10);
+  }
+
   return (
     <div className="raw-field">
       <label htmlFor="date-of-birth" className="label-text">
@@ -143,9 +147,9 @@ export const DateField: React.FC = () => {
         name="date-of-birth"
         className="auth-input raw-input-sm"
         placeholder={'MM/DD/YYYY'}
-        value={creationState.dateOfBirth}
+        value={formatDate(creationState.dateOfBirth)}
         onChange={(e) => {
-          setCreationState({ ...creationState, dateOfBirth: e.target.value });
+          setCreationState({...creationState, dateOfBirth: new Date(e.target.value)});
         }}
         required
       />

@@ -5,7 +5,7 @@ interface ICreationFields {
   firstName: string;
   lastName: string;
   gender: Genders;
-  dateOfBirth: string;
+  dateOfBirth: Date;
   country: string;
   city: string;
 }
@@ -15,7 +15,7 @@ export const creationFieldsInitialState: ICreationFields = {
   firstName: '',
   lastName: '',
   gender: Genders.MALE,
-  dateOfBirth: '',
+  dateOfBirth: new Date(),
   country: '',
   city: '',
 };
