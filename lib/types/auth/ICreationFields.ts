@@ -1,3 +1,5 @@
+import countries from '../../data/countries.json';
+import playroles from '../../data/playroles.json';
 import Genders from '../../enums/Genders';
 
 interface ICreationFields {
@@ -11,12 +13,12 @@ interface ICreationFields {
 }
 
 export const creationFieldsInitialState: ICreationFields = {
-  role: '',
+  role: playroles[0].value,
   firstName: '',
   lastName: '',
   gender: Genders.MALE,
   dateOfBirth: new Date(),
-  country: '',
+  country: countries[0].name,
   city: '',
 };
 
