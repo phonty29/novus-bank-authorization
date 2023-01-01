@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import SignInMessages from '../../../lib/enums/AuthMessages';
-import User from '../../../lib/types/auth/users';
+import SignInMessages from '../../../lib/enums/AlertMessages';
+import User from '../../../lib/types/auth/IUser';
 import SignInService from '../../../services/sign-in';
 
 interface SignInRequestData extends NextApiRequest {

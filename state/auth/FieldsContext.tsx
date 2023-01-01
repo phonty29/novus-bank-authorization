@@ -14,6 +14,7 @@ import ISuccessFields, { successFieldsInitialState, validateSuccessFields } from
 import IVerificationFields, {
   verificationFieldsFieldsInitialState
 } from '../../lib/types/auth/IVerificationFields';
+import { useAuthContext } from './AuthContext';
 
 interface IFieldsProvider extends React.ComponentPropsWithoutRef<'div'> {}
 
@@ -38,15 +39,16 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
     creationFieldsInitialState
   );
   const [successState, setSuccessState] = useState<ISuccessFields>(successFieldsInitialState);
+  const {alertMessage, setAlertMessage} = useAuthContext();
 
   const validateFields = (currentStage: string) => {
     switch (currentStage) {
       case SignUpStages.IDENTIFICATION:
-        return validateIdentificationFields(identificationState);
+        return validateIdentificationFields(identificationState, setAlertMessage);
       case SignUpStages.CREATION:
-        return validateCreationFields(creationState);
+        return validateCreationFields(creationState, setAlertMessage);
       case SignUpStages.SUCCESS:
-        return validateSuccessFields(successState);
+        return validateSuccessFields(successState, setAlertMessage);
       default:
         return true;
     }

@@ -1,5 +1,5 @@
-import AuthMessages from '../../../lib/enums/AuthMessages';
 import SignUpStages from '../../../lib/enums/SignUpStages';
+import { useAuthContext } from '../../../state/auth/AuthContext';
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import { useSignUpContext } from '../../../state/auth/SignUpContext';
 import Buttons from './Buttons';
@@ -14,6 +14,7 @@ export interface ISignUpFields {}
 const SignUpFields: React.FC<ISignUpFields> = () => {
   const { currentStage, nextStage } = useSignUpContext();
   const { validateFields } = useFieldsContext();
+  const {alertMessage} = useAuthContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,7 +28,7 @@ const SignUpFields: React.FC<ISignUpFields> = () => {
         {currentStage === SignUpStages.CREATION && <CreationForm />}
         {currentStage === SignUpStages.SUCCESS && <SuccessForm />}
         <p className="alert-message-sign-up">
-          {AuthMessages.SIGN_IN_EMPTY_FIELD}
+          {alertMessage}
         </p>
         <Buttons />
       </form>

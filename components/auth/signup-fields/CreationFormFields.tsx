@@ -15,10 +15,10 @@ export const PlayrolesDropdown: React.FC = () => {
         name="select-role"
         id="select-role"
         className="auth-input w-fit"
+        value={creationState.role}
         onChange={(e) => {
           setCreationState({ ...creationState, role: e.target.value });
         }}
-        value={creationState.role}
       >
         {playroles.map((playrole, index) => (
           <option key={index} value={playrole.value}>

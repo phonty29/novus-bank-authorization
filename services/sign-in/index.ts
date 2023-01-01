@@ -1,5 +1,5 @@
 import UserDTO from '../../lib/dto/user';
-import User from '../../lib/types/auth/users';
+import User from '../../lib/types/auth/IUser';
 import TokenService from '../tokens';
 import Database from '../utils/mongodb-utils';
 

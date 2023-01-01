@@ -1,5 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
 import countries from '../../data/countries.json';
 import playroles from '../../data/playroles.json';
+import AlertMessages from '../../enums/AlertMessages';
 import Genders from '../../enums/Genders';
 
 interface ICreationFields {
@@ -22,12 +24,13 @@ export const creationFieldsInitialState: ICreationFields = {
   city: '',
 };
 
-export const validateCreationFields = (creationState: ICreationFields): boolean => {
-  return creationState.firstName.length > 0 &&
-         creationState.lastName.length > 0 &&
-         new Date().getFullYear() - creationState.dateOfBirth.getFullYear() > 16 &&
-         creationState.country.length > 0 &&
-         creationState.city.length > 0;
+export const validateCreationFields = (creationState: ICreationFields, setAlertMessage: Dispatch<SetStateAction<AlertMessages>>): boolean => {
+  const isAgeNotRestricted: boolean = new Date().getFullYear() - creationState.dateOfBirth.getFullYear() > 16;
+  if (!isAgeNotRestricted) 
+    setAlertMessage(AlertMessages.SIGN_UP_AGE_RESTRICTED);
+  else 
+    setAlertMessage(AlertMessages.SIGN_IN_EMPTY_FIELD);
+  return isAgeNotRestricted;
 }
 
 export default ICreationFields;

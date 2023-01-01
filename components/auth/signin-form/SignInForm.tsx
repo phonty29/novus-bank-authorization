@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import AuthMessages from '../../../lib/enums/AlertMessages';
 import ApiRoutes from '../../../lib/enums/ApiRoutes';
-import AuthMessages from '../../../lib/enums/AuthMessages';
-import User from '../../../lib/types/auth/users';
+import User from '../../../lib/types/auth/IUser';
 import { SignInResponseData } from '../../../pages/api/sign-in';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}

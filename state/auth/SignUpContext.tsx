@@ -1,14 +1,8 @@
 import { createContext, useContext, useState } from 'react';
 import SignUpStages from '../../lib/enums/SignUpStages';
+import ISignUpContext from '../../lib/types/auth/ISignUpContext';
 
 interface ISignUpProvider extends React.ComponentPropsWithoutRef<'div'> {}
-
-interface ISignUpContext {
-  currentStage: string;
-  stages: string[];
-  nextStage: () => void;
-  prevStage: () => void;
-}
 
 const SignUpContext = createContext<ISignUpContext>({
   currentStage: '',
