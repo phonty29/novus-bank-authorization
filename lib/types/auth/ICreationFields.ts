@@ -22,4 +22,12 @@ export const creationFieldsInitialState: ICreationFields = {
   city: '',
 };
 
+export const validateCreationFields = (creationState: ICreationFields): boolean => {
+  return creationState.firstName.length > 0 &&
+         creationState.lastName.length > 0 &&
+         new Date().getFullYear() - creationState.dateOfBirth.getFullYear() > 16 &&
+         creationState.country.length > 0 &&
+         creationState.city.length > 0;
+}
+
 export default ICreationFields;
