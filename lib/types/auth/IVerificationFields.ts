@@ -1,11 +1,11 @@
-import VerificationMethod from "../../enums/VerificationMethod";
+import VerificationMethod from '../../enums/VerificationMethod';
 
 interface IVerificationFields {
-    verificationMethod: VerificationMethod;
+  verificationMethod: VerificationMethod;
 }
 
 export const verificationFieldsFieldsInitialState: IVerificationFields = {
-    verificationMethod: VerificationMethod.BEFORE_CHOICE
-}
+  verificationMethod: VerificationMethod.BEFORE_CHOICE,
+};
 
 export default IVerificationFields;

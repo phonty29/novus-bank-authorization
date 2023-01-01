@@ -4,18 +4,19 @@ import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import IconNotification from '../../icons/IconNotification';
 
 const VerificationForm: React.FC = () => {
-  const {verificationState, setVerificationState} = useFieldsContext();
-  const [buttonText, setButtonText] = useState<string>("a verification");
+  const { verificationState, setVerificationState } = useFieldsContext();
+  const [buttonText, setButtonText] = useState<string>('a verification');
   const selectRef = useRef<HTMLSelectElement | null>(null);
   const sendVerification = () => {
     if (selectRef.current) {
       setVerificationState({
-        ...verificationState, verificationMethod:
-        selectRef.current.value === VerificationMethod.PHONE
-          ? VerificationMethod.PHONE
-          : VerificationMethod.EMAIL
+        ...verificationState,
+        verificationMethod:
+          selectRef.current.value === VerificationMethod.PHONE
+            ? VerificationMethod.PHONE
+            : VerificationMethod.EMAIL,
       });
-      setButtonText("again");
+      setButtonText('again');
     }
   };
 
@@ -32,7 +33,10 @@ const VerificationForm: React.FC = () => {
           className="auth-input"
           ref={selectRef}
           defaultValue={VerificationMethod.PHONE}
-          disabled={verificationState.verificationMethod != VerificationMethod.BEFORE_CHOICE}
+          disabled={
+            verificationState.verificationMethod !=
+            VerificationMethod.BEFORE_CHOICE
+          }
         >
           <option value={VerificationMethod.PHONE}>
             Send code to phone number

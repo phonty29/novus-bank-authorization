@@ -1,10 +1,10 @@
 [
-    {
-      "name": "Hedge fund",
-      "value": "fund"
-    },
-    {
-      "name": "Private Bank",
-      "value": "bank"
-    }
+  {
+    "name": "Hedge fund",
+    "value": "fund"
+  },
+  {
+    "name": "Private Bank",
+    "value": "bank"
+  }
 ]

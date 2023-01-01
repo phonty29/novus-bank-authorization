@@ -1,4 +1,11 @@
-import { CityField, CountriesDropdown, DateField, GenderDropdown, NameField, PlayrolesDropdown } from "./CreationFormFields";
+import {
+  CityField,
+  CountriesDropdown,
+  DateField,
+  GenderDropdown,
+  NameField,
+  PlayrolesDropdown,
+} from './CreationFormFields';
 
 const CreationForm: React.FC = () => {
   return (

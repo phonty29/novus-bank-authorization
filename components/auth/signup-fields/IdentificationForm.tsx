@@ -1,12 +1,16 @@
-import AccountType from "../../../lib/enums/AccountType";
-import { useFieldsContext } from "../../../state/auth/FieldsContext";
+import AccountType from '../../../lib/enums/AccountType';
+import { useFieldsContext } from '../../../state/auth/FieldsContext';
 
 const IdentificationForm: React.FC = () => {
-  const {identificationState, setIdentificationState} = useFieldsContext();
-  const isAccountTypeSelected = (type: AccountType) => type === identificationState.accountType;
-  const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void => 
-    setIdentificationState({...identificationState, accountType: event.currentTarget.value});
-  
+  const { identificationState, setIdentificationState } = useFieldsContext();
+  const isAccountTypeSelected = (type: AccountType) =>
+    type === identificationState.accountType;
+  const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void =>
+    setIdentificationState({
+      ...identificationState,
+      accountType: event.currentTarget.value,
+    });
+
   return (
     <>
       <h2 className="welcome-title">{"Welcome - let's get started"}</h2>
@@ -20,15 +24,36 @@ const IdentificationForm: React.FC = () => {
         </p>
         <div className="account-radio-buttons">
           <div className="account-type">
-            <input type="radio" id="account-self" name="account-type" value={AccountType.SELF} checked={isAccountTypeSelected(AccountType.SELF)} onChange={handleClick}/>
+            <input
+              type="radio"
+              id="account-self"
+              name="account-type"
+              value={AccountType.SELF}
+              checked={isAccountTypeSelected(AccountType.SELF)}
+              onChange={handleClick}
+            />
             <label htmlFor="account-self">Self</label>
           </div>
           <div className="account-type">
-            <input type="radio" id="account-business" name="account-type" value={AccountType.BUSINESS} checked={isAccountTypeSelected(AccountType.BUSINESS)} onChange={handleClick} />
+            <input
+              type="radio"
+              id="account-business"
+              name="account-type"
+              value={AccountType.BUSINESS}
+              checked={isAccountTypeSelected(AccountType.BUSINESS)}
+              onChange={handleClick}
+            />
             <label htmlFor="account-business">Business</label>
           </div>
           <div className="account-type">
-            <input type="radio" id="account-family" name="account-type" value={AccountType.FAMILY} checked={isAccountTypeSelected(AccountType.FAMILY)} onChange={handleClick} />
+            <input
+              type="radio"
+              id="account-family"
+              name="account-type"
+              value={AccountType.FAMILY}
+              checked={isAccountTypeSelected(AccountType.FAMILY)}
+              onChange={handleClick}
+            />
             <label htmlFor="account-family">Family</label>
           </div>
         </div>
@@ -45,7 +70,12 @@ const IdentificationForm: React.FC = () => {
           placeholder={'Enter mobile number'}
           className="auth-input"
           value={identificationState.phoneNumber}
-          onChange={(event) => {setIdentificationState({...identificationState, phoneNumber: event.currentTarget.value})}}
+          onChange={(event) => {
+            setIdentificationState({
+              ...identificationState,
+              phoneNumber: event.currentTarget.value,
+            });
+          }}
           required
         />
       </div>
@@ -61,7 +91,12 @@ const IdentificationForm: React.FC = () => {
           placeholder={'Enter email address'}
           className="auth-input"
           value={identificationState.email}
-          onChange={(event) => {setIdentificationState({...identificationState, email: event.currentTarget.value})}}
+          onChange={(event) => {
+            setIdentificationState({
+              ...identificationState,
+              email: event.currentTarget.value,
+            });
+          }}
           required
         />
       </div>

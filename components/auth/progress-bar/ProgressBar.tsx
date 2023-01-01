@@ -10,7 +10,7 @@ export interface IProgressBullet extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 const ProgressBar: React.FC<IProgressBar> = () => {
-  const {currentStage, stages} = useSignUpContext();
+  const { currentStage, stages } = useSignUpContext();
   const [progressItemStates, setProgressItemsState] = useState<string[]>([
     'on-progress',
     'empty',

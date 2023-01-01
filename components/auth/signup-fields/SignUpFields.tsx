@@ -12,14 +12,13 @@ import VerificationForm from './VerificationForm';
 export interface ISignUpFields {}
 
 const SignUpFields: React.FC<ISignUpFields> = () => {
-  const {currentStage, nextStage} = useSignUpContext();
-  const {validateFields} = useFieldsContext();
+  const { currentStage, nextStage } = useSignUpContext();
+  const { validateFields } = useFieldsContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (validateFields(currentStage)) 
-      nextStage();
-  }
+    if (validateFields(currentStage)) nextStage();
+  };
   return (
     <div className="sign-up-fields">
       <form className="fields-form" onSubmit={handleSubmit}>
