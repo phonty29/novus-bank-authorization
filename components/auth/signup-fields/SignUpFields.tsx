@@ -27,7 +27,7 @@ const SignUpFields: React.FC<ISignUpFields> = () => {
         {currentStage === SignUpStages.VERIFICATION && <VerificationForm />}
         {currentStage === SignUpStages.CREATION && <CreationForm />}
         {currentStage === SignUpStages.SUCCESS && <SuccessForm />}
-        <p className="alert-message-sign-up">
+        <p className="alert-message">
           {alertMessage}
         </p>
         <Buttons />

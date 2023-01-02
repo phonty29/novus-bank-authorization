@@ -1,20 +1,17 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import AuthMessages from '../../../lib/enums/AlertMessages';
 import ApiRoutes from '../../../lib/enums/ApiRoutes';
 import IUser from '../../../lib/types/auth/IUser';
 import { SignInResponseData } from '../../../pages/api/sign-in';
+import { useAuthContext } from '../../../state/auth/AuthContext';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
 //const USERS_ROUTE = `/api/sign-in`; //I will create another folder and file for holding all routes
 
 const SignInForm: React.FC<ISignInForm> = () => {
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [alertMessage, setAlertMessage] = useState<AuthMessages>(
-    AuthMessages.SIGN_IN_EMPTY_FIELD
-  );
+  const {alertMessage, setAlertMessage} = useAuthContext();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,13 +27,11 @@ const SignInForm: React.FC<ISignInForm> = () => {
 
     const response = await fetch(ApiRoutes.SIGN_IN, options);
     const signInResponse: SignInResponseData = await response.json();
-    if (signInResponse.accessToken) {
+    if (signInResponse.accessToken && signInResponse.refreshToken) {
       alert(`${signInResponse.message}`);
       console.log(signInResponse.accessToken);
       console.log(signInResponse.refreshToken);
-      setIsFormValid(true);
     } else {
-      setIsFormValid(false);
       setAlertMessage(signInResponse.message);
     }
   };
@@ -51,7 +46,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
           <Link href="/">Registration</Link>
         </div>
       </div>
-      <div className="input-field mb-5">
+      <div className="input-field">
         <label htmlFor="username" className="label-text">
           Username
           <span className="text-purple"> *</span>
@@ -69,7 +64,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
           required
         />
       </div>
-      <div className="input-field mb-7">
+      <div className="input-field">
         <label htmlFor="password" className="label-text">
           Password
           <span className="text-purple"> *</span>
@@ -86,15 +81,15 @@ const SignInForm: React.FC<ISignInForm> = () => {
           required
         />
       </div>
-      <button className="green-btn rounded-lg min-w-full py-3 mb-7">
-        Sign In
-      </button>
-      <div className="text-center flex-auto">
+      <div className="text-center item-margins">
         <Link href="/" className="text-xs text-black underline">
           Forgot password ?
         </Link>
       </div>
-      {!isFormValid && <p className="alert-message">{alertMessage}</p>}
+      <p className="alert-message text-center">{alertMessage}</p>      
+      <button className="sign-in-btn">
+        Sign In
+      </button>
     </form>
   );
 };

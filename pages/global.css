@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  .item-margins {
+    @apply xl:mb-5 lg:mb-5 md:mb-4 sm:mb-3 xs:mb-3 mb-3;
+  }
   .green-btn {
     @apply text-white bg-green-gradient;
   }
@@ -10,7 +13,7 @@
     @apply font-normal not-italic text-sm;
   }
   .input-field {
-    @apply flex flex-col;
+    @apply flex flex-col item-margins;
   }
   .checkbox-field {
     @apply flex items-center relative pl-9;
@@ -45,7 +48,7 @@
       after:rotate-45;
   }
   .alert-message {
-    @apply text-purple text-xs text-center;
+    @apply text-purple text-sm flex-auto item-margins;
   }
   input[type='radio'] {
     @apply mr-3 w-5 h-5 accent-green;

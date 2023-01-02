@@ -53,5 +53,5 @@
   @apply text-green text-lg font-bold;
 }
 .alert-message-sign-up {
-  @apply alert-message text-start flex-auto;
+  @apply alert-message text-start;
 }
