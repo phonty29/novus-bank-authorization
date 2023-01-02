@@ -1,5 +1,5 @@
 import UserDTO from '../../lib/dto/user';
-import User from '../../lib/types/auth/IUser';
+import IUser from '../../lib/types/auth/IUser';
 import TokenService from '../tokens';
 import Database from '../utils/mongodb-utils';
 
@@ -8,7 +8,7 @@ const { getCollection } = Database;
 const { tokenGen } = TokenService;
 
 class SignInService {
-  async signIn({ username, password }: User) {
+  async signIn({ username, password }: IUser) {
     const collection = await getCollection(COLLECTION_NAME);
     let user = await collection.findOne({ username, password });
     const isPasswordValid: boolean = true;

@@ -1,6 +1,6 @@
-type User = {
+type IUser = {
   username: string;
   password: string;
 };
 
-export default User;
+export default IUser;

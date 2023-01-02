@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import AlertMessages from "../../enums/AlertMessages";
-import User from "./IUser";
+import IUser from "./IUser";
 
 interface ISuccessFields {
-    userFields: User;
+    userFields: IUser;
     repeatedPassword: string;
     emailNotification: boolean;
 }

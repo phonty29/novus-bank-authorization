@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import AuthMessages from '../../../lib/enums/AlertMessages';
 import ApiRoutes from '../../../lib/enums/ApiRoutes';
-import User from '../../../lib/types/auth/IUser';
+import IUser from '../../../lib/types/auth/IUser';
 import { SignInResponseData } from '../../../pages/api/sign-in';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
@@ -18,7 +18,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data: User = { username, password };
+    const data: IUser = { username, password };
     const jsonData = JSON.stringify(data);
     const options = {
       method: 'POST',
