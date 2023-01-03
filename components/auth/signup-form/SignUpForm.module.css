@@ -1,8 +1,11 @@
+.sign-up-header {
+  @apply flex justify-between w-full pt-7 pb-5 items-end;
+}
 .sign-up-form {
   @apply bg-field shadow-sign-up rounded-xl w-full flex-auto pt-5 px-8 flex flex-col h-[846px];
 }
 .sign-up-label {
-  @apply text-lg text-green font-bold;
+  @apply large-font text-green font-bold;
 }
 .sign-up-progress-bar {
   @apply flex min-w-full pt-7 justify-evenly relative mb-12;
@@ -38,5 +41,5 @@
   @apply mb-8 flex;
 }
 .sign-up-button {
-  @apply text-md w-[160px] py-3 text-white rounded-[10px] bg-[#737272] mr-10;
+  @apply middle-font w-[160px] py-3 text-white rounded-[10px] bg-[#737272] mr-10;
 }

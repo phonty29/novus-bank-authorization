@@ -1,23 +1,14 @@
 .sign-in-form {
-  @apply xl:pt-28 xl:pb-5 xl:pl-8 xl:pr-10
-         lg:pt-28 lg:pb-4 xl:pl-7 xl:pr-9
-         md:pt-28 md:pb-3 xl:pl-6 xl:pr-8 
-         sm:pt-24 sm:pb-3 xl:pl-6 xl:pr-7 
-         xs:pt-20 xs:pb-3 xl:pl-6 xl:pr-7
-         pt-16 pb-3 pl-3 pr-5
-         xl:w-[420px] xl:h-[474px] 
-         lg:w-[395px] lg:h-[449px]
-         md:w-[370px] md:h-[424px]
-         sm:w-[345px] sm:h-[399px]
-         xs:w-[320px] xs:h-[374px]
-         w-[300px] h-[354px]
+  @apply xl:w-[420px] xl:pt-28 xl:pb-5 xl:pl-8 xl:pr-10  
+         lg:w-[395px] lg:pt-28 lg:pb-4 lg:pl-7 lg:pr-9
+         md:w-[370px] md:pt-28 md:pb-3 md:pl-6 md:pr-8 
+         sm:w-[345px] sm:pt-24 sm:pb-3 sm:pl-7 sm:pr-7 
+         xs:w-[320px] xs:pt-20 xs:pb-3 xs:pl-7 xs:pr-7
+         w-[300px] h-fit pt-16 pb-3 pl-3 pr-5
          bg-field rounded-2xl shadow-sign-in relative flex flex-col;
 }
 .link-to-sign-in {
-  @apply text-md uppercase text-dark-green font-bold w-28 text-center;
-}
-.sign-up-header {
-  @apply flex justify-between w-full pt-7 pb-5 items-end;
+  @apply middle-font uppercase text-dark-green font-bold w-28 text-center;
 }
 .sign-in-layout {
   @apply bg-sign-in min-w-full min-h-screen grid place-items-center;
@@ -26,7 +17,7 @@
   @apply absolute top-0 left-0 flex w-full;
 }
 .link-sign-in {
-  @apply text-md text-black not-italic font-normal pt-5 pb-2 basis-1/2 text-center;
+  @apply middle-font text-black not-italic font-normal pt-5 pb-2 basis-1/2 text-center;
 }
 .sign-in-btn {
   @apply green-btn rounded-lg min-w-full py-3;

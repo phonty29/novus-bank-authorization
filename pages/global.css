@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  .small-font {
+    @apply md:text-sm sm:text-xs text-[10px];
+  }
+  .middle-font {
+    @apply md:text-md sm:text-sm text-xs;
+  }
+  .large-font {
+    @apply md:text-lg sm:text-md text-sm;
+  }
   .item-margins {
     @apply xl:mb-5 lg:mb-5 md:mb-4 sm:mb-3 xs:mb-3 mb-3;
   }
@@ -10,7 +19,7 @@
     @apply text-white bg-green-gradient;
   }
   .text-input {
-    @apply font-normal not-italic text-sm;
+    @apply font-normal not-italic small-font;
   }
   .input-field {
     @apply flex flex-col item-margins;
@@ -48,29 +57,10 @@
       after:rotate-45;
   }
   .alert-message {
-    @apply text-purple text-sm flex-auto item-margins;
+    @apply text-purple small-font flex-auto item-margins;
   }
   input[type='radio'] {
     @apply mr-3 w-5 h-5 accent-green;
-  }
-  .photo-input {
-    @apply hidden;
-  }
-  .photo-input-frame {
-    @apply 
-      w-[340px] 
-      h-[100px] 
-      rounded-[10px] 
-      border 
-      border-solid 
-      border-[#A9B1BC] 
-      bg-white 
-      flex 
-      justify-center 
-      items-center;
-  }
-  .photo-background {
-    @apply bg-photo bg-auto bg-center bg-no-repeat;
   }
   .footer {
     @apply h-[70px] w-full;

@@ -2,13 +2,13 @@
   @apply flex justify-between flex-auto;
 }
 .welcome-title {
-  @apply text-green font-bold text-md mb-3.5;
+  @apply text-green font-bold middle-font mb-3.5;
 }
 .fields-form {
   @apply min-w-[400px] h-full flex flex-col;
 }
 .fields-desc {
-  @apply text-sm text-[#737272];
+  @apply small-font text-[#737272];
 }
 .fields-help {
   @apply w-[335px];
@@ -23,7 +23,7 @@
   @apply flex justify-between;
 }
 .verify-button {
-  @apply w-[250px] text-md py-3 text-center rounded-lg mb-5 cursor-pointer;
+  @apply w-[250px] middle-font py-3 text-center rounded-lg mb-5 cursor-pointer;
 }
 .verify-info {
   @apply flex justify-between items-start;
@@ -44,14 +44,11 @@
   @apply mb-6;
 }
 .help-more-link {
-  @apply text-purple text-xs text-end;
+  @apply text-purple small-font text-end;
 }
 .help-item-title {
-  @apply text-md font-bold;
+  @apply middle-font font-bold;
 }
 .email-verified {
-  @apply text-green text-lg font-bold;
-}
-.alert-message-sign-up {
-  @apply alert-message text-start;
+  @apply text-green large-font font-bold;
 }
