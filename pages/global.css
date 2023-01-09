@@ -13,13 +13,13 @@
     @apply md:text-lg sm:text-md text-sm;
   }
   .item-margins {
-    @apply xl:mb-5 lg:mb-5 md:mb-4 sm:mb-3 xs:mb-3 mb-3;
+    @apply xl:mb-9 lg:mb-7 md:mb-6 sm:mb-5 xs:mb-4 mb-3;
   }
   .green-btn {
     @apply text-white bg-green-gradient;
   }
   .text-input {
-    @apply font-normal not-italic small-font;
+    @apply font-normal not-italic text-sm;
   }
   .input-field {
     @apply flex flex-col item-margins;

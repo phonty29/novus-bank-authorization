@@ -14,11 +14,11 @@ const IdentificationForm: React.FC = () => {
   return (
     <>
       <h2 className="welcome-title">{"Welcome - let's get started"}</h2>
-      <p className="fields-desc mb-12">
+      <p className="fields-desc">
         Tell us about your basic details and account requirements
       </p>
       <div className="input-field account-field">
-        <p className="label-text mb-5">
+        <p className="account-label">
           Whom would you like to open an account ?
           <span className="text-purple"> *</span>
         </p>
@@ -58,7 +58,7 @@ const IdentificationForm: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="input-field mb-7">
+      <div className="input-field">
         <label htmlFor="field-number" className="label-text">
           Your Mobile Number
           <span className="text-purple"> *</span>
@@ -79,7 +79,7 @@ const IdentificationForm: React.FC = () => {
           required
         />
       </div>
-      <div className="input-field mb-6">
+      <div className="input-field">
         <label htmlFor="field-email" className="label-text">
           Your Email Address
           <span className="text-purple"> *</span>

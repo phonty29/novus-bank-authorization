@@ -2,28 +2,31 @@
   @apply flex justify-between flex-auto;
 }
 .welcome-title {
-  @apply text-green font-bold middle-font mb-3.5;
+  @apply text-green font-bold xs:text-md text-sm mb-3.5;
 }
 .fields-form {
-  @apply min-w-[400px] h-full flex flex-col;
+  @apply h-full flex flex-col md:min-w-[400px] md:w-fit w-full;
 }
 .fields-desc {
-  @apply small-font text-[#737272];
+  @apply xs:text-sm text-xs text-[#737272] sm:mb-12 mb-6;
 }
 .fields-help {
-  @apply w-[335px];
+  @apply w-[335px] md:block hidden;
+}
+.account-label {
+  @apply md:mr-0 mr-4 label-text item-margins xs:text-sm text-xs;
 }
 .account-type {
-  @apply flex items-center;
+  @apply flex items-center justify-center md:flex-row flex-col mr-5;
 }
 .account-field {
-  @apply w-fit mb-9;
+  @apply w-fit mb-9 md:flex-col sm:flex-row flex-col justify-center !important;
 }
 .account-radio-buttons {
   @apply flex justify-between;
 }
 .verify-button {
-  @apply w-[250px] middle-font py-3 text-center rounded-lg mb-5 cursor-pointer;
+  @apply w-[250px] text-md py-3 text-center rounded-lg mb-5 cursor-pointer;
 }
 .verify-info {
   @apply flex justify-between items-start;

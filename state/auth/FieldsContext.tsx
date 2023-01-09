@@ -39,7 +39,7 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
     creationFieldsInitialState
   );
   const [successState, setSuccessState] = useState<ISuccessFields>(successFieldsInitialState);
-  const {alertMessage, setAlertMessage} = useAuthContext();
+  const {setAlertMessage} = useAuthContext();
 
   const validateFields = (currentStage: string) => {
     switch (currentStage) {

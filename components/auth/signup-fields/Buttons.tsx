@@ -8,7 +8,7 @@ const Buttons: React.FC<IButtons> = () => {
   return (
     <div className="sign-up-buttons">
       {!(currentStage === SignUpStages.IDENTIFICATION) && (
-        <button className="sign-up-button" onClick={prevStage}>
+        <button type="button" className="sign-up-button" onClick={prevStage}>
           Back
         </button>
       )}
