@@ -46,10 +46,10 @@ module.exports = {
       roboto: ['Roboto', 'sans-serif'],
     },
     borderRadius: {
-      lg: '10px',
-      xl: '15px',
+      'lg': '10px',
+      'xl': '15px',
       '2xl': '20px',
-      full: '100%',
+      'full': '100%',
     },
   },
   plugins: [],

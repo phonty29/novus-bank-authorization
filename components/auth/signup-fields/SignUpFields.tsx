@@ -22,7 +22,7 @@ const SignUpFields: React.FC<ISignUpFields> = () => {
   };
   return (
     <div className="sign-up-fields">
-      <form className="fields-form" onSubmit={handleSubmit}>
+      <form className={`fields-form ${currentStage === SignUpStages.CREATION ? 'lg:w-[700px] w-full' : ''}`} onSubmit={handleSubmit}>
         {currentStage === SignUpStages.IDENTIFICATION && <IdentificationForm />}
         {currentStage === SignUpStages.VERIFICATION && <VerificationForm />}
         {currentStage === SignUpStages.CREATION && <CreationForm />}

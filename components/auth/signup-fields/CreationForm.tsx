@@ -11,7 +11,7 @@ const CreationForm: React.FC = () => {
   return (
     <>
       <PlayrolesDropdown />
-      <div className="fields-raw">
+      <div className="fields-raw name-fields-raw">
         <NameField />
       </div>
       <div className="fields-raw">

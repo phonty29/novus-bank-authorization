@@ -39,16 +39,17 @@
 @import '../signup-fields/SignUpFields.module.css';
 
 .sign-up-buttons {
-  @apply flex justify-between items-center;
+  @apply flex md:justify-start justify-between items-center;
 }
 .sign-up-button {
   @apply 
     middle-font 
     items-mb 
-    md:w-[160px] sm:w-[130px] xs:w-[100px] w-[90px]
-    py-3
+    md:w-[160px] sm:w-[130px] xs:w-[100px] w-[70px]
+    xs:py-3 py-2
     text-white 
     rounded-[10px] 
+    md:mr-5 last:mr-0
     bg-[#737272] 
     !important;
 }

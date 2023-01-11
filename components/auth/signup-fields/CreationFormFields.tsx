@@ -14,7 +14,7 @@ export const PlayrolesDropdown: React.FC = () => {
       <select
         name="select-role"
         id="select-role"
-        className="auth-input w-fit"
+        className="auth-input sm:w-fit"
         value={creationState.role}
         onChange={(e) => {
           setCreationState({ ...creationState, role: e.target.value });
@@ -34,7 +34,7 @@ export const NameField: React.FC = () => {
   const { creationState, setCreationState } = useFieldsContext();
   return (
     <>
-      <div className="raw-field">
+      <div className="raw-field name-raw-field">
         <label htmlFor="first-name" className="label-text">
           First name
           <span className="text-purple"> *</span>
@@ -43,7 +43,7 @@ export const NameField: React.FC = () => {
           type="text"
           id="first-name"
           name="first-name"
-          className="auth-input"
+          className="auth-input raw-input-bg"
           placeholder={'John'}
           value={creationState.firstName}
           onChange={(e) => {
@@ -52,7 +52,7 @@ export const NameField: React.FC = () => {
           required
         />
       </div>
-      <div className="raw-field">
+      <div className="raw-field name-raw-field">
         <label htmlFor="last-name" className="label-text">
           Last name
           <span className="text-purple"> *</span>
@@ -61,7 +61,7 @@ export const NameField: React.FC = () => {
           type="text"
           id="last-name"
           name="last-name"
-          className="auth-input"
+          className="auth-input raw-input-bg"
           placeholder={'Doe'}
           value={creationState.lastName}
           onChange={(e) => {
@@ -85,7 +85,7 @@ export const CountriesDropdown: React.FC = () => {
       <select
         name="country"
         id="country"
-        className="auth-input"
+        className="auth-input raw-input-bg"
         onChange={(e) => {
           setCreationState({ ...creationState, country: e.target.value });
         }}
@@ -106,7 +106,7 @@ export const GenderDropdown: React.FC = () => {
   return (
     <div className="raw-field">
       <label htmlFor="gender" className="label-text">
-        Choose your gender
+        Gender
         <span className="text-purple"> *</span>
       </label>
       <select
@@ -169,7 +169,7 @@ export const CityField: React.FC = () => {
         type="text"
         id="city"
         name="city"
-        className="auth-input"
+        className="auth-input raw-input-bg"
         placeholder={'New York City'}
         value={creationState.city}
         onChange={(e) => {
