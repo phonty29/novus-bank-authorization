@@ -32,7 +32,7 @@ const IdentificationForm: React.FC = () => {
               checked={isAccountTypeSelected(AccountType.SELF)}
               onChange={handleClick}
             />
-            <label htmlFor="account-self">Self</label>
+            <label htmlFor="account-self account-type-label">Self</label>
           </div>
           <div className="account-type">
             <input
@@ -43,7 +43,7 @@ const IdentificationForm: React.FC = () => {
               checked={isAccountTypeSelected(AccountType.BUSINESS)}
               onChange={handleClick}
             />
-            <label htmlFor="account-business">Business</label>
+            <label htmlFor="account-business account-type-label">Business</label>
           </div>
           <div className="account-type">
             <input
@@ -54,7 +54,7 @@ const IdentificationForm: React.FC = () => {
               checked={isAccountTypeSelected(AccountType.FAMILY)}
               onChange={handleClick}
             />
-            <label htmlFor="account-family">Family</label>
+            <label htmlFor="account-family account-type-label">Family</label>
           </div>
         </div>
       </div>

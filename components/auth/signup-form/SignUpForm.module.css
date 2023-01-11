@@ -39,8 +39,16 @@
 @import '../signup-fields/SignUpFields.module.css';
 
 .sign-up-buttons {
-  @apply mb-8 flex;
+  @apply flex justify-between items-center;
 }
 .sign-up-button {
-  @apply middle-font w-[160px] py-3 text-white rounded-[10px] bg-[#737272] mr-10 !important;
+  @apply 
+    middle-font 
+    items-mb 
+    md:w-[160px] sm:w-[130px] xs:w-[100px] w-[90px]
+    py-3
+    text-white 
+    rounded-[10px] 
+    bg-[#737272] 
+    !important;
 }

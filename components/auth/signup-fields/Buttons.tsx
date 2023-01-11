@@ -6,7 +6,7 @@ export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
 const Buttons: React.FC<IButtons> = () => {
   const { currentStage, prevStage } = useSignUpContext();
   return (
-    <div className="sign-up-buttons">
+    <div className={`sign-up-buttons ${!(currentStage === SignUpStages.IDENTIFICATION) ? '' : 'block'}`}>
       {!(currentStage === SignUpStages.IDENTIFICATION) && (
         <button type="button" className="sign-up-button" onClick={prevStage}>
           Back

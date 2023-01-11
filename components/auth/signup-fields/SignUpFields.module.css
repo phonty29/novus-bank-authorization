@@ -17,7 +17,7 @@
   @apply md:mr-0 mr-4 label-text items-mb small-font;
 }
 .account-type {
-  @apply flex items-center justify-center md:flex-row flex-col mr-5;
+  @apply flex items-center justify-center md:flex-row flex-col mr-5 small-font;
 }
 .account-field {
   @apply w-fit mb-9 md:flex-col sm:flex-row flex-col justify-center !important;
@@ -26,7 +26,7 @@
   @apply flex justify-between;
 }
 .verify-button {
-  @apply md:w-[250px] w-[200px] middle-font py-3 text-center rounded-lg items-mb cursor-pointer;
+  @apply md:w-[250px] xs:w-[200px] w-full middle-font py-3 text-center rounded-lg items-mb cursor-pointer;
 }
 .verify-info {
   @apply flex justify-between items-start;
