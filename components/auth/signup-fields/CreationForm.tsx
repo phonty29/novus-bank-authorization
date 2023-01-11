@@ -4,24 +4,21 @@ import {
   DateField,
   GenderDropdown,
   NameField,
-  PlayrolesDropdown,
+  PlayrolesDropdown
 } from './CreationFormFields';
 
 const CreationForm: React.FC = () => {
   return (
     <>
-      <p className="fields-desc mb-5">
-        Tell us about your basic details and account requirements
-      </p>
       <PlayrolesDropdown />
-      <div className="fields-raw mb-5">
+      <div className="fields-raw">
         <NameField />
       </div>
-      <div className="fields-raw mb-5">
+      <div className="fields-raw">
         <GenderDropdown />
         <DateField />
       </div>
-      <div className="fields-raw mb-7">
+      <div className="fields-raw">
         <CountriesDropdown />
         <CityField />
       </div>

@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import SignUpStages from '../../../lib/enums/SignUpStages';
+import { useSignUpContext } from '../../../state/auth/SignUpContext';
 
 const SignUpFieldsHelp: React.FC = () => {
+  const { currentStage } = useSignUpContext();
   return (
-    <div className="fields-help">
+    <div className={`fields-help ${(currentStage === SignUpStages.CREATION ? 'lg:block hidden' : '')}`}>
       <div className="help-item mb-5">
         <h3 className="help-item-title">Benefits of Online Banking</h3>
         <p>

@@ -32,10 +32,10 @@
   @apply flex justify-between items-start;
 }
 .fields-raw {
-  @apply flex justify-start items-center;
+  @apply flex justify-start items-center items-mb;
 }
 .raw-field {
-  @apply w-[340px] input-field mr-9 last:mr-0;
+  @apply w-[340px] input-field mr-9 last:mr-0 mb-0;
 }
 .raw-input-sm {
   @apply w-[128px];

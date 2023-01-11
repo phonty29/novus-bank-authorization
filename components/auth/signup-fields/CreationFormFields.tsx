@@ -6,7 +6,7 @@ import { useFieldsContext } from '../../../state/auth/FieldsContext';
 export const PlayrolesDropdown: React.FC = () => {
   const { creationState, setCreationState } = useFieldsContext();
   return (
-    <div className="input-field mb-5">
+    <div className="input-field">
       <label htmlFor="select-role" className="label-text">
         Play as
         <span className="text-purple"> *</span>

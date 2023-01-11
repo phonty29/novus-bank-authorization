@@ -9,19 +9,19 @@ module.exports = {
         'sign-in': "url('/loginbng 1.png')",
         'green-gradient':
           'linear-gradient(270deg, #000000 5.08%, #076F32 104.24%)',
-        bullet: "url('/on-stage.png')",
-        check: "url('/success.png')",
-        photo: "url('/photo-img.png')",
+        'bullet': "url('/on-stage.png')",
+        'check': "url('/success.png')",
+        'photo': "url('/photo-img.png')",
       },
       colors: {
-        purple: '#F30066',
-        grey: '#e3e3e3',
+        'purple': '#F30066',
+        'grey': '#e3e3e3',
         'grey-br': '#a6a6a6',
-        green: '#076F32',
+        'green': '#076F32',
         'dark-green': '#054820',
       },
       backgroundColor: {
-        field: '#F0F2FF',
+        'field': '#F0F2FF',
         'sign-up': '#e5e5e5',
       },
       boxShadow: {
