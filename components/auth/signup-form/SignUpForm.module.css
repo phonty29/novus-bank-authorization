@@ -3,7 +3,7 @@
 }
 .sign-up-form {
   @apply bg-field shadow-sign-up rounded-xl w-full flex-auto pt-5 px-8 flex flex-col 
-          lg:h-[846px] md:h-[776px] sm:h-[726px] xs:h-[676px] h-[626px];
+          lg:h-[806px] md:h-[746px] sm:h-[706px] xs:h-[646px] h-[606px];
 }
 .sign-up-label {
   @apply large-font text-green font-bold;

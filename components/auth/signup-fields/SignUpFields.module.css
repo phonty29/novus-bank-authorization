@@ -2,19 +2,19 @@
   @apply flex justify-between flex-auto;
 }
 .welcome-title {
-  @apply text-green font-bold xs:text-md text-sm mb-3.5;
+  @apply text-green font-bold middle-font mb-3.5;
 }
 .fields-form {
   @apply h-full flex flex-col md:min-w-[400px] md:w-fit w-full;
 }
 .fields-desc {
-  @apply xs:text-sm text-xs text-[#737272] sm:mb-12 mb-6;
+  @apply small-font text-[#737272] sm:mb-12 mb-6;
 }
 .fields-help {
   @apply w-[335px] md:block hidden;
 }
 .account-label {
-  @apply md:mr-0 mr-4 label-text item-margins xs:text-sm text-xs;
+  @apply md:mr-0 mr-4 label-text items-mb small-font;
 }
 .account-type {
   @apply flex items-center justify-center md:flex-row flex-col mr-5;
@@ -26,7 +26,7 @@
   @apply flex justify-between;
 }
 .verify-button {
-  @apply w-[250px] text-md py-3 text-center rounded-lg mb-5 cursor-pointer;
+  @apply md:w-[250px] w-[200px] middle-font py-3 text-center rounded-lg items-mb cursor-pointer;
 }
 .verify-info {
   @apply flex justify-between items-start;

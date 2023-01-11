@@ -4,25 +4,25 @@
 
 @layer base {
   .small-font {
-    @apply md:text-sm sm:text-xs text-[10px];
+    @apply xs:text-sm text-xs;
   }
   .middle-font {
-    @apply md:text-md sm:text-sm text-xs;
+    @apply xs:text-md text-sm;
   }
   .large-font {
-    @apply md:text-lg sm:text-md text-sm;
+    @apply xs:text-lg text-md;
   }
-  .item-margins {
+  .items-mb {
     @apply xl:mb-9 lg:mb-7 md:mb-6 sm:mb-5 xs:mb-4 mb-3;
   }
   .green-btn {
     @apply text-white bg-green-gradient;
   }
   .text-input {
-    @apply font-normal not-italic text-sm;
+    @apply font-normal not-italic small-font;
   }
   .input-field {
-    @apply flex flex-col item-margins;
+    @apply flex flex-col items-mb;
   }
   .checkbox-field {
     @apply flex items-center relative pl-9;
@@ -57,7 +57,7 @@
       after:rotate-45;
   }
   .alert-message {
-    @apply text-purple small-font flex-auto item-margins;
+    @apply text-purple small-font flex-auto items-mb;
   }
   input[type='radio'] {
     @apply mr-3 w-5 h-5 accent-green;

@@ -14,8 +14,7 @@
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "email": "node email.js"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@types/node": "18.11.9",
