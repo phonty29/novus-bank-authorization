@@ -8,10 +8,10 @@ const SuccessForm: React.FC = () => {
 
   return (
     <>
-      <p className="fields-desc mb-5">
+      <p className="fields-desc">
         Tell us about your basic details and account requirements
       </p>
-      <div className="input-field mb-5">
+      <div className="input-field">
         <label htmlFor="field-username" className="label-text">
           New Username
           <span className="text-purple"> *</span>
@@ -29,7 +29,7 @@ const SuccessForm: React.FC = () => {
           required
         />
       </div>
-      <div className="input-field mb-5">
+      <div className="input-field">
         <label htmlFor="field-password" className="label-text">
           New Password
           <span className="text-purple"> *</span>
@@ -47,7 +47,7 @@ const SuccessForm: React.FC = () => {
           required
         />
       </div>
-      <div className="input-field mb-5">
+      <div className="input-field">
         <label htmlFor="field-verify-password" className="label-text">
           Verify new password
           <span className="text-purple"> *</span>
@@ -65,7 +65,7 @@ const SuccessForm: React.FC = () => {
           required
         />
       </div>
-      <div className="checkbox-field mb-12">
+      <div className="checkbox-field items-mb">
         <input
           type="checkbox"
           id="email-alerts"
