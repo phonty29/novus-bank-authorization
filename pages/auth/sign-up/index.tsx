@@ -18,8 +18,9 @@ const SignUp: NextPageWithLayout<ISignUp> = () => {
             alt="Novus Bank logo"
             width="193"
             height="22"
+            className="sign-up-logo"
           />
-          <Link href="/auth/sign-in" className="link-to-sign-in">
+          <Link href="/auth/sign-in" className="link-to-sign-in underline">
             sign in
           </Link>
         </header>

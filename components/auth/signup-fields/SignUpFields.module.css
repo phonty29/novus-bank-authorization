@@ -47,13 +47,13 @@
   @apply sm:text-sm text-xs !important;
 }
 .raw-input-bg {
-  @apply lg:w-[288px] md:w-auto sm:w-[180px] xs:w-[90px] w-[50px] raw-font;
+  @apply lg:w-[288px] md:w-auto sm:w-[193px] xs:w-[112px] min-[275px]:w-[95px] w-[50px] raw-font;
 }
 .name-raw-field .raw-input-bg {
-  @apply lg:w-[288px] md:w-auto sm:w-[180px] w-auto;
+  @apply lg:w-[288px] md:w-auto sm:w-[193px] w-auto;
 }
 .raw-input-sm {
-  @apply md:w-[128px] sm:w-[108px] xs:w-[90px] w-[50px] raw-font;
+  @apply md:w-[128px] sm:w-[108px] xs:w-[112px] min-[275px]:w-[95px] w-[50px] raw-font;
 }
 .help-item {
   @apply text-[#737272];

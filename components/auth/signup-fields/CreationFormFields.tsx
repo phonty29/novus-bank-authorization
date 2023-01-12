@@ -74,33 +74,6 @@ export const NameField: React.FC = () => {
   );
 };
 
-export const CountriesDropdown: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
-  return (
-    <div className="raw-field">
-      <label htmlFor="country" className="label-text">
-        Country
-        <span className="text-purple"> *</span>
-      </label>
-      <select
-        name="country"
-        id="country"
-        className="auth-input raw-input-bg"
-        onChange={(e) => {
-          setCreationState({ ...creationState, country: e.target.value });
-        }}
-        value={creationState.country}
-      >
-        {countries.map((cnt, index) => (
-          <option key={index} value={cnt.name}>
-            {cnt.name}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-};
-
 export const GenderDropdown: React.FC = () => {
   const { creationState, setCreationState } = useFieldsContext();
   return (
@@ -156,6 +129,34 @@ export const DateField: React.FC = () => {
     </div>
   );
 };
+
+export const CountriesDropdown: React.FC = () => {
+  const { creationState, setCreationState } = useFieldsContext();
+  return (
+    <div className="raw-field">
+      <label htmlFor="country" className="label-text">
+        Country
+        <span className="text-purple"> *</span>
+      </label>
+      <select
+        name="country"
+        id="country"
+        className="auth-input raw-input-bg"
+        onChange={(e) => {
+          setCreationState({ ...creationState, country: e.target.value });
+        }}
+        value={creationState.country}
+      >
+        {countries.map((cnt, index) => (
+          <option key={index} value={cnt.name}>
+            {cnt.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
 
 export const CityField: React.FC = () => {
   const { creationState, setCreationState } = useFieldsContext();

@@ -34,7 +34,7 @@
     @apply leading-6 mb-0 label-text max-w-[350px];
   }
   .auth-input {
-    @apply box-content bg-field rounded-lg border border-grey-br border-solid text-input text-black sm:px-5 px-3 py-3 shadow-gray-300 placeholder-[#333];
+    @apply box-content bg-field rounded-lg border border-grey-br border-solid text-input text-black sm:px-5 xs:px-3 px-2 py-3 shadow-gray-300 placeholder-[#333];
   }
   .auth-checkbox {
     @apply absolute opacity-0 h-0 w-0 cursor-pointer;
