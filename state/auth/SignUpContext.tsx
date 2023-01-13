@@ -16,7 +16,6 @@ const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
 
   const signUpStages = Object.keys(SignUpStages).map((key) => key);
   const prevStage = () => {
-    console.log("Back is clicked");
     if (stageIndex === 0) setStageIndex(3);
     else setStageIndex(stageIndex - 1);
   };

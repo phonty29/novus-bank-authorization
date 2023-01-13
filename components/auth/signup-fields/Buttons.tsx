@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import SignUpStages from '../../../lib/enums/SignUpStages';
 import { useSignUpContext } from '../../../state/auth/SignUpContext';
 
@@ -5,9 +6,13 @@ export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
 
 const Buttons: React.FC<IButtons> = () => {
   const { currentStage, prevStage } = useSignUpContext();
+  const [isCreationForm, setIsCreationForm] = useState<boolean>(true);
+  useEffect(() => {
+    setIsCreationForm(currentStage === SignUpStages.CREATION);
+  }, [currentStage]);
   return (
-    <div className={`sign-up-buttons ${!(currentStage === SignUpStages.IDENTIFICATION) ? '' : 'block'}`}>
-      {!(currentStage === SignUpStages.IDENTIFICATION) && (
+    <div className={`sign-up-buttons ${!isCreationForm ? '' : 'block'}`}>
+      {!isCreationForm && (
         <button type="button" className="sign-up-button" onClick={prevStage}>
           Back
         </button>

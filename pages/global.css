@@ -57,7 +57,7 @@
       after:rotate-45;
   }
   .alert-message {
-    @apply text-purple small-font flex-auto items-mb;
+    @apply text-purple small-font flex-auto items-mb max-w-[400px];
   }
   input[type='radio'] {
     @apply mr-3 w-5 h-5 accent-green;
