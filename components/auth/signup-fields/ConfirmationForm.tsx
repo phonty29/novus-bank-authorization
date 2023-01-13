@@ -1,20 +1,20 @@
 import { useRef, useState } from 'react';
-import VerificationMethod from '../../../lib/enums/VerificationMethod';
+import ConfirmationMethod from '../../../lib/enums/ConfirmationMethod';
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import IconNotification from '../../icons/IconNotification';
 
-const VerificationForm: React.FC = () => {
-  const { verificationState, setVerificationState } = useFieldsContext();
+const ConfirmationForm: React.FC = () => {
+  const { confirmationState, setConfirmationState } = useFieldsContext();
   const [buttonText, setButtonText] = useState<string>('a verification');
   const selectRef = useRef<HTMLSelectElement | null>(null);
   const sendVerification = () => {
     if (selectRef.current) {
-      setVerificationState({
-        ...verificationState,
-        verificationMethod:
-          selectRef.current.value === VerificationMethod.PHONE
-            ? VerificationMethod.PHONE
-            : VerificationMethod.EMAIL,
+      setConfirmationState({
+        ...confirmationState,
+        confirmationMethod:
+          selectRef.current.value === ConfirmationMethod.PHONE
+            ? ConfirmationMethod.PHONE
+            : ConfirmationMethod.EMAIL,
       });
       setButtonText('again');
     }
@@ -32,16 +32,16 @@ const VerificationForm: React.FC = () => {
           id="verification-method"
           className="auth-input"
           ref={selectRef}
-          defaultValue={VerificationMethod.PHONE}
+          defaultValue={ConfirmationMethod.PHONE}
           disabled={
-            verificationState.verificationMethod !=
-            VerificationMethod.BEFORE_CHOICE
+            confirmationState.confirmationMethod !=
+            ConfirmationMethod.BEFORE_CHOICE
           }
         >
-          <option value={VerificationMethod.PHONE}>
+          <option value={ConfirmationMethod.PHONE}>
             Send code to phone number
           </option>
-          <option value={VerificationMethod.EMAIL}>Send a link to email</option>
+          <option value={ConfirmationMethod.EMAIL}>Send a link to email</option>
         </select>
       </div>
       <div
@@ -50,7 +50,7 @@ const VerificationForm: React.FC = () => {
       >
         Send {buttonText}
       </div>
-      {verificationState.verificationMethod === VerificationMethod.PHONE && (
+      {confirmationState.confirmationMethod === ConfirmationMethod.PHONE && (
         <div className="input-field">
           <label htmlFor="six-digit-code" className="label-text">
             Write the six-digit code that we sent to the phone number
@@ -66,7 +66,7 @@ const VerificationForm: React.FC = () => {
           />
         </div>
       )}
-      {verificationState.verificationMethod === VerificationMethod.EMAIL && (
+      {confirmationState.confirmationMethod === ConfirmationMethod.EMAIL && (
         <div className="verify-info">
           <p className="fields-desc mb-5 mr-3">
             We send a link to your email address. Please check and click on the
@@ -79,4 +79,4 @@ const VerificationForm: React.FC = () => {
   );
 };
 
-export default VerificationForm;
+export default ConfirmationForm;

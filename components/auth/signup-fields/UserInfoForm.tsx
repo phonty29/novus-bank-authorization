@@ -1,9 +1,9 @@
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 
-const SuccessForm: React.FC = () => {
-  const {successState, setSuccessState} = useFieldsContext();
+const UserInfoForm: React.FC = () => {
+  const {userInfoState, setUserInfoState} = useFieldsContext();
   const setEmailNotification = (): void => {
-    setSuccessState({...successState, emailNotification: !successState.emailNotification});
+    setUserInfoState({...userInfoState, emailNotification: !userInfoState.emailNotification});
   }
 
   return (
@@ -21,9 +21,9 @@ const SuccessForm: React.FC = () => {
           id="field-username"
           name="field-username"
           placeholder={'Enter username'}
-          value={successState.userFields.username}
+          value={userInfoState.userFields.username}
           onChange={(e) => {
-            setSuccessState({...successState, userFields: {...successState.userFields, username: e.target.value}})
+            setUserInfoState({...userInfoState, userFields: {...userInfoState.userFields, username: e.target.value}})
           }}
           className="auth-input"
           required
@@ -39,9 +39,9 @@ const SuccessForm: React.FC = () => {
           id="field-password"
           name="field-password"
           placeholder={'Enter password'}
-          value={successState.userFields.password}
+          value={userInfoState.userFields.password}
           onChange={(e) => {
-            setSuccessState({...successState, userFields: {...successState.userFields, password: e.target.value}})
+            setUserInfoState({...userInfoState, userFields: {...userInfoState.userFields, password: e.target.value}})
           }}
           className="auth-input"
           required
@@ -57,9 +57,9 @@ const SuccessForm: React.FC = () => {
           id="field-verify-password"
           name="field-verify-password"
           placeholder={'Repeat new password'}
-          value={successState.repeatedPassword}
+          value={userInfoState.repeatedPassword}
           onChange={(e) => {
-            setSuccessState({...successState, repeatedPassword: e.target.value})
+            setUserInfoState({...userInfoState, repeatedPassword: e.target.value})
           }}
           className="auth-input"
           required
@@ -72,7 +72,7 @@ const SuccessForm: React.FC = () => {
           name="email-alerts"
           className="auth-checkbox"
           readOnly
-          checked={successState.emailNotification}
+          checked={userInfoState.emailNotification}
         />
         <span
           className="checkmark"
@@ -86,4 +86,4 @@ const SuccessForm: React.FC = () => {
   );
 };
 
-export default SuccessForm;
+export default UserInfoForm;

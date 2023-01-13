@@ -5,9 +5,9 @@ import {
   GenderDropdown,
   NameField,
   PlayrolesDropdown
-} from './CreationFormFields';
+} from './PersonalInfoFormFields';
 
-const CreationForm: React.FC = () => {
+const PersonalInfoForm: React.FC = () => {
   return (
     <>
       <PlayrolesDropdown />
@@ -26,4 +26,4 @@ const CreationForm: React.FC = () => {
   );
 };
 
-export default CreationForm;
+export default PersonalInfoForm;

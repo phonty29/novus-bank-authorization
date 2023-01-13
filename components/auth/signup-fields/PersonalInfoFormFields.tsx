@@ -4,7 +4,7 @@ import Genders from '../../../lib/enums/Genders';
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 
 export const PlayrolesDropdown: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
+  const { personalInfoState, setPersonalInfoState } = useFieldsContext();
   return (
     <div className="input-field">
       <label htmlFor="select-role" className="label-text">
@@ -15,9 +15,9 @@ export const PlayrolesDropdown: React.FC = () => {
         name="select-role"
         id="select-role"
         className="auth-input sm:w-fit"
-        value={creationState.role}
+        value={personalInfoState.role}
         onChange={(e) => {
-          setCreationState({ ...creationState, role: e.target.value });
+          setPersonalInfoState({ ...personalInfoState, role: e.target.value });
         }}
       >
         {playroles.map((playrole, index) => (
@@ -31,7 +31,7 @@ export const PlayrolesDropdown: React.FC = () => {
 };
 
 export const NameField: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
+  const { personalInfoState, setPersonalInfoState } = useFieldsContext();
   return (
     <>
       <div className="raw-field name-raw-field">
@@ -45,9 +45,9 @@ export const NameField: React.FC = () => {
           name="first-name"
           className="auth-input raw-input-bg"
           placeholder={'John'}
-          value={creationState.firstName}
+          value={personalInfoState.firstName}
           onChange={(e) => {
-            setCreationState({ ...creationState, firstName: e.target.value });
+            setPersonalInfoState({ ...personalInfoState, firstName: e.target.value });
           }}
           required
         />
@@ -63,9 +63,9 @@ export const NameField: React.FC = () => {
           name="last-name"
           className="auth-input raw-input-bg"
           placeholder={'Doe'}
-          value={creationState.lastName}
+          value={personalInfoState.lastName}
           onChange={(e) => {
-            setCreationState({ ...creationState, lastName: e.target.value });
+            setPersonalInfoState({ ...personalInfoState, lastName: e.target.value });
           }}
           required
         />
@@ -75,7 +75,7 @@ export const NameField: React.FC = () => {
 };
 
 export const GenderDropdown: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
+  const { personalInfoState, setPersonalInfoState } = useFieldsContext();
   return (
     <div className="raw-field">
       <label htmlFor="gender" className="label-text">
@@ -87,12 +87,12 @@ export const GenderDropdown: React.FC = () => {
         id="gender"
         className="auth-input raw-input-sm"
         onChange={(e) => {
-          setCreationState({
-            ...creationState,
+          setPersonalInfoState({
+            ...personalInfoState,
             gender: e.target.value as Genders,
           });
         }}
-        value={creationState.gender}
+        value={personalInfoState.gender}
       >
         <option value={Genders.MALE}>Male</option>
         <option value={Genders.FEMALE}>Female</option>
@@ -103,7 +103,7 @@ export const GenderDropdown: React.FC = () => {
 };
 
 export const DateField: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
+  const { personalInfoState, setPersonalInfoState } = useFieldsContext();
   const formatDate = (date: Date) => {
     return date.toJSON().substring(0,10);
   }
@@ -120,9 +120,9 @@ export const DateField: React.FC = () => {
         name="date-of-birth"
         className="auth-input raw-input-sm"
         placeholder={'MM/DD/YYYY'}
-        value={formatDate(creationState.dateOfBirth)}
+        value={formatDate(personalInfoState.dateOfBirth)}
         onChange={(e) => {
-          setCreationState({...creationState, dateOfBirth: new Date(e.target.value)});
+          setPersonalInfoState({...personalInfoState, dateOfBirth: new Date(e.target.value)});
         }}
         required
       />
@@ -131,7 +131,7 @@ export const DateField: React.FC = () => {
 };
 
 export const CountriesDropdown: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
+  const { personalInfoState, setPersonalInfoState } = useFieldsContext();
   return (
     <div className="raw-field">
       <label htmlFor="country" className="label-text">
@@ -143,9 +143,9 @@ export const CountriesDropdown: React.FC = () => {
         id="country"
         className="auth-input raw-input-bg"
         onChange={(e) => {
-          setCreationState({ ...creationState, country: e.target.value });
+          setPersonalInfoState({ ...personalInfoState, country: e.target.value });
         }}
-        value={creationState.country}
+        value={personalInfoState.country}
       >
         {countries.map((cnt, index) => (
           <option key={index} value={cnt.name}>
@@ -159,7 +159,7 @@ export const CountriesDropdown: React.FC = () => {
 
 
 export const CityField: React.FC = () => {
-  const { creationState, setCreationState } = useFieldsContext();
+  const { personalInfoState, setPersonalInfoState } = useFieldsContext();
   return (
     <div className="raw-field">
       <label htmlFor="city" className="label-text">
@@ -172,9 +172,9 @@ export const CityField: React.FC = () => {
         name="city"
         className="auth-input raw-input-bg"
         placeholder={'New York City'}
-        value={creationState.city}
+        value={personalInfoState.city}
         onChange={(e) => {
-          setCreationState({ ...creationState, city: e.target.value });
+          setPersonalInfoState({ ...personalInfoState, city: e.target.value });
         }}
         required
       />

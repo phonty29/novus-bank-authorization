@@ -1,7 +1,7 @@
-enum VerificationMethod {
+enum ConfirmationMethod {
   PHONE = 'PHONE',
   EMAIL = 'EMAIL',
   BEFORE_CHOICE = '',
 }
 
-export default VerificationMethod;
+export default ConfirmationMethod;

@@ -1,18 +1,18 @@
 import { Dispatch, SetStateAction } from "react";
-import ICreationFields from "./ICreationFields";
-import IdentificationFields from "./IdentificationFields";
-import ISuccessFields from "./ISuccessFields";
-import IVerificationFields from "./IVerificationFields";
+import IActivationFields from "./IActivationFields";
+import IConfirmationFields from "./IConfirmationFields";
+import IPersonalInfoFields from "./IPersonalInfoFields";
+import IUserInfoFields from "./IUserInfoFields";
 
 interface IFieldsContext {
-    identificationState: IdentificationFields;
-    setIdentificationState: Dispatch<SetStateAction<IdentificationFields>>;
-    verificationState: IVerificationFields;
-    setVerificationState: Dispatch<SetStateAction<IVerificationFields>>;
-    creationState: ICreationFields;
-    setCreationState: Dispatch<SetStateAction<ICreationFields>>;
-    successState: ISuccessFields;
-    setSuccessState: Dispatch<SetStateAction<ISuccessFields>>;
+    personalInfoState: IPersonalInfoFields;
+    setPersonalInfoState: Dispatch<SetStateAction<IPersonalInfoFields>>;
+    userInfoState: IUserInfoFields;
+    setUserInfoState: Dispatch<SetStateAction<IUserInfoFields>>;
+    activationState: IActivationFields;
+    setActivationState: Dispatch<SetStateAction<IActivationFields>>;
+    confirmationState: IConfirmationFields;
+    setConfirmationState: Dispatch<SetStateAction<IConfirmationFields>>;
     validateFields: (s: string) => boolean;
 }
 

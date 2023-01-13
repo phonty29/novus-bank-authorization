@@ -6,13 +6,13 @@ export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
 
 const Buttons: React.FC<IButtons> = () => {
   const { currentStage, prevStage } = useSignUpContext();
-  const [isCreationForm, setIsCreationForm] = useState<boolean>(true);
+  const [isPersonalInfoForm, setIsPersonalInfoForm] = useState<boolean>(true);
   useEffect(() => {
-    setIsCreationForm(currentStage === SignUpStages.CREATION);
+    setIsPersonalInfoForm(currentStage === SignUpStages.PERSONAL_INFO);
   }, [currentStage]);
   return (
-    <div className={`sign-up-buttons ${!isCreationForm ? '' : 'block'}`}>
-      {!isCreationForm && (
+    <div className={`sign-up-buttons ${!isPersonalInfoForm ? '' : 'block'}`}>
+      {!isPersonalInfoForm && (
         <button type="button" className="sign-up-button" onClick={prevStage}>
           Back
         </button>

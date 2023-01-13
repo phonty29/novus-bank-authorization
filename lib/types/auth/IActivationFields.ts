@@ -2,28 +2,28 @@ import { Dispatch, SetStateAction } from 'react';
 import AccountType from '../../enums/AccountType';
 import AlertMessages from '../../enums/AlertMessages';
 
-interface IdentificationFields {
+interface IActivationFields {
   accountType: string;
   phoneNumber: string;
   email: string;
 }
 
-export const identificationFieldsInitialState: IdentificationFields = {
+export const activationFieldsInitialState: IActivationFields = {
   accountType: AccountType.SELF,
   phoneNumber: '',
   email: '',
 };
 
-export const validateIdentificationFields = (
-  identificationState: IdentificationFields, 
+export const validateActivationFields = (
+  activationState: IActivationFields, 
   setAlertMessage: Dispatch<SetStateAction<AlertMessages>>
 ): boolean => {
   const validPhoneRegex: RegExp =
     /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //eslint-disable-line
   const validEmailRegex: RegExp =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //eslint-disable-line
-  const isPhoneValid = validPhoneRegex.test(identificationState.phoneNumber);
-  const isEmailValid = validEmailRegex.test(identificationState.email);
+  const isPhoneValid = validPhoneRegex.test(activationState.phoneNumber);
+  const isEmailValid = validEmailRegex.test(activationState.email);
   if (!isPhoneValid) 
     setAlertMessage(AlertMessages.SIGN_UP_WRONG_PHONE_FORMAT);
   else if (!isEmailValid) 
@@ -31,7 +31,7 @@ export const validateIdentificationFields = (
   else 
     setAlertMessage(AlertMessages.SIGN_IN_EMPTY_FIELD);
   
-  if (!validPhoneRegex.test(identificationState.phoneNumber))
+  if (!validPhoneRegex.test(activationState.phoneNumber))
     setAlertMessage(AlertMessages.SIGN_UP_WRONG_PHONE_FORMAT);
   return (
     isPhoneValid &&
@@ -39,4 +39,4 @@ export const validateIdentificationFields = (
   );
 };
 
-export default IdentificationFields;
+export default IActivationFields;

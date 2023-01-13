@@ -4,7 +4,7 @@ import playroles from '../../data/playroles.json';
 import AlertMessages from '../../enums/AlertMessages';
 import Genders from '../../enums/Genders';
 
-interface ICreationFields {
+interface IPersonalInfoFields {
   role: string;
   firstName: string;
   lastName: string;
@@ -14,7 +14,7 @@ interface ICreationFields {
   city: string;
 }
 
-export const creationFieldsInitialState: ICreationFields = {
+export const personalInfoFieldsInitialState: IPersonalInfoFields = {
   role: playroles[0].value,
   firstName: '',
   lastName: '',
@@ -24,8 +24,8 @@ export const creationFieldsInitialState: ICreationFields = {
   city: '',
 };
 
-export const validateCreationFields = (creationState: ICreationFields, setAlertMessage: Dispatch<SetStateAction<AlertMessages>>): boolean => {
-  const isAgeNotRestricted: boolean = new Date().getFullYear() - creationState.dateOfBirth.getFullYear() > 16;
+export const validatePersonalInfoFields = (personalInfoState: IPersonalInfoFields, setAlertMessage: Dispatch<SetStateAction<AlertMessages>>): boolean => {
+  const isAgeNotRestricted: boolean = new Date().getFullYear() - personalInfoState.dateOfBirth.getFullYear() > 16;
   if (!isAgeNotRestricted) 
     setAlertMessage(AlertMessages.SIGN_UP_AGE_RESTRICTED);
   else 
@@ -33,4 +33,4 @@ export const validateCreationFields = (creationState: ICreationFields, setAlertM
   return isAgeNotRestricted;
 }
 
-export default ICreationFields;
+export default IPersonalInfoFields;

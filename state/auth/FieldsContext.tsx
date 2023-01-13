@@ -3,52 +3,42 @@ import {
   useState
 } from 'react';
 import SignUpStages from '../../lib/enums/SignUpStages';
-import ICreationFields, {
-  creationFieldsInitialState, validateCreationFields
-} from '../../lib/types/auth/ICreationFields';
-import IdentificationFields, {
-  identificationFieldsInitialState, validateIdentificationFields
-} from '../../lib/types/auth/IdentificationFields';
+import IActivationFields, { activationFieldsInitialState, validateActivationFields } from '../../lib/types/auth/IActivationFields';
+import IConfirmationFields, { confirmationFieldsInitialState } from '../../lib/types/auth/IConfirmationFields';
 import IFieldsContext from '../../lib/types/auth/IFieldsContext';
-import ISuccessFields, { successFieldsInitialState, validateSuccessFields } from '../../lib/types/auth/ISuccessFields';
-import IVerificationFields, {
-  verificationFieldsFieldsInitialState
-} from '../../lib/types/auth/IVerificationFields';
+import IPersonalInfoFields, { personalInfoFieldsInitialState, validatePersonalInfoFields } from '../../lib/types/auth/IPersonalInfoFields';
+import IUserInfoFields, { userInfoFieldsInitialState, validateUserInfoFields } from '../../lib/types/auth/IUserInfoFields';
 import { useAuthContext } from './AuthContext';
 
 interface IFieldsProvider extends React.ComponentPropsWithoutRef<'div'> {}
 
 const FieldsContext = createContext<IFieldsContext>({
-  identificationState: identificationFieldsInitialState,
-  setIdentificationState: () => {},
-  verificationState: verificationFieldsFieldsInitialState,
-  setVerificationState: () => {},
-  creationState: creationFieldsInitialState,
-  setCreationState: () => {},
-  successState: successFieldsInitialState,
-  setSuccessState: () => {},
+  personalInfoState: personalInfoFieldsInitialState,
+  setPersonalInfoState: () => {},
+  userInfoState: userInfoFieldsInitialState,
+  setUserInfoState: () => {},
+  activationState: activationFieldsInitialState,
+  setActivationState: () => {},
+  confirmationState: confirmationFieldsInitialState,
+  setConfirmationState: () => {},
   validateFields: (currentStage: string) => true,
 });
 
 const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
-  const [identificationState, setIdentificationState] =
-    useState<IdentificationFields>(identificationFieldsInitialState);
-  const [verificationState, setVerificationState] =
-    useState<IVerificationFields>(verificationFieldsFieldsInitialState);
-  const [creationState, setCreationState] = useState<ICreationFields>(
-    creationFieldsInitialState
-  );
-  const [successState, setSuccessState] = useState<ISuccessFields>(successFieldsInitialState);
+  const [personalInfoState, setPersonalInfoState] = useState<IPersonalInfoFields>(personalInfoFieldsInitialState);
+  const [userInfoState, setUserInfoState] = useState<IUserInfoFields>(userInfoFieldsInitialState);
+  const [activationState, setActivationState] = useState<IActivationFields>(activationFieldsInitialState);
+  const [confirmationState, setConfirmationState] = useState<IConfirmationFields>(confirmationFieldsInitialState);
   const {setAlertMessage} = useAuthContext();
 
   const validateFields = (currentStage: string) => {
     switch (currentStage) {
-      case SignUpStages.IDENTIFICATION:
-        return validateIdentificationFields(identificationState, setAlertMessage);
-      case SignUpStages.CREATION:
-        return validateCreationFields(creationState, setAlertMessage);
-      case SignUpStages.SUCCESS:
-        return validateSuccessFields(successState, setAlertMessage);
+      case SignUpStages.PERSONAL_INFO:
+        return validatePersonalInfoFields(personalInfoState, setAlertMessage);
+      case SignUpStages.USER_INFO:
+        return validateUserInfoFields(userInfoState, setAlertMessage);
+      case SignUpStages.ACTIVATION:
+        return validateActivationFields(activationState, setAlertMessage);
       default:
         return true;
     }
@@ -57,14 +47,14 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
   return (
     <FieldsContext.Provider
       value={{
-        identificationState,
-        setIdentificationState,
-        verificationState,
-        setVerificationState,
-        creationState,
-        setCreationState,
-        successState, 
-        setSuccessState,
+        personalInfoState,
+        setPersonalInfoState,
+        userInfoState,
+        setUserInfoState,
+        activationState,
+        setActivationState,
+        confirmationState,
+        setConfirmationState,
         validateFields,
       }}
     >

@@ -1,8 +1,8 @@
 enum SignUpStages {
-  CREATION = 'CREATION',
-  SUCCESS = 'SUCCESS',
-  IDENTIFICATION = 'IDENTIFICATION',
-  VERIFICATION = 'VERIFICATION'
+  PERSONAL_INFO = 'Personal Info',
+  USER_INFO = 'User Info',
+  ACTIVATION = 'Activation',
+  CONFIRMATION = 'Confirmation'
 }
 
 export default SignUpStages;

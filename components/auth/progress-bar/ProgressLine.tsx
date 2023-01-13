@@ -8,13 +8,13 @@ export interface ILine {
 
 const getProgressLineWidth = (stage: string) => {
   switch (stage) {
-    case SignUpStages.CREATION:
+    case SignUpStages.PERSONAL_INFO:
       return '18%';
-    case SignUpStages.SUCCESS:
+    case SignUpStages.USER_INFO:
       return '40%';
-    case SignUpStages.IDENTIFICATION:
+    case SignUpStages.ACTIVATION:
       return '60%';
-    case SignUpStages.VERIFICATION:
+    case SignUpStages.CONFIRMATION:
       return '80%';
     default:
       break;

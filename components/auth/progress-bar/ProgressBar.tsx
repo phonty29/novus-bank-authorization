@@ -19,16 +19,16 @@ const ProgressBar: React.FC<IProgressBar> = () => {
   ]);
   useEffect(() => {
     switch (currentStage) {
-      case SignUpStages.CREATION:
+      case SignUpStages.PERSONAL_INFO:
         setProgressItemsState(['on-progress', 'empty', 'empty', 'empty']);
         break;
-      case SignUpStages.SUCCESS:
+      case SignUpStages.USER_INFO:
         setProgressItemsState(['success', 'on-progress', 'empty', 'empty']);
         break;
-      case SignUpStages.IDENTIFICATION:
+      case SignUpStages.ACTIVATION:
         setProgressItemsState(['success', 'success', 'on-progress', 'empty']);
         break;
-      case SignUpStages.VERIFICATION:
+      case SignUpStages.CONFIRMATION:
         setProgressItemsState(['success', 'success', 'success', 'on-progress']);
         break;
       default:

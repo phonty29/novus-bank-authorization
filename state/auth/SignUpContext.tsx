@@ -14,7 +14,7 @@ const SignUpContext = createContext<ISignUpContext>({
 const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
   const [stageIndex, setStageIndex] = useState<number>(0);
 
-  const signUpStages = Object.keys(SignUpStages).map((key) => key);
+  const signUpStages = Object.values(SignUpStages).map((key) => key);
   const prevStage = () => {
     if (stageIndex === 0) setStageIndex(3);
     else setStageIndex(stageIndex - 1);
