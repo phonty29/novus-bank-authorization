@@ -104,8 +104,9 @@ export const GenderDropdown: React.FC = () => {
 
 export const DateField: React.FC = () => {
   const { personalInfoState, setPersonalInfoState } = useFieldsContext();
-  const formatDate = (date: Date) => {
-    return date.toJSON().substring(0,10);
+  const formatDate = (date: Date): string => {
+    if (isNaN(date.getTime())) return "";
+    else return date.toJSON().substring(0,10);
   }
 
   return (
