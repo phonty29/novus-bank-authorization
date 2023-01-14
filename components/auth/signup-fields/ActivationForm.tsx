@@ -1,13 +1,13 @@
 import AccountType from '../../../lib/enums/AccountType';
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 
-const IdentificationForm: React.FC = () => {
-  const { identificationState, setIdentificationState } = useFieldsContext();
+const ActivationForm: React.FC = () => {
+  const { activationState, setActivationState } = useFieldsContext();
   const isAccountTypeSelected = (type: AccountType) =>
-    type === identificationState.accountType;
+    type === activationState.accountType;
   const handleClick = (event: React.ChangeEvent<HTMLInputElement>): void =>
-    setIdentificationState({
-      ...identificationState,
+  setActivationState({
+      ...activationState,
       accountType: event.currentTarget.value,
     });
 
@@ -69,10 +69,10 @@ const IdentificationForm: React.FC = () => {
           name="field-number"
           placeholder={'Enter mobile number'}
           className="auth-input"
-          value={identificationState.phoneNumber}
+          value={activationState.phoneNumber}
           onChange={(event) => {
-            setIdentificationState({
-              ...identificationState,
+            setActivationState({
+              ...activationState,
               phoneNumber: event.currentTarget.value,
             });
           }}
@@ -90,10 +90,10 @@ const IdentificationForm: React.FC = () => {
           name="field-email"
           placeholder={'Enter email address'}
           className="auth-input"
-          value={identificationState.email}
+          value={activationState.email}
           onChange={(event) => {
-            setIdentificationState({
-              ...identificationState,
+            setActivationState({
+              ...activationState,
               email: event.currentTarget.value,
             });
           }}
@@ -104,4 +104,4 @@ const IdentificationForm: React.FC = () => {
   );
 };
 
-export default IdentificationForm;
+export default ActivationForm;
