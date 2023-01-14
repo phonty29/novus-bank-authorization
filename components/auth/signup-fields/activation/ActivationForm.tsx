@@ -1,5 +1,5 @@
-import AccountType from '../../../lib/enums/AccountType';
-import { useFieldsContext } from '../../../state/auth/FieldsContext';
+import AccountType from '../../../../lib/enums/AccountType';
+import { useFieldsContext } from '../../../../state/auth/FieldsContext';
 
 const ActivationForm: React.FC = () => {
   const { activationState, setActivationState } = useFieldsContext();
@@ -12,7 +12,7 @@ const ActivationForm: React.FC = () => {
     });
 
   return (
-    <>
+    <div className='activation-fields'>
       <h2 className="welcome-title">{"Welcome - let's get started"}</h2>
       <p className="fields-desc">
         Tell us about your basic details and account requirements
@@ -100,7 +100,7 @@ const ActivationForm: React.FC = () => {
           required
         />
       </div>
-    </>
+    </div>
   );
 };
 

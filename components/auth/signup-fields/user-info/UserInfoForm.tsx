@@ -1,4 +1,4 @@
-import { useFieldsContext } from '../../../state/auth/FieldsContext';
+import { useFieldsContext } from '../../../../state/auth/FieldsContext';
 
 const UserInfoForm: React.FC = () => {
   const {userInfoState, setUserInfoState} = useFieldsContext();
@@ -7,7 +7,7 @@ const UserInfoForm: React.FC = () => {
   }
 
   return (
-    <>
+    <div className='user-info-fields'>
       <p className="fields-desc">
         Tell us about your basic details and account requirements
       </p>
@@ -82,7 +82,7 @@ const UserInfoForm: React.FC = () => {
           I agree to enable promotion emails from Novus Bank and partners.
         </label>
       </div>
-    </>
+    </div>
   );
 };
 

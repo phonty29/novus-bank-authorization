@@ -4,11 +4,11 @@
          md:w-[370px] md:pt-28 md:pb-3 md:pl-6 md:pr-8 
          sm:w-[345px] sm:pt-24 sm:pb-3 sm:pl-7 sm:pr-7 
          xs:w-[320px] xs:pt-20 xs:pb-3 xs:pl-7 xs:pr-7
-         w-[300px] h-fit pt-16 pb-3 pl-3 pr-5
+         w-fit h-fit pt-16 pb-3 pl-3 pr-3
          bg-field rounded-2xl shadow-sign-in relative flex flex-col;
 }
 .link-to-sign-in {
-  @apply middle-font uppercase text-dark-green font-bold w-28 text-center;
+  @apply middle-font uppercase text-dark-green font-bold sm:w-28 xs:w-24 w-20 text-center;
 }
 .sign-in-layout {
   @apply bg-sign-in min-w-full min-h-screen grid place-items-center;
@@ -20,5 +20,5 @@
   @apply middle-font text-black not-italic font-normal pt-5 pb-2 basis-1/2 text-center;
 }
 .sign-in-btn {
-  @apply green-btn rounded-lg min-w-full py-3;
+  @apply green-btn rounded-lg min-w-full sm:py-3 py-2;
 }

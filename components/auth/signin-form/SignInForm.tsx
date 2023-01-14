@@ -6,7 +6,6 @@ import { SignInResponseData } from '../../../pages/api/sign-in';
 import { useAuthContext } from '../../../state/auth/AuthContext';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
-//const USERS_ROUTE = `/api/sign-in`; //I will create another folder and file for holding all routes
 
 const SignInForm: React.FC<ISignInForm> = () => {
   const [username, setUsername] = useState<string>('');
@@ -81,7 +80,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
           required
         />
       </div>
-      <div className="text-center item-margins">
+      <div className="text-center items-mb">
         <Link href="/" className="text-xs text-black underline">
           Forgot password ?
         </Link>

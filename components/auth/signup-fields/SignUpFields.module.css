@@ -5,13 +5,19 @@
   @apply text-green font-bold middle-font mb-3.5;
 }
 .fields-form {
-  @apply h-full flex flex-col md:min-w-[400px] md:w-fit w-full;
+  @apply h-full flex flex-col md:min-w-[400px] lg:w-fit w-full;
 }
 .fields-desc {
   @apply small-font text-[#737272] sm:mb-12 mb-6;
 }
 .fields-help {
   @apply w-[335px] md:block hidden;
+}
+.personal-info-fields {
+  @apply lg:w-[700px] w-full;
+}
+.user-info-fields, .activation-fields, .confirmation-fields {
+  @apply md:w-[445px] w-full;
 }
 .account-label {
   @apply md:mr-0 mr-4 label-text items-mb small-font;

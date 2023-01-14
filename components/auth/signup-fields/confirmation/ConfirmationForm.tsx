@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import ConfirmationMethod from '../../../lib/enums/ConfirmationMethod';
-import { useFieldsContext } from '../../../state/auth/FieldsContext';
-import IconNotification from '../../icons/IconNotification';
+import ConfirmationMethod from '../../../../lib/enums/ConfirmationMethod';
+import { useFieldsContext } from '../../../../state/auth/FieldsContext';
+import IconNotification from '../../../icons/IconNotification';
 
 const ConfirmationForm: React.FC = () => {
   const { confirmationState, setConfirmationState } = useFieldsContext();
@@ -21,7 +21,7 @@ const ConfirmationForm: React.FC = () => {
   };
 
   return (
-    <>
+    <div className='confirmation-fields'>
       <div className="input-field">
         <label htmlFor="verification-method" className="label-text">
           Choose a verification method
@@ -75,7 +75,7 @@ const ConfirmationForm: React.FC = () => {
           <IconNotification />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

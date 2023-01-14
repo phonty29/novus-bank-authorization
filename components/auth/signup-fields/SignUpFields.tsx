@@ -2,12 +2,12 @@ import SignUpStages from '../../../lib/enums/SignUpStages';
 import { useAuthContext } from '../../../state/auth/AuthContext';
 import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import { useSignUpContext } from '../../../state/auth/SignUpContext';
-import ActivationForm from './ActivationForm';
+import ActivationForm from './activation/ActivationForm';
 import Buttons from './Buttons';
-import ConfirmationForm from './ConfirmationForm';
-import PersonalInfoForm from './PersonalInfoForm';
+import ConfirmationForm from './confirmation/ConfirmationForm';
+import PersonalInfoForm from './personal-info/PersonalInfoForm';
 import SignUpFieldsHelp from './SignUpFieldsHelp';
-import UserInfoForm from './UserInfoForm';
+import UserInfoForm from './user-info/UserInfoForm';
 
 export interface ISignUpFields {}
 
@@ -21,7 +21,7 @@ const SignUpFields: React.FC<ISignUpFields> = () => {
   };
   return (
     <div className="sign-up-fields">
-      <form className={`fields-form ${currentStage === SignUpStages.PERSONAL_INFO ? 'lg:w-[700px] w-full' : ''}`} onSubmit={handleSubmit}>
+      <form className="fields-form" onSubmit={handleSubmit}>
         {currentStage === SignUpStages.PERSONAL_INFO && <PersonalInfoForm />}
         {currentStage === SignUpStages.USER_INFO && <UserInfoForm />}
         {currentStage === SignUpStages.ACTIVATION && <ActivationForm />}
