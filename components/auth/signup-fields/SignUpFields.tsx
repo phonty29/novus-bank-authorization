@@ -19,6 +19,7 @@ const SignUpFields: React.FC<ISignUpFields> = () => {
     event.preventDefault();
     if (validateFields(currentStage)) nextStage();
   };
+
   return (
     <div className="sign-up-fields">
       <form className="fields-form" onSubmit={handleSubmit}>

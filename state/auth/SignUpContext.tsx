@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import SignUpStages from '../../lib/enums/SignUpStages';
 import ISignUpContext from '../../lib/types/auth/ISignUpContext';
+import IUserData, { userDataInitialState } from '../../lib/types/auth/IUserData';
 
 interface ISignUpProvider extends React.ComponentPropsWithoutRef<'div'> {}
 
@@ -9,10 +10,13 @@ const SignUpContext = createContext<ISignUpContext>({
   stages: [],
   nextStage: () => {},
   prevStage: () => {},
+  userData: userDataInitialState,
+  setUserData: () => {}
 });
 
 const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
   const [stageIndex, setStageIndex] = useState<number>(0);
+  const [userData, setUserData] = useState<IUserData>(userDataInitialState);
 
   const signUpStages = Object.values(SignUpStages).map((key) => key);
   const prevStage = () => {
@@ -31,6 +35,8 @@ const SignUpProvider: React.FC<ISignUpProvider> = ({ children }) => {
         stages: signUpStages,
         nextStage,
         prevStage,
+        userData,
+        setUserData
       }}
     >
       {children}

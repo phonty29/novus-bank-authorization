@@ -1,42 +1,39 @@
 import { useRef, useState } from 'react';
 import ConfirmationMethod from '../../../../lib/enums/ConfirmationMethod';
 import { useFieldsContext } from '../../../../state/auth/FieldsContext';
+import { useSignUpContext } from '../../../../state/auth/SignUpContext';
 import IconNotification from '../../../icons/IconNotification';
+
+const buttonTextBeforeSend = "confirmation";
+const buttonTextAfterSend = "again";
 
 const ConfirmationForm: React.FC = () => {
   const { confirmationState, setConfirmationState } = useFieldsContext();
-  const [buttonText, setButtonText] = useState<string>('a verification');
+  const { userData } = useSignUpContext();
+  const [buttonText, setButtonText] = useState<string>(buttonTextBeforeSend);
   const selectRef = useRef<HTMLSelectElement | null>(null);
-  const sendVerification = () => {
-    if (selectRef.current) {
-      setConfirmationState({
-        ...confirmationState,
-        confirmationMethod:
-          selectRef.current.value === ConfirmationMethod.PHONE
-            ? ConfirmationMethod.PHONE
-            : ConfirmationMethod.EMAIL,
-      });
-      setButtonText('again');
-    }
+  const sendConfirmation = () => {
+    setButtonText(buttonTextAfterSend);
+    logInfo();
+  }
+  const logInfo = () => {
+    console.log(`SEND INFO: ${JSON.stringify(userData)} WITH ${confirmationState.confirmationMethod} METHOD`);
   };
 
   return (
     <div className='confirmation-fields'>
       <div className="input-field">
-        <label htmlFor="verification-method" className="label-text">
-          Choose a verification method
+        <label htmlFor="confirmation-method" className="label-text">
+          Choose a confirmation method
           <span className="text-purple"> *</span>
         </label>
         <select
-          name="verification-method"
-          id="verification-method"
+          name="confirmation-method"
+          id="confirmation-method"
           className="auth-input"
           ref={selectRef}
           defaultValue={ConfirmationMethod.PHONE}
-          disabled={
-            confirmationState.confirmationMethod !=
-            ConfirmationMethod.BEFORE_CHOICE
-          }
+          onChange={(e) => {setConfirmationState({confirmationMethod: e.target.value as ConfirmationMethod})}}
         >
           <option value={ConfirmationMethod.PHONE}>
             Send code to phone number
@@ -46,7 +43,7 @@ const ConfirmationForm: React.FC = () => {
       </div>
       <div
         className={`green-btn verify-button`}
-        onClick={sendVerification}
+        onClick={sendConfirmation}
       >
         Send {buttonText}
       </div>
