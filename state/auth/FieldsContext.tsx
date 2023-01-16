@@ -9,6 +9,7 @@ import IFieldsContext from '../../lib/types/auth/IFieldsContext';
 import IPersonalInfoFields, { personalInfoFieldsInitialState, validatePersonalInfoFields } from '../../lib/types/auth/IPersonalInfoFields';
 import IUserInfoFields, { userInfoFieldsInitialState, validateUserInfoFields } from '../../lib/types/auth/IUserInfoFields';
 import { useAuthContext } from './AuthContext';
+import { useSignUpContext } from './SignUpContext';
 
 interface IFieldsProvider extends React.ComponentPropsWithoutRef<'div'> {}
 
@@ -22,6 +23,7 @@ const FieldsContext = createContext<IFieldsContext>({
   confirmationState: confirmationFieldsInitialState,
   setConfirmationState: () => {},
   validateFields: (currentStage: string) => true,
+  prepareData: () => {}
 });
 
 const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
@@ -29,6 +31,7 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
   const [userInfoState, setUserInfoState] = useState<IUserInfoFields>(userInfoFieldsInitialState);
   const [activationState, setActivationState] = useState<IActivationFields>(activationFieldsInitialState);
   const [confirmationState, setConfirmationState] = useState<IConfirmationFields>(confirmationFieldsInitialState);
+  const {setUserData} = useSignUpContext();
   const {setAlertMessage} = useAuthContext();
 
   const validateFields = (currentStage: string) => {
@@ -38,10 +41,25 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
       case SignUpStages.USER_INFO:
         return validateUserInfoFields(userInfoState, setAlertMessage);
       case SignUpStages.ACTIVATION:
-        return validateActivationFields(activationState, setAlertMessage);
+        if (validateActivationFields(activationState, setAlertMessage)) {
+          prepareData();
+          return true;
+        } else return false;
       default:
-        return true;
+        return false;
     }
+  };
+
+  const prepareData = () => {
+    setUserData({
+      credentials: {
+        username: userInfoState.userFields.username,
+        password: userInfoState.userFields.password
+      },
+      personalInformation: personalInfoState,
+      accountInformation: activationState,
+      isActivated: false
+    });
   };
 
   return (
@@ -56,6 +74,7 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
         confirmationState,
         setConfirmationState,
         validateFields,
+        prepareData
       }}
     >
       {children}
@@ -68,3 +87,4 @@ export function useFieldsContext() {
 }
 
 export default FieldsProvider;
+

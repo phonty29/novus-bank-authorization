@@ -14,6 +14,7 @@ interface IFieldsContext {
     confirmationState: IConfirmationFields;
     setConfirmationState: Dispatch<SetStateAction<IConfirmationFields>>;
     validateFields: (s: string) => boolean;
+    prepareData: () => void;
 }
 
 export default IFieldsContext;
