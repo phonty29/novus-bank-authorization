@@ -11,13 +11,15 @@ const ConfirmationForm: React.FC = () => {
   const { confirmationState, setConfirmationState } = useFieldsContext();
   const { userData } = useSignUpContext();
   const [buttonText, setButtonText] = useState<string>(buttonTextBeforeSend);
+  const [isDisabled, setDisabled] = useState<boolean>(false);
   const selectRef = useRef<HTMLSelectElement | null>(null);
   const sendConfirmation = () => {
     setButtonText(buttonTextAfterSend);
-    logInfo();
+    setDisabled(true);
+    alertUserInfo();
   }
-  const logInfo = () => {
-    console.log(`SEND INFO: ${JSON.stringify(userData)} WITH ${confirmationState.confirmationMethod} METHOD`);
+  const alertUserInfo = () => {
+    alert(`SEND INFO: ${JSON.stringify(userData)} WITH ${confirmationState.confirmationMethod} METHOD`);
   };
 
   return (
@@ -34,6 +36,7 @@ const ConfirmationForm: React.FC = () => {
           ref={selectRef}
           defaultValue={ConfirmationMethod.PHONE}
           onChange={(e) => {setConfirmationState({confirmationMethod: e.target.value as ConfirmationMethod})}}
+          disabled={isDisabled}
         >
           <option value={ConfirmationMethod.PHONE}>
             Send code to phone number

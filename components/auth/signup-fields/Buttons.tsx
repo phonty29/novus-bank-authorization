@@ -7,8 +7,10 @@ export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
 const Buttons: React.FC<IButtons> = () => {
   const { currentStage, prevStage } = useSignUpContext();
   const [isPersonalInfoForm, setIsPersonalInfoForm] = useState<boolean>(true);
+  const [isConfirmationForm, setIsConfirmationForm] = useState<boolean>(true);
   useEffect(() => {
     setIsPersonalInfoForm(currentStage === SignUpStages.PERSONAL_INFO);
+    setIsConfirmationForm(currentStage === SignUpStages.CONFIRMATION);
   }, [currentStage]);
   return (
     <div className={`sign-up-buttons ${!isPersonalInfoForm ? '' : 'block'}`}>
@@ -17,9 +19,11 @@ const Buttons: React.FC<IButtons> = () => {
           Back
         </button>
       )}
-      <button type="submit" className="green-btn sign-up-button">
-        Continue
-      </button>
+      {!isConfirmationForm && (
+        <button type="submit" className="green-btn sign-up-button">
+          Continue
+        </button>
+      )}
     </div>
   );
 };

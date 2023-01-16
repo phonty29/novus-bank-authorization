@@ -5,7 +5,7 @@ interface IConfirmationFields {
 }
 
 export const confirmationFieldsInitialState: IConfirmationFields = {
-  confirmationMethod: ConfirmationMethod.BEFORE_CHOICE,
+  confirmationMethod: ConfirmationMethod.PHONE,
 };
 
 export default IConfirmationFields;

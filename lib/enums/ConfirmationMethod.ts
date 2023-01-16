@@ -1,7 +1,6 @@
 enum ConfirmationMethod {
   PHONE = 'PHONE',
-  EMAIL = 'EMAIL',
-  BEFORE_CHOICE = '',
+  EMAIL = 'EMAIL'
 }
 
 export default ConfirmationMethod;
