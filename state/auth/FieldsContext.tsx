@@ -22,7 +22,7 @@ const FieldsContext = createContext<IFieldsContext>({
   setActivationState: () => {},
   confirmationState: confirmationFieldsInitialState,
   setConfirmationState: () => {},
-  validateFields: (currentStage: string) => true,
+  validateFields: (currentStage: string) => new Promise(() => true),
   prepareData: () => {}
 });
 
@@ -34,14 +34,16 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
   const {setUserData} = useSignUpContext();
   const {setAlertMessage} = useAuthContext();
 
-  const validateFields = (currentStage: string) => {
+  const validateFields = async (currentStage: string) => {
     switch (currentStage) {
       case SignUpStages.PERSONAL_INFO:
         return validatePersonalInfoFields(personalInfoState, setAlertMessage);
       case SignUpStages.USER_INFO:
-        return validateUserInfoFields(userInfoState, setAlertMessage);
+        const isUserInfoValid: boolean = await validateUserInfoFields(userInfoState, setAlertMessage);
+        return isUserInfoValid;
       case SignUpStages.ACTIVATION:
-        if (validateActivationFields(activationState, setAlertMessage)) {
+        const isActivationFieldValid: boolean = await validateActivationFields(activationState, setAlertMessage);
+        if (isActivationFieldValid) {
           prepareData();
           return true;
         } else return false;

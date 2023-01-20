@@ -13,7 +13,7 @@ interface IFieldsContext {
     setActivationState: Dispatch<SetStateAction<IActivationFields>>;
     confirmationState: IConfirmationFields;
     setConfirmationState: Dispatch<SetStateAction<IConfirmationFields>>;
-    validateFields: (s: string) => boolean;
+    validateFields: (s: string) => Promise<boolean>;
     prepareData: () => void;
 }
 

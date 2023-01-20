@@ -15,9 +15,10 @@ const SignUpFields: React.FC<ISignUpFields> = () => {
   const { currentStage, nextStage } = useSignUpContext();
   const { validateFields } = useFieldsContext();
   const {alertMessage} = useAuthContext();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (validateFields(currentStage)) nextStage();
+    const isCurrentFieldValid = await validateFields(currentStage);
+    if (isCurrentFieldValid) nextStage();
   };
 
   return (

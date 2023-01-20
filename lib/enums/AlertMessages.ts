@@ -9,6 +9,8 @@ enum AuthMessages {
   SIGN_UP_WRONG_PASSWORD_FORMAT = 'Password length is between 6-16. It must have latin letters, numbers and at least one of these symbols [!,@,#,$,%,^,&,*]',
   SIGN_IN_PASSWORD_DOES_NOT_MATCH = 'The password confirmation doesn\'t match',
   SIGN_IN_OTHER_PROBLEMS = 'Something get wrong during authorization.\n Please, check your internet connection',
+  SIGN_UP_EMAIL_UNAVAILABLE= 'It seems that this email is already in use. Please, choose another one.',
+  SIGN_UP_USERNAME_UNAVAILABLE = 'It seems that this username is already in use. Please, choose another one.',
 }
 
 export default AuthMessages;

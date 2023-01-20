@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import SignInMessages from '../../../lib/enums/AlertMessages';
+import AuthMessages from '../../../lib/enums/AlertMessages';
 import IUser from '../../../lib/types/auth/IUser';
 import SignInService from '../../../services/sign-in';
-
+//REPLACE IUser with IUserCredentials
 interface SignInRequestData extends NextApiRequest {
   body: IUser;
 }
@@ -10,7 +10,7 @@ interface SignInRequestData extends NextApiRequest {
 export type SignInResponseData = {
   refreshToken?: string;
   accessToken?: string;
-  message: SignInMessages;
+  message: AuthMessages;
 };
 
 const { signIn } = SignInService;
@@ -24,7 +24,7 @@ export default async function handler(
   } = req;
 
   if (!(username && password))
-    res.status(400).json({ message: SignInMessages.SIGN_IN_EMPTY_FIELD });
+    res.status(400).json({ message: AuthMessages.SIGN_IN_EMPTY_FIELD });
 
   switch (req.method) {
     case 'POST':
@@ -33,15 +33,15 @@ export default async function handler(
         if (tokens)
           res
             .status(200)
-            .json({ ...tokens, message: SignInMessages.SIGN_IN_SUCCESS });
+            .json({ ...tokens, message: AuthMessages.SIGN_IN_SUCCESS });
         else
           res
             .status(401)
-            .json({ message: SignInMessages.SIGN_IN_UNAUTHORIZED });
+            .json({ message: AuthMessages.SIGN_IN_UNAUTHORIZED });
       } catch (error) {
         res
           .status(500)
-          .json({ message: SignInMessages.SIGN_IN_OTHER_PROBLEMS });
+          .json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
       }
       break;
 

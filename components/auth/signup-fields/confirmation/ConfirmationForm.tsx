@@ -1,5 +1,9 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import AuthMessages from '../../../../lib/enums/AlertMessages';
+import ApiRoutes from '../../../../lib/enums/ApiRoutes';
 import ConfirmationMethod from '../../../../lib/enums/ConfirmationMethod';
+import { SendActivationResponseData } from '../../../../pages/api/sign-up/send-activation';
+import { useAuthContext } from '../../../../state/auth/AuthContext';
 import { useFieldsContext } from '../../../../state/auth/FieldsContext';
 import { useSignUpContext } from '../../../../state/auth/SignUpContext';
 import IconNotification from '../../../icons/IconNotification';
@@ -12,15 +16,24 @@ const ConfirmationForm: React.FC = () => {
   const { userData } = useSignUpContext();
   const [buttonText, setButtonText] = useState<string>(buttonTextBeforeSend);
   const [isDisabled, setDisabled] = useState<boolean>(false);
-  const selectRef = useRef<HTMLSelectElement | null>(null);
-  const sendConfirmation = () => {
+  const {setAlertMessage} = useAuthContext();
+  const sendConfirmation = async () => {
     setButtonText(buttonTextAfterSend);
     setDisabled(true);
-    alertUserInfo();
+    const jsonData = JSON.stringify(userData);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    };
+
+    const response = await fetch(ApiRoutes.SEND_ACTIVATION, options);
+    const {responseMessage, message}: SendActivationResponseData = await response.json();
+    if (responseMessage) alert(responseMessage);
+    else setAlertMessage(message as AuthMessages);
   }
-  const alertUserInfo = () => {
-    alert(`SEND INFO: ${JSON.stringify(userData)} WITH ${confirmationState.confirmationMethod} METHOD`);
-  };
 
   return (
     <div className='confirmation-fields'>
@@ -33,7 +46,6 @@ const ConfirmationForm: React.FC = () => {
           name="confirmation-method"
           id="confirmation-method"
           className="auth-input"
-          ref={selectRef}
           defaultValue={ConfirmationMethod.PHONE}
           onChange={(e) => {setConfirmationState({confirmationMethod: e.target.value as ConfirmationMethod})}}
           disabled={isDisabled}
