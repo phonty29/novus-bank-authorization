@@ -1,18 +1,16 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import AuthMessages from '../../../lib/enums/AlertMessages';
 import IUserData from '../../../lib/types/auth/IUserData';
-import SignUpService from '../../../services/sign-up';
+import signUpService from '../../../services/sign-up';
 
 interface SendActivationRequestData extends NextApiRequest {
   body: IUserData;
 }
 
 export type SendActivationResponseData = {
-  responseMessage?: string;
+  isSendActivationSuccessfull?: boolean;
   message?: AuthMessages;
 };
-
-const { sendActivation } = SignUpService;
 
 export default async function handler(
   req: SendActivationRequestData,
@@ -21,8 +19,8 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       try {
-        let responseMessage = await sendActivation(req.body);
-        res.status(200).json({ responseMessage });
+        let isSendActivationSuccessfull = await signUpService.sendActivation(req.body);
+        res.status(200).json({ isSendActivationSuccessfull });
       } catch (error) {
         res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
       }

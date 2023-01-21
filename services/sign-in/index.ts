@@ -1,22 +1,17 @@
 import bcrypt from 'bcrypt';
-import UserDTO from '../../lib/dto/user';
 import Collections from '../../lib/enums/Collections';
 import ICredentials from '../../lib/types/auth/ICredentials';
-import TokenService from '../tokens';
-import Database from '../utils/mongodb-utils';
-
-const { getCollection } = Database;
-const { tokenGen } = TokenService;
+import tokenService from '../tokens';
+import database from '../utils/mongodb-utils';
 
 class SignInService {
   async signIn({ username, password }: ICredentials) {
-    const tempUsersCollection = await getCollection(Collections.TEMP_USERS);
-    let tempUser = await tempUsersCollection.findOne({ "credentials.username": username });
-    if (!tempUser) return null;
-    const isPasswordValid: boolean = await bcrypt.compare(password, tempUser.credentials.password);
+    const usersCollection = await database.getCollection(Collections.USERS);
+    let user = await usersCollection.findOne({ "credentials.username": username });
+    if (!user) return null;
+    const isPasswordValid: boolean = await bcrypt.compare(password, user.credentials.password);
     if (!isPasswordValid) return null;
-    const userDTO = new UserDTO(tempUser);
-    const tokens = tokenGen({ ...userDTO });
+    const tokens = tokenService.generateTokens({ id: user._id });
     // await tokenSave(userDTO.id, tokens.refreshToken);
     return tokens;
   }

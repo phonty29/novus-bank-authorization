@@ -16,6 +16,7 @@ const ConfirmationForm: React.FC = () => {
   const { userData } = useSignUpContext();
   const [buttonText, setButtonText] = useState<string>(buttonTextBeforeSend);
   const [isDisabled, setDisabled] = useState<boolean>(false);
+  const [isActivationLinkSend, setIsActivationLinkSend] = useState<boolean>(false);
   const {setAlertMessage} = useAuthContext();
   const sendConfirmation = async () => {
     setButtonText(buttonTextAfterSend);
@@ -30,8 +31,8 @@ const ConfirmationForm: React.FC = () => {
     };
 
     const response = await fetch(ApiRoutes.SEND_ACTIVATION, options);
-    const {responseMessage, message}: SendActivationResponseData = await response.json();
-    if (responseMessage) alert(responseMessage);
+    const {isSendActivationSuccessfull, message}: SendActivationResponseData = await response.json();
+    if (isSendActivationSuccessfull) setIsActivationLinkSend(true);
     else setAlertMessage(message as AuthMessages);
   }
 
@@ -46,14 +47,13 @@ const ConfirmationForm: React.FC = () => {
           name="confirmation-method"
           id="confirmation-method"
           className="auth-input"
-          defaultValue={ConfirmationMethod.PHONE}
+          defaultValue={ConfirmationMethod.EMAIL}
           onChange={(e) => {setConfirmationState({confirmationMethod: e.target.value as ConfirmationMethod})}}
           disabled={isDisabled}
         >
-          <option value={ConfirmationMethod.PHONE}>
-            Send code to phone number
-          </option>
-          <option value={ConfirmationMethod.EMAIL}>Send a link to email</option>
+          <option value={ConfirmationMethod.EMAIL}>
+            Send a link to email
+            </option>
         </select>
       </div>
       <div
@@ -62,7 +62,7 @@ const ConfirmationForm: React.FC = () => {
       >
         Send {buttonText}
       </div>
-      {confirmationState.confirmationMethod === ConfirmationMethod.PHONE && (
+      {isActivationLinkSend && confirmationState.confirmationMethod === ConfirmationMethod.PHONE && (
         <div className="input-field">
           <label htmlFor="six-digit-code" className="label-text">
             Write the six-digit code that we sent to the phone number
@@ -78,7 +78,7 @@ const ConfirmationForm: React.FC = () => {
           />
         </div>
       )}
-      {confirmationState.confirmationMethod === ConfirmationMethod.EMAIL && (
+      {isActivationLinkSend && confirmationState.confirmationMethod === ConfirmationMethod.EMAIL && (
         <div className="verify-info">
           <p className="fields-desc mb-5 mr-3">
             We send a link to your email address. Please check and click on the

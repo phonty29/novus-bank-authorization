@@ -1,11 +1,16 @@
+import Collections from '../../lib/enums/Collections';
 import clientPromise from '../../lib/mongodb';
 
-const DB_NAME = 'auth';
-
 class Database {
+  databaseName: string;
+
+  constructor() {
+    this.databaseName = Collections.DB_NAME;
+  }
+
   async getCollection(COLLECTION_NAME: string) {
     const client = await clientPromise;
-    const database = client.db(DB_NAME);
+    const database = client.db(Collections.DB_NAME);
     return database.collection(COLLECTION_NAME);
   }
 }

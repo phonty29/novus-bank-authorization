@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import AuthMessages from '../../../lib/enums/AlertMessages';
-import SignUpService from '../../../services/sign-up';
+import signUpService from '../../../services/sign-up';
 
 interface CheckEmailRequestData extends NextApiRequest {
   body: {email: string};
@@ -10,8 +10,6 @@ export type CheckEmailResponseData = {
   isEmailAvailable: boolean;
   message?: AuthMessages;
 };
-
-const { checkEmail } = SignUpService;
 
 export default async function handler(
   req: CheckEmailRequestData,
@@ -27,7 +25,7 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       try {
-        let isEmailAvailable = await checkEmail(req.body);
+        let isEmailAvailable = await signUpService.checkEmail(req.body);
         if (isEmailAvailable)
           res.status(200).json({isEmailAvailable});
         else

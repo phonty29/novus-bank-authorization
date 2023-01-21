@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import AuthMessages from '../../../lib/enums/AlertMessages';
-import SignUpService from '../../../services/sign-up';
+import signUpService from '../../../services/sign-up';
 
 interface CheckUsernameRequestData extends NextApiRequest {
   body: {username: string};
@@ -10,8 +10,6 @@ export type CheckUsernameResponseData = {
   isUsernameAvailable: boolean;
   message?: AuthMessages;
 };
-
-const { checkUsername } = SignUpService;
 
 export default async function handler(
   req: CheckUsernameRequestData,
@@ -27,7 +25,7 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       try {
-        let isUsernameAvailable = await checkUsername(req.body);
+        let isUsernameAvailable = await signUpService.checkUsername(req.body);
         if (isUsernameAvailable)
           res.status(200).json({isUsernameAvailable});
         else

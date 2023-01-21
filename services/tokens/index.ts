@@ -1,12 +1,15 @@
 import jwt from 'jsonwebtoken';
-import UserDTO from '../../lib/dto/user';
+import { ObjectId } from 'mongodb';
+
+const JWT_ACCESS_SECRET_KEY = "jwt-access-secret-key";
+const JWT_REFRESH_SECRET_KEY = "jwt-refresh-secret-key";
 
 class TokenService {
-  tokenGen(payload: UserDTO) {
-    const accessToken = jwt.sign(payload, 'jwt-access-secret-key', {
+  generateTokens(payload: {id: ObjectId}) {
+    const accessToken = jwt.sign(payload, JWT_ACCESS_SECRET_KEY, {
       expiresIn: '15s',
     });
-    const refreshToken = jwt.sign(payload, 'jwt-refresh-secret-key', {
+    const refreshToken = jwt.sign(payload, JWT_REFRESH_SECRET_KEY, {
       expiresIn: '30s',
     });
     return {
@@ -15,7 +18,7 @@ class TokenService {
     };
   }
 
-  async tokenSave(userId: string, refreshToken: string) {}
+  async saveToken(userId: string, refreshToken: string) {}
 }
 
 export default new TokenService();
