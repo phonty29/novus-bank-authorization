@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import AuthMessages from '../../../lib/enums/AlertMessages';
-import IUser from '../../../lib/types/auth/IUser';
+import ICredentials from '../../../lib/types/auth/ICredentials';
 import SignInService from '../../../services/sign-in';
-//REPLACE IUser with IUserCredentials
+
 interface SignInRequestData extends NextApiRequest {
-  body: IUser;
+  body: ICredentials;
 }
 
 export type SignInResponseData = {

@@ -42,8 +42,8 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
         const isUserInfoValid: boolean = await validateUserInfoFields(userInfoState, setAlertMessage);
         return isUserInfoValid;
       case SignUpStages.ACTIVATION:
-        const isActivationFieldValid: boolean = await validateActivationFields(activationState, setAlertMessage);
-        if (isActivationFieldValid) {
+        const isActivationFieldsValid: boolean = await validateActivationFields(activationState, setAlertMessage);
+        if (isActivationFieldsValid) {
           prepareData();
           return true;
         } else return false;
@@ -59,8 +59,7 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
         password: userInfoState.userFields.password
       },
       personalInformation: personalInfoState,
-      accountInformation: activationState,
-      isActivated: false
+      accountInformation: activationState
     });
   };
 

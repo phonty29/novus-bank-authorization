@@ -2,10 +2,10 @@ import { Dispatch, SetStateAction } from "react";
 import { CheckUsernameResponseData } from "../../../pages/api/sign-up/check-username";
 import AlertMessages from "../../enums/AlertMessages";
 import ApiRoutes from "../../enums/ApiRoutes";
-import IUser from "./IUser";
+import ICredentials from "./ICredentials";
 
 interface IUserInfoFields {
-    userFields: IUser;
+    userFields: ICredentials;
     repeatedPassword: string;
     emailNotification: boolean;
 }

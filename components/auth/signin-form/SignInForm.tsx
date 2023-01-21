@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import ApiRoutes from '../../../lib/enums/ApiRoutes';
-import IUser from '../../../lib/types/auth/IUser';
+import ICredentials from '../../../lib/types/auth/ICredentials';
 import { SignInResponseData } from '../../../pages/api/sign-in';
 import { useAuthContext } from '../../../state/auth/AuthContext';
 
@@ -14,7 +14,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data: IUser = { username, password };
+    const data: ICredentials = { username, password };
     const jsonData = JSON.stringify(data);
     const options = {
       method: 'POST',

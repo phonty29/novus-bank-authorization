@@ -1,12 +1,11 @@
 import IActivationFields, { activationFieldsInitialState } from "./IActivationFields";
+import ICredentials from "./ICredentials";
 import IPersonalInfoFields, { personalInfoFieldsInitialState } from "./IPersonalInfoFields";
-import IUser from "./IUser";
 
 interface IUserData {
-    credentials: IUser;
+    credentials: ICredentials;
     personalInformation: IPersonalInfoFields;
     accountInformation: IActivationFields;
-    isActivated: false;
 }
 
 export const userDataInitialState: IUserData = {
@@ -15,8 +14,7 @@ export const userDataInitialState: IUserData = {
         password: ""
     },
     personalInformation: personalInfoFieldsInitialState,
-    accountInformation: activationFieldsInitialState,
-    isActivated: false
+    accountInformation: activationFieldsInitialState
 }
   
 export default IUserData;
