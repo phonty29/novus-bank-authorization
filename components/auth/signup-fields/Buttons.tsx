@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import SignUpStages from '../../../lib/enums/SignUpStages';
+import { useFieldsContext } from '../../../state/auth/FieldsContext';
 import { useSignUpContext } from '../../../state/auth/SignUpContext';
 
 export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
 
 const Buttons: React.FC<IButtons> = () => {
   const { currentStage, prevStage } = useSignUpContext();
+  const {isActivationLinkSend} = useFieldsContext();
   const [isPersonalInfoForm, setIsPersonalInfoForm] = useState<boolean>(true);
   const [isConfirmationForm, setIsConfirmationForm] = useState<boolean>(true);
   useEffect(() => {
@@ -14,7 +16,7 @@ const Buttons: React.FC<IButtons> = () => {
   }, [currentStage]);
   return (
     <div className={`sign-up-buttons ${!isPersonalInfoForm ? '' : 'block'}`}>
-      {!isPersonalInfoForm && (
+      {!isActivationLinkSend && !isPersonalInfoForm && (
         <button type="button" className="sign-up-button" onClick={prevStage}>
           Back
         </button>

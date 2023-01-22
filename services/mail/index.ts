@@ -20,7 +20,7 @@ class MailService {
     }
 
     async sendActivationLink({toEmail, userId}: {toEmail: string, userId: string}) { 
-        let activationLink = `${ApiRoutes.ACTIVATE_USER}/${userId}`;
+        let activationLink = `${process.env.BASE_URL}${ApiRoutes.ACTIVATE_USER}/${userId}`;
         await this.transporter.sendMail({
           from: `"${MAIL_AUTHOR} 👻" <${MAIL_USER}>`,
           to: toEmail,

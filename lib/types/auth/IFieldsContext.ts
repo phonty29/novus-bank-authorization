@@ -15,6 +15,8 @@ interface IFieldsContext {
     setConfirmationState: Dispatch<SetStateAction<IConfirmationFields>>;
     validateFields: (s: string) => Promise<boolean>;
     prepareData: () => void;
+    isActivationLinkSend: boolean;
+    setIsActivationLinkSend: Dispatch<SetStateAction<boolean>>;
 }
 
 export default IFieldsContext;

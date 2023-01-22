@@ -12,7 +12,7 @@ export default async function handler(
         try {
             let isActivationSuccessfull = await signUpService.activate(userId);
             if (isActivationSuccessfull)
-                res.redirect("http://localhost:3000/auth/sign-in");
+                res.redirect(`${process.env.BASE_URL}/auth/sign-in`);
             else 
                 res.status(400).json({message: "This link is broken"});
         } catch (error) {

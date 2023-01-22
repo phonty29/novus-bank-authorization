@@ -23,7 +23,9 @@ const FieldsContext = createContext<IFieldsContext>({
   confirmationState: confirmationFieldsInitialState,
   setConfirmationState: () => {},
   validateFields: (currentStage: string) => new Promise(() => true),
-  prepareData: () => {}
+  prepareData: () => {},
+  isActivationLinkSend: false,
+  setIsActivationLinkSend: () => {}
 });
 
 const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
@@ -31,6 +33,7 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
   const [userInfoState, setUserInfoState] = useState<IUserInfoFields>(userInfoFieldsInitialState);
   const [activationState, setActivationState] = useState<IActivationFields>(activationFieldsInitialState);
   const [confirmationState, setConfirmationState] = useState<IConfirmationFields>(confirmationFieldsInitialState);
+  const [isActivationLinkSend, setIsActivationLinkSend] = useState<boolean>(false);
   const {setUserData} = useSignUpContext();
   const {setAlertMessage} = useAuthContext();
 
@@ -75,7 +78,9 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
         confirmationState,
         setConfirmationState,
         validateFields,
-        prepareData
+        prepareData,
+        isActivationLinkSend, 
+        setIsActivationLinkSend
       }}
     >
       {children}

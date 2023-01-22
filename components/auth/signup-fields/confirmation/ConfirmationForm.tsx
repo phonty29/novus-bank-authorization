@@ -12,14 +12,17 @@ const buttonTextBeforeSend = "confirmation";
 const buttonTextAfterSend = "again";
 
 const ConfirmationForm: React.FC = () => {
-  const { confirmationState, setConfirmationState } = useFieldsContext();
+  const { confirmationState, 
+          setConfirmationState,
+          isActivationLinkSend, 
+          setIsActivationLinkSend } = useFieldsContext();
   const { userData } = useSignUpContext();
   const [buttonText, setButtonText] = useState<string>(buttonTextBeforeSend);
   const [isDisabled, setDisabled] = useState<boolean>(false);
-  const [isActivationLinkSend, setIsActivationLinkSend] = useState<boolean>(false);
   const {setAlertMessage} = useAuthContext();
   const sendConfirmation = async () => {
     setButtonText(buttonTextAfterSend);
+    setIsActivationLinkSend(true);
     setDisabled(true);
     const jsonData = JSON.stringify(userData);
     const options = {
@@ -29,11 +32,9 @@ const ConfirmationForm: React.FC = () => {
       },
       body: jsonData,
     };
-
     const response = await fetch(ApiRoutes.SEND_ACTIVATION, options);
     const {isSendActivationSuccessfull, message}: SendActivationResponseData = await response.json();
-    if (isSendActivationSuccessfull) setIsActivationLinkSend(true);
-    else setAlertMessage(message as AuthMessages);
+    if (!isSendActivationSuccessfull) setAlertMessage(message as AuthMessages);
   }
 
   return (
@@ -53,7 +54,7 @@ const ConfirmationForm: React.FC = () => {
         >
           <option value={ConfirmationMethod.EMAIL}>
             Send a link to email
-            </option>
+          </option>
         </select>
       </div>
       <div

@@ -6,8 +6,24 @@ import mailService from '../mail';
 import database from '../utils/mongodb-utils';
 
 class SignUpService {
-  async sendActivation(body: IUserData): Promise<boolean> {
-    const {credentials, personalInformation, accountInformation} = body;
+  async sendActivation(userData: IUserData): Promise<boolean> {
+    let userId = await this.isUserInsertedInTemp({username: userData.credentials.username});
+    if (!userId)
+      userId = await this.insertUserInTemp(userData);
+    if (userId)
+      await mailService.sendActivationLink({toEmail: userData.accountInformation.email, userId});
+    return true;
+  }
+
+  async isUserInsertedInTemp({username}: {username: string}) {
+    let tempUserCollection = await database.getCollection(Collections.TEMP_USERS);
+    let tempUser = await tempUserCollection.findOne({ "credentials.username": username });
+    if (!tempUser) return false;
+    return tempUser._id.toString();
+  }
+
+  async insertUserInTemp(userData: IUserData) {
+    const {credentials, personalInformation, accountInformation} = userData;
     let tempUserCollection = await database.getCollection(Collections.TEMP_USERS);
     let hashedPassword = await bcrypt.hash(credentials.password, 7);
     let {insertedId} = await tempUserCollection.insertOne({
@@ -16,9 +32,7 @@ class SignUpService {
       accountInformation
     });
     if (!insertedId) return false;
-    let userId = insertedId.toString();
-    await mailService.sendActivationLink({toEmail: accountInformation.email, userId});
-    return true;
+    return insertedId.toString();
   }
 
   async activate(userId: string | string[] | undefined) {

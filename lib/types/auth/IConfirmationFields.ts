@@ -5,7 +5,7 @@ interface IConfirmationFields {
 }
 
 export const confirmationFieldsInitialState: IConfirmationFields = {
-  confirmationMethod: ConfirmationMethod.PHONE,
+  confirmationMethod: ConfirmationMethod.EMAIL,
 };
 
 export default IConfirmationFields;
