@@ -4,7 +4,6 @@ import {
 } from 'react';
 import SignUpStages from '../../lib/enums/SignUpStages';
 import IActivationFields, { activationFieldsInitialState, validateActivationFields } from '../../lib/types/auth/IActivationFields';
-import IConfirmationFields, { confirmationFieldsInitialState } from '../../lib/types/auth/IConfirmationFields';
 import IFieldsContext from '../../lib/types/auth/IFieldsContext';
 import IPersonalInfoFields, { personalInfoFieldsInitialState, validatePersonalInfoFields } from '../../lib/types/auth/IPersonalInfoFields';
 import IUserInfoFields, { userInfoFieldsInitialState, validateUserInfoFields } from '../../lib/types/auth/IUserInfoFields';
@@ -20,8 +19,6 @@ const FieldsContext = createContext<IFieldsContext>({
   setUserInfoState: () => {},
   activationState: activationFieldsInitialState,
   setActivationState: () => {},
-  confirmationState: confirmationFieldsInitialState,
-  setConfirmationState: () => {},
   validateFields: (currentStage: string) => new Promise(() => true),
   prepareData: () => {},
   isActivationLinkSend: false,
@@ -32,7 +29,6 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
   const [personalInfoState, setPersonalInfoState] = useState<IPersonalInfoFields>(personalInfoFieldsInitialState);
   const [userInfoState, setUserInfoState] = useState<IUserInfoFields>(userInfoFieldsInitialState);
   const [activationState, setActivationState] = useState<IActivationFields>(activationFieldsInitialState);
-  const [confirmationState, setConfirmationState] = useState<IConfirmationFields>(confirmationFieldsInitialState);
   const [isActivationLinkSend, setIsActivationLinkSend] = useState<boolean>(false);
   const {setUserData} = useSignUpContext();
   const {setAlertMessage} = useAuthContext();
@@ -75,8 +71,6 @@ const FieldsProvider: React.FC<IFieldsProvider> = ({ children }) => {
         setUserInfoState,
         activationState,
         setActivationState,
-        confirmationState,
-        setConfirmationState,
         validateFields,
         prepareData,
         isActivationLinkSend, 

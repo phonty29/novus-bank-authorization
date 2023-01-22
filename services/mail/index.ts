@@ -1,20 +1,16 @@
 import nodemailer, { Transporter } from 'nodemailer';
 import ApiRoutes from '../../lib/enums/ApiRoutes';
 
-const SERVICE = "Gmail";
-const MAIL_AUTHOR = "Amedov Bekmuhamet";
-const MAIL_USER = "amedov.bekmuhamet@gmail.com";
-const MAIL_PASSWORD = "fgowujceotumljmj";
-
 class MailService {
     transporter: Transporter;
+    service: string = "Gmail";
 
     constructor() {
         this.transporter = nodemailer.createTransport({
-            service: SERVICE, 
+            service: this.service, 
             auth: {
-              user: MAIL_USER, 
-              pass: MAIL_PASSWORD,
+              user: process.env.MAIL_USER, 
+              pass: process.env.MAIL_PASSWORD,
             },
         });
     }
@@ -22,7 +18,7 @@ class MailService {
     async sendActivationLink({toEmail, userId}: {toEmail: string, userId: string}) { 
         let activationLink = `${process.env.BASE_URL}${ApiRoutes.ACTIVATE_USER}/${userId}`;
         await this.transporter.sendMail({
-          from: `"${MAIL_AUTHOR} 👻" <${MAIL_USER}>`,
+          from: `"Bekonomix 👻" <${process.env.MAIL_USER}>`,
           to: toEmail,
           subject: "Click here to activate your account in Bekonomix", 
           text: "",
