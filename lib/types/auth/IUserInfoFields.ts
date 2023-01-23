@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { CheckUsernameResponseData } from "../../../pages/api/sign-up/check-username";
+import ClientService from "../../../services/utils/client-utils";
 import AlertMessages from "../../enums/AlertMessages";
 import ApiRoutes from "../../enums/ApiRoutes";
 import ICredentials from "./ICredentials";
@@ -25,18 +26,9 @@ export const validateUserInfoFields = async (userInfoState: IUserInfoFields, set
     const isUsernameValid: boolean = validUsernameRegex.test(userInfoState.userFields.username);
     const isPasswordValid: boolean = validPasswordRegex.test(userInfoState.userFields.password);
     const isPasswordConfirmationValid: boolean = userInfoState.repeatedPassword === userInfoState.userFields.password;
-
     const data: {username: string} = { username: userInfoState.userFields.username };
-    const jsonData = JSON.stringify(data);
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonData,
-    };
-    const response = await fetch(ApiRoutes.CHECK_USERNAME, options);
-    const {isUsernameAvailable, message}: CheckUsernameResponseData = await response.json();
+    const {isUsernameAvailable, message}: CheckUsernameResponseData = 
+                                    await ClientService.sendJsonData(data, ApiRoutes.CHECK_USERNAME);
 
     if (!isUsernameValid) 
         setAlertMessage(AlertMessages.SIGN_UP_WRONG_USERNAME_FORMAT);

@@ -1,18 +1,28 @@
-import Collections from '../../lib/enums/Collections';
+import { Db } from 'mongodb';
 import clientPromise from '../../lib/mongodb';
 
 class Database {
-  databaseName: string;
+  static Singleton = (() => {
+    let database: Db;
 
-  constructor() {
-    this.databaseName = Collections.DB_NAME;
-  }
+    const createDB = async () => {
+      let client = await clientPromise;
+      return client.db(process.env.DB_NAME);
+    }
 
-  async getCollection(COLLECTION_NAME: string) {
-    const client = await clientPromise;
-    const database = client.db(Collections.DB_NAME);
-    return database.collection(COLLECTION_NAME);
+    return {
+      getDB: async () => {
+        if (!database)
+          database = await createDB();
+        return database;
+      }
+    }
+  })();
+
+  static async getCollection(COLLECTION_NAME: string) {
+    const db: Db = await Database.Singleton.getDB();
+    return db.collection(COLLECTION_NAME);;
   }
 }
 
-export default new Database();
+export default Database;

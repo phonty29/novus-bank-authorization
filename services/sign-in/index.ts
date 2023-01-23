@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import Collections from '../../lib/enums/Collections';
 import ICredentials from '../../lib/types/auth/ICredentials';
+import ITokens from '../../lib/types/auth/ITokens';
 import tokenService from '../tokens';
 import database from '../utils/mongodb-utils';
 
@@ -11,7 +12,7 @@ class SignInService {
     if (!user) return null;
     const isPasswordValid: boolean = await bcrypt.compare(password, user.credentials.password);
     if (!isPasswordValid) return null;
-    const tokens = tokenService.generateTokens({ id: user._id });
+    const tokens: ITokens = tokenService.generateTokens({ id: user._id });
     // await tokenSave(userDTO.id, tokens.refreshToken);
     return tokens;
   }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AuthMessages from '../../../../lib/enums/AlertMessages';
 import ApiRoutes from '../../../../lib/enums/ApiRoutes';
 import { SendActivationResponseData } from '../../../../pages/api/sign-up/send-activation';
+import ClientService from '../../../../services/utils/client-utils';
 import { useAuthContext } from '../../../../state/auth/AuthContext';
 import { useFieldsContext } from '../../../../state/auth/FieldsContext';
 import { useSignUpContext } from '../../../../state/auth/SignUpContext';
@@ -18,16 +19,8 @@ const ConfirmationForm: React.FC = () => {
   const sendConfirmation = async () => {
     setButtonText(buttonTextAfterSend);
     setIsActivationLinkSend(true);
-    const jsonData = JSON.stringify(userData);
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonData,
-    };
-    const response = await fetch(ApiRoutes.SEND_ACTIVATION, options);
-    const {isSendActivationSuccessfull, message}: SendActivationResponseData = await response.json();
+    const {isSendActivationSuccessfull, message}: SendActivationResponseData = 
+            await ClientService.sendJsonData(userData, ApiRoutes.SEND_ACTIVATION);
     if (!isSendActivationSuccessfull) setAlertMessage(message as AuthMessages);
   }
 

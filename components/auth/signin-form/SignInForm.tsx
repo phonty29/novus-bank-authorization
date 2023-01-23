@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ApiRoutes from '../../../lib/enums/ApiRoutes';
 import ICredentials from '../../../lib/types/auth/ICredentials';
 import { SignInResponseData } from '../../../pages/api/sign-in';
+import ClientService from '../../../services/utils/client-utils';
 import { useAuthContext } from '../../../state/auth/AuthContext';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
@@ -15,17 +16,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data: ICredentials = { username, password };
-    const jsonData = JSON.stringify(data);
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonData,
-    };
-
-    const response = await fetch(ApiRoutes.SIGN_IN, options);
-    const signInResponse: SignInResponseData = await response.json();
+    const signInResponse: SignInResponseData = await ClientService.sendJsonData(data, ApiRoutes.SIGN_IN);
     if (signInResponse.accessToken && signInResponse.refreshToken) {
       alert(`${signInResponse.message}`);
       console.log(signInResponse.accessToken);
@@ -82,7 +73,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
       </div>
       <div className="text-center items-mb">
         <Link href="/" className="text-xs text-black underline">
-          Forgot password ?
+          Forgot password?
         </Link>
       </div>
       <p className="alert-message text-center">{alertMessage}</p>      

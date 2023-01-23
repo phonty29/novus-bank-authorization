@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 import Collections from "../../lib/enums/Collections";
 import IUserData from "../../lib/types/auth/IUserData";
 import mailService from '../mail';
-import database from '../utils/mongodb-utils';
+import Database from '../utils/mongodb-utils';
 
 class SignUpService {
   async sendActivation(userData: IUserData): Promise<boolean> {
@@ -16,7 +16,7 @@ class SignUpService {
   }
 
   async isUserInsertedInTemp({username}: {username: string}) {
-    let tempUserCollection = await database.getCollection(Collections.TEMP_USERS);
+    let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
     let tempUser = await tempUserCollection.findOne({ "credentials.username": username });
     if (!tempUser) return false;
     return tempUser._id.toString();
@@ -24,7 +24,7 @@ class SignUpService {
 
   async insertUserInTemp(userData: IUserData) {
     const {credentials, personalInformation, accountInformation} = userData;
-    let tempUserCollection = await database.getCollection(Collections.TEMP_USERS);
+    let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
     let hashedPassword = await bcrypt.hash(credentials.password, 7);
     let {insertedId} = await tempUserCollection.insertOne({
       credentials: {...credentials, password: hashedPassword}, 
@@ -36,23 +36,23 @@ class SignUpService {
   }
 
   async activate(userId: string | string[] | undefined) {
-    let tempUserCollection = await database.getCollection(Collections.TEMP_USERS);
+    let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
     let tempUser = await tempUserCollection.findOne({_id: new ObjectId(userId as string)});
     if (!tempUser) return false;
-    let userCollection = await database.getCollection(Collections.USERS);
+    let userCollection = await Database.getCollection(Collections.USERS);
     await userCollection.insertOne({...tempUser});
     return true;
   }
 
   async checkEmail({email}: {email: string}): Promise<boolean> {
-    let userCollection = await database.getCollection(Collections.USERS);
+    let userCollection = await Database.getCollection(Collections.USERS);
     let user = await userCollection.findOne({ "accountInformation.email": email });
     if (user) return false;
     return true;
   }
 
   async checkUsername({username}: {username: string}): Promise<boolean> {
-    let userCollection = await database.getCollection(Collections.USERS);
+    let userCollection = await Database.getCollection(Collections.USERS);
     let user = await userCollection.findOne({ "credentials.username": username });
     if (user) return false;
     return true;
