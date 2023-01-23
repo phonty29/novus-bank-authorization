@@ -21,7 +21,7 @@ class Database {
 
   static async getCollection(COLLECTION_NAME: string) {
     const db: Db = await Database.Singleton.getDB();
-    return db.collection(COLLECTION_NAME);;
+    return db.collection(COLLECTION_NAME);
   }
 }
 
