@@ -1,5 +1,6 @@
 import signUpService from '@api-server/registration';
 import AuthMessages from '@utils/enums/AlertMessages';
+import PageRoutes from '@utils/enums/PageRoutes';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -12,17 +13,15 @@ export default async function handler(
         try {
             let isActivationSuccessfull = await signUpService.activate(userId);
             if (isActivationSuccessfull)
-                res.redirect(`${process.env.BASE_URL}/auth/sign-in`);
+                res.redirect(`${process.env.BASE_URL}${PageRoutes.SIGN_IN}`);
             else 
                 res.status(400).json({message: "This link is broken"});
         } catch (error) {
-            res
-            .status(500)
-            .json({ isUsernameAvailable: false, message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
+            res.status(500).json({ isUsernameAvailable: false, message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
         }
-        break;
+            break;
 
         default:
-        break;
+            break;
     }
 }

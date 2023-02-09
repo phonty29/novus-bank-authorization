@@ -10,6 +10,7 @@ class CheckService {
   }
 
   async checkUsername({username}: {username: string}): Promise<boolean> {
+    console.log(username);
     let userCollection = await Database.getCollection(Collections.USERS);
     let user = await userCollection.findOne({ "credentials.username": username });
     if (user) return false;

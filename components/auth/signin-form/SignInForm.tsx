@@ -1,4 +1,4 @@
-import { SignInResponseData } from '@pages/api/log/in';
+import { ISignInResponseData } from '@pages/api/log/in';
 import { useAuthContext } from '@state/auth/AuthContext';
 import ApiRoutes from '@utils/enums/ApiRoutes';
 import PageRoutes from '@utils/enums/PageRoutes';
@@ -17,7 +17,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data: ICredentials = { username, password };
-    const signInResponse: SignInResponseData = await ClientService.post(data, ApiRoutes.LOG_IN);
+    const signInResponse: ISignInResponseData = await ClientService.post(data, ApiRoutes.LOG_IN);
     if (signInResponse.accessToken && signInResponse.refreshToken) {
       alert(`${signInResponse.message}`);
       console.log(signInResponse.accessToken);

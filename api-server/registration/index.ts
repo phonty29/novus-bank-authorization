@@ -10,7 +10,8 @@ class RegistrationService {
     let userId = await TempService.getUser({username: userData.credentials.username});
     if (!userId)
       userId = await TempService.addUser(userData);
-    userId && await mailService.sendActivationLink({toEmail: userData.accountInformation.email, userId});
+    if (userId) 
+      await mailService.sendActivationLink({toEmail: userData.accountInformation.email, userId});
     return true;
   }
 
@@ -18,9 +19,14 @@ class RegistrationService {
     let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
     let tempUser = await tempUserCollection.findOne({_id: new ObjectId(userId as string)});
     if (!tempUser) return false;
+    else await TempService.deleteUser();
     let userCollection = await Database.getCollection(Collections.USERS);
     await userCollection.insertOne({...tempUser});
     return true;
+  }
+
+  async deactivate() {
+    
   }
 }
 

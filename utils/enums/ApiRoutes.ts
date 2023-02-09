@@ -1,11 +1,11 @@
 enum ApiRoutes {
   LOG_IN = '/api/log/in',
   LOG_OUT = '/api/log/out',
-  SIGN_UP = '/api/sign-up',
-  SEND_ACTIVATION = '/api/sign-up/send-activation',
-  CHECK_EMAIL = '/api/sign-up/check-email',
-  CHECK_USERNAME = '/api/sign-up/check-username',
-  ACTIVATE_USER = '/api/sign-up/activate'
+  ACTIVATE = '/api/registration/activate',
+  DEACTIVATE = '/api/registration/deactivate',
+  SEND_ACTIVATION = '/api/send-activation',
+  CHECK_EMAIL = '/api/registration/check-email',
+  CHECK_USERNAME = '/api/registration/check-username'
 }
 
 export default ApiRoutes;
