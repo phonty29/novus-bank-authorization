@@ -27,7 +27,7 @@ export default async function handler(
         else
           res.status(401).json({ message: AuthMessages.SIGN_IN_UNAUTHORIZED });
       } catch (error) {
-        res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
+          res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
       }
       break;
     default:

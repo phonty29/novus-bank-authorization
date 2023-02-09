@@ -13,7 +13,6 @@ class LogService {
     const isPasswordValid: boolean = await bcrypt.compare(password, user.credentials.password);
     if (!isPasswordValid) return null;
     const tokens: ITokens = tokenService.generateTokens({ username, password });
-    // await tokenSave(userDTO.id, tokens.refreshToken);
     return tokens;
   }
 

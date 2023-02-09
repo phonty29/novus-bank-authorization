@@ -1,5 +1,5 @@
+import ApiRoutes from '@utils/enums/ApiRoutes';
 import nodemailer, { Transporter } from 'nodemailer';
-import ApiRoutes from '../../lib/enums/ApiRoutes';
 
 class MailService {
     transporter: Transporter;

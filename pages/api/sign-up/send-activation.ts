@@ -1,4 +1,4 @@
-import signUpService from '@api-server/sign-up';
+import signUpService from '@api-server/registration';
 import AuthMessages from '@utils/enums/AlertMessages';
 import IUserData from '@utils/types/auth/IUserData';
 import { NextApiRequest, NextApiResponse } from 'next';
