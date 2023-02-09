@@ -1,7 +1,7 @@
-import countries from '../../../../lib/data/countries.json';
-import playroles from '../../../../lib/data/playroles.json';
-import Genders from '../../../../lib/enums/Genders';
-import { useFieldsContext } from '../../../../state/auth/FieldsContext';
+import { useFieldsContext } from '@state/auth/FieldsContext';
+import Genders from '@utils/enums/Genders';
+import countries from '@utils/lists/countries.json';
+import playroles from '@utils/lists/playroles.json';
 
 export const PlayrolesDropdown: React.FC = () => {
   const { personalInfoState, setPersonalInfoState } = useFieldsContext();

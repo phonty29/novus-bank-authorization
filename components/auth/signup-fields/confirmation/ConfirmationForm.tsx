@@ -1,12 +1,12 @@
+import IconNotification from '@components/icons/IconNotification';
+import { SendActivationResponseData } from '@pages/api/sign-up/send-activation';
+import { useAuthContext } from '@state/auth/AuthContext';
+import { useFieldsContext } from '@state/auth/FieldsContext';
+import { useSignUpContext } from '@state/auth/SignUpContext';
+import AuthMessages from '@utils/enums/AlertMessages';
+import ApiRoutes from '@utils/enums/ApiRoutes';
+import ClientService from '@utils/helpers/fetch-utils';
 import { useState } from 'react';
-import AuthMessages from '../../../../lib/enums/AlertMessages';
-import ApiRoutes from '../../../../lib/enums/ApiRoutes';
-import { SendActivationResponseData } from '../../../../pages/api/sign-up/send-activation';
-import ClientService from '../../../../services/utils/client-utils';
-import { useAuthContext } from '../../../../state/auth/AuthContext';
-import { useFieldsContext } from '../../../../state/auth/FieldsContext';
-import { useSignUpContext } from '../../../../state/auth/SignUpContext';
-import IconNotification from '../../../icons/IconNotification';
 
 const buttonTextBeforeSend = "confirmation";
 const buttonTextAfterSend = "again";
@@ -20,7 +20,7 @@ const ConfirmationForm: React.FC = () => {
     setButtonText(buttonTextAfterSend);
     setIsActivationLinkSend(true);
     const {isSendActivationSuccessfull, message}: SendActivationResponseData = 
-            await ClientService.sendJsonData(userData, ApiRoutes.SEND_ACTIVATION);
+            await ClientService.post(userData, ApiRoutes.SEND_ACTIVATION);
     if (!isSendActivationSuccessfull) setAlertMessage(message as AuthMessages);
   }
 

@@ -1,6 +1,6 @@
+import PrimaryLayout from '@components/layout/primary/PrimaryLayout';
+import clientPromise from '@utils/mongodb';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import PrimaryLayout from '../components/layout/primary/PrimaryLayout';
-import clientPromise from '../lib/mongodb';
 import { NextPageWithLayout } from './page';
 
 export const getServerSideProps: GetServerSideProps = async () => {

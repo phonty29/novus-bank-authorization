@@ -1,5 +1,5 @@
+import SignUpStages from '@utils/enums/SignUpStages';
 import styled from 'styled-components';
-import SignUpStages from '../../../lib/enums/SignUpStages';
 
 export interface ILine {
   className: string;

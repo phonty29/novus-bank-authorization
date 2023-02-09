@@ -1,7 +1,7 @@
-import SignUpStages from '../../../lib/enums/SignUpStages';
-import { useAuthContext } from '../../../state/auth/AuthContext';
-import { useFieldsContext } from '../../../state/auth/FieldsContext';
-import { useSignUpContext } from '../../../state/auth/SignUpContext';
+import { useAuthContext } from '@state/auth/AuthContext';
+import { useFieldsContext } from '@state/auth/FieldsContext';
+import { useSignUpContext } from '@state/auth/SignUpContext';
+import SignUpStages from '@utils/enums/SignUpStages';
 import ActivationForm from './activation/ActivationForm';
 import Buttons from './Buttons';
 import ConfirmationForm from './confirmation/ConfirmationForm';

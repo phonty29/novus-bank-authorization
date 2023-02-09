@@ -1,6 +1,6 @@
+import { useSignUpContext } from '@state/auth/SignUpContext';
+import SignUpStages from '@utils/enums/SignUpStages';
 import Link from 'next/link';
-import SignUpStages from '../../../lib/enums/SignUpStages';
-import { useSignUpContext } from '../../../state/auth/SignUpContext';
 
 const SignUpFieldsHelp: React.FC = () => {
   const { currentStage } = useSignUpContext();

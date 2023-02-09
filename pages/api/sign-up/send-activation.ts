@@ -1,7 +1,7 @@
+import signUpService from '@api-server/sign-up';
+import AuthMessages from '@utils/enums/AlertMessages';
+import IUserData from '@utils/types/auth/IUserData';
 import { NextApiRequest, NextApiResponse } from 'next';
-import AuthMessages from '../../../lib/enums/AlertMessages';
-import IUserData from '../../../lib/types/auth/IUserData';
-import signUpService from '../../../services/sign-up';
 
 interface SendActivationRequestData extends NextApiRequest {
   body: IUserData;

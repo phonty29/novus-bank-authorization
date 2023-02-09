@@ -1,5 +1,5 @@
+import AlertMessages from '@utils/enums/AlertMessages';
 import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
-import AlertMessages from '../../lib/enums/AlertMessages';
 
 interface IAuthProvider extends React.ComponentPropsWithoutRef<'div'> {}
 

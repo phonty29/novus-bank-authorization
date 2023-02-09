@@ -1,5 +1,5 @@
-import AccountType from '../../../../lib/enums/AccountType';
-import { useFieldsContext } from '../../../../state/auth/FieldsContext';
+import { useFieldsContext } from '@state/auth/FieldsContext';
+import AccountType from '@utils/enums/AccountType';
 
 const ActivationForm: React.FC = () => {
   const { activationState, setActivationState } = useFieldsContext();

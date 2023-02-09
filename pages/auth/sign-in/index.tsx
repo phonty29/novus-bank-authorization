@@ -1,6 +1,6 @@
-import SignInForm from '../../../components/auth/signin-form/SignInForm';
-import PrimaryLayout from '../../../components/layout/primary/PrimaryLayout';
-import { NextPageWithLayout } from '../../page';
+import SignInForm from '@components/auth/signin-form/SignInForm';
+import PrimaryLayout from '@components/layout/primary/PrimaryLayout';
+import { NextPageWithLayout } from '@pages/page';
 
 export interface ISignIn {}
 

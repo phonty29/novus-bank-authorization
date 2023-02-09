@@ -1,7 +1,7 @@
+import SignUpStages from '@utils/enums/SignUpStages';
+import ISignUpContext from '@utils/types/auth/ISignUpContext';
+import IUserData, { userDataInitialState } from '@utils/types/auth/IUserData';
 import { createContext, useContext, useState } from 'react';
-import SignUpStages from '../../lib/enums/SignUpStages';
-import ISignUpContext from '../../lib/types/auth/ISignUpContext';
-import IUserData, { userDataInitialState } from '../../lib/types/auth/IUserData';
 
 interface ISignUpProvider extends React.ComponentPropsWithoutRef<'div'> {}
 

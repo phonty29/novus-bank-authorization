@@ -1,12 +1,12 @@
+import SignUpStages from '@utils/enums/SignUpStages';
+import IActivationFields, { activationFieldsInitialState, validateActivationFields } from '@utils/types/auth/IActivationFields';
+import IFieldsContext from '@utils/types/auth/IFieldsContext';
+import IPersonalInfoFields, { personalInfoFieldsInitialState, validatePersonalInfoFields } from '@utils/types/auth/IPersonalInfoFields';
+import IUserInfoFields, { userInfoFieldsInitialState, validateUserInfoFields } from '@utils/types/auth/IUserInfoFields';
 import {
   createContext, useContext,
   useState
 } from 'react';
-import SignUpStages from '../../lib/enums/SignUpStages';
-import IActivationFields, { activationFieldsInitialState, validateActivationFields } from '../../lib/types/auth/IActivationFields';
-import IFieldsContext from '../../lib/types/auth/IFieldsContext';
-import IPersonalInfoFields, { personalInfoFieldsInitialState, validatePersonalInfoFields } from '../../lib/types/auth/IPersonalInfoFields';
-import IUserInfoFields, { userInfoFieldsInitialState, validateUserInfoFields } from '../../lib/types/auth/IUserInfoFields';
 import { useAuthContext } from './AuthContext';
 import { useSignUpContext } from './SignUpContext';
 

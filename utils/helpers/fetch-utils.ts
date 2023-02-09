@@ -1,6 +1,6 @@
-import ApiRoutes from "../../utils/enums/ApiRoutes";
+import ApiRoutes from "@utils/enums/ApiRoutes";
 
-class FetchUtils {
+class ClientService {
     public static async post(data: unknown, route: ApiRoutes) {
         const jsonData = JSON.stringify(data);
         const options = {
@@ -17,4 +17,4 @@ class FetchUtils {
     }
 }
 
-export default FetchUtils;
+export default ClientService;

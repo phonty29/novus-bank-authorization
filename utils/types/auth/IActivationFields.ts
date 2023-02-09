@@ -1,9 +1,9 @@
+import { CheckEmailResponseData } from '@pages/api/sign-up/check-email';
+import AccountType from '@utils/enums/AccountType';
+import AlertMessages from '@utils/enums/AlertMessages';
+import ApiRoutes from '@utils/enums/ApiRoutes';
+import ClientService from '@utils/helpers/fetch-utils';
 import { Dispatch, SetStateAction } from 'react';
-import { CheckEmailResponseData } from '../../../pages/api/sign-up/check-email';
-import ClientService from '../../../services/utils/client-utils';
-import AccountType from '../../enums/AccountType';
-import AlertMessages from '../../enums/AlertMessages';
-import ApiRoutes from '../../enums/ApiRoutes';
 
 interface IActivationFields {
   accountType: string;
@@ -28,7 +28,7 @@ export const validateActivationFields = async (
   const isPhoneValid = validPhoneRegex.test(activationState.phoneNumber);
   const isEmailValid = validEmailRegex.test(activationState.email);
   const data: {email: string} = { email: activationState.email };
-  const {isEmailAvailable, message}: CheckEmailResponseData = await ClientService.sendJsonData(data, ApiRoutes.CHECK_EMAIL);
+  const {isEmailAvailable, message}: CheckEmailResponseData = await ClientService.post(data, ApiRoutes.CHECK_EMAIL);
   if (!isPhoneValid) 
     setAlertMessage(AlertMessages.SIGN_UP_WRONG_PHONE_FORMAT);
   else if (!isEmailValid) 

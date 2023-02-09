@@ -1,7 +1,7 @@
+import logService from '@api-server/log';
+import AuthMessages from '@utils/enums/AlertMessages';
+import ICredentials from '@utils/types/auth/ICredentials';
 import { NextApiRequest, NextApiResponse } from 'next';
-import logService from '../../../api-server/log';
-import AuthMessages from '../../../utils/enums/AlertMessages';
-import ICredentials from '../../../utils/types/auth/ICredentials';
 
 interface SignInRequestData extends NextApiRequest {
   body: ICredentials;

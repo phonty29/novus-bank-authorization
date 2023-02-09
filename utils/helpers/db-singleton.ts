@@ -1,5 +1,5 @@
+import clientPromise from '@utils/mongodb';
 import { Db } from 'mongodb';
-import clientPromise from '../../lib/mongodb';
 
 class Database {
   static Singleton = (() => {

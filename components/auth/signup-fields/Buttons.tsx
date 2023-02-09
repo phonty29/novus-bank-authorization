@@ -1,7 +1,7 @@
+import { useFieldsContext } from '@state/auth/FieldsContext';
+import { useSignUpContext } from '@state/auth/SignUpContext';
+import SignUpStages from '@utils/enums/SignUpStages';
 import { useEffect, useState } from 'react';
-import SignUpStages from '../../../lib/enums/SignUpStages';
-import { useFieldsContext } from '../../../state/auth/FieldsContext';
-import { useSignUpContext } from '../../../state/auth/SignUpContext';
 
 export interface IButtons extends React.ComponentPropsWithRef<'div'> {}
 

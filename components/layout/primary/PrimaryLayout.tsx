@@ -1,5 +1,5 @@
+import AuthProvider from '@state/auth/AuthContext';
 import Head from 'next/head';
-import AuthProvider from '../../../state/auth/AuthContext';
 
 export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
   justify?: 'items-center' | 'items-start' | 'items-end';

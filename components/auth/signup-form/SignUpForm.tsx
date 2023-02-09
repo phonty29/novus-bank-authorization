@@ -1,4 +1,4 @@
-import FieldsProvider from '../../../state/auth/FieldsContext';
+import FieldsProvider from '@state/auth/FieldsContext';
 import ProgressBar from '../progress-bar/ProgressBar';
 import SignUpFields from '../signup-fields/SignUpFields';
 

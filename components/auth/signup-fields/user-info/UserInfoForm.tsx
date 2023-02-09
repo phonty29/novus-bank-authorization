@@ -1,4 +1,4 @@
-import { useFieldsContext } from '../../../../state/auth/FieldsContext';
+import { useFieldsContext } from '@state/auth/FieldsContext';
 
 const UserInfoForm: React.FC = () => {
   const {userInfoState, setUserInfoState} = useFieldsContext();

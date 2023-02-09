@@ -1,6 +1,6 @@
+import signUpService from '@api-server/sign-up';
+import AuthMessages from '@utils/enums/AlertMessages';
 import { NextApiRequest, NextApiResponse } from 'next';
-import AuthMessages from '../../../lib/enums/AlertMessages';
-import signUpService from '../../../services/sign-up';
 
 interface CheckUsernameRequestData extends NextApiRequest {
   body: {username: string};

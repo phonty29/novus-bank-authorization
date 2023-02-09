@@ -1,8 +1,8 @@
+import AlertMessages from '@utils/enums/AlertMessages';
+import Genders from '@utils/enums/Genders';
+import countries from '@utils/lists/countries.json';
+import playroles from '@utils/lists/playroles.json';
 import { Dispatch, SetStateAction } from 'react';
-import countries from '../../data/countries.json';
-import playroles from '../../data/playroles.json';
-import AlertMessages from '../../enums/AlertMessages';
-import Genders from '../../enums/Genders';
 
 interface IPersonalInfoFields {
   role: string;
