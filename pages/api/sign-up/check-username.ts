@@ -15,13 +15,6 @@ export default async function handler(
   req: CheckUsernameRequestData,
   res: NextApiResponse<CheckUsernameResponseData>
 ) {
-  const {
-    body: { username },
-  } = req;
-
-  if (!(username))
-    res.status(400).json({ isUsernameAvailable: false, message: AuthMessages.SIGN_IN_EMPTY_FIELD });
-
   switch (req.method) {
     case 'POST':
       try {

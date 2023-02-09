@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt';
 import { ObjectId } from 'mongodb';
 import Collections from "../../lib/enums/Collections";
 import IUserData from "../../lib/types/auth/IUserData";
+import Database from '../../utils/helpers/db-singleton';
 import mailService from '../mail';
-import Database from '../utils/mongodb-utils';
 
 class SignUpService {
   async sendActivation(userData: IUserData): Promise<boolean> {

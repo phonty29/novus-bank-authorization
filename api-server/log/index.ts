@@ -1,21 +1,25 @@
 import bcrypt from 'bcrypt';
-import Collections from '../../lib/enums/Collections';
-import ICredentials from '../../lib/types/auth/ICredentials';
-import ITokens from '../../lib/types/auth/ITokens';
+import Collections from '../../utils/enums/Collections';
+import database from '../../utils/helpers/db-singleton';
+import ICredentials from '../../utils/types/auth/ICredentials';
+import ITokens from '../../utils/types/auth/ITokens';
 import tokenService from '../tokens';
-import database from '../utils/mongodb-utils';
 
-class SignInService {
-  async signIn({ username, password }: ICredentials) {
+class LogService {
+  async in({ username, password }: ICredentials) {
     const usersCollection = await database.getCollection(Collections.USERS);
     let user = await usersCollection.findOne({ "credentials.username": username });
     if (!user) return null;
     const isPasswordValid: boolean = await bcrypt.compare(password, user.credentials.password);
     if (!isPasswordValid) return null;
-    const tokens: ITokens = tokenService.generateTokens({ id: user._id });
+    const tokens: ITokens = tokenService.generateTokens({ username, password });
     // await tokenSave(userDTO.id, tokens.refreshToken);
     return tokens;
   }
+
+  async out() {
+    
+  }
 }
 
-export default new SignInService();
+export default new LogService();

@@ -15,13 +15,6 @@ export default async function handler(
   req: CheckEmailRequestData,
   res: NextApiResponse<CheckEmailResponseData>
 ) {
-  const {
-    body: { email },
-  } = req;
-
-  if (!(email))
-    res.status(400).json({ isEmailAvailable: false, message: AuthMessages.SIGN_IN_EMPTY_FIELD });
-
   switch (req.method) {
     case 'POST':
       try {

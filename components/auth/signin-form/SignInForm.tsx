@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import ApiRoutes from '../../../lib/enums/ApiRoutes';
-import ICredentials from '../../../lib/types/auth/ICredentials';
-import { SignInResponseData } from '../../../pages/api/sign-in';
-import ClientService from '../../../services/utils/client-utils';
+import { SignInResponseData } from '../../../pages/api/log/in';
 import { useAuthContext } from '../../../state/auth/AuthContext';
+import ApiRoutes from '../../../utils/enums/ApiRoutes';
+import FetchUtils from '../../../utils/helpers/fetch-utils';
+import ICredentials from '../../../utils/types/auth/ICredentials';
 
 export interface ISignInForm extends React.ComponentPropsWithoutRef<'div'> {}
 
@@ -16,7 +16,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data: ICredentials = { username, password };
-    const signInResponse: SignInResponseData = await ClientService.sendJsonData(data, ApiRoutes.SIGN_IN);
+    const signInResponse: SignInResponseData = await FetchUtils.post(data, ApiRoutes.LOG_IN);
     if (signInResponse.accessToken && signInResponse.refreshToken) {
       alert(`${signInResponse.message}`);
       console.log(signInResponse.accessToken);
