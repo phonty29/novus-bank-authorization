@@ -18,7 +18,7 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       try {
-        let isEmailAvailable = await CheckService.checkEmail(req.body);
+        let isEmailAvailable = await CheckService.checkEmail(...req.body);
         if (isEmailAvailable)
           res.status(200).json({isEmailAvailable});
         else

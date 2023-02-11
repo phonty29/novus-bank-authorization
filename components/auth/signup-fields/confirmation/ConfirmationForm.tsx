@@ -1,5 +1,5 @@
 import IconNotification from '@components/icons/IconNotification';
-import { SendActivationResponseData } from '@pages/api/sign-up/send-activation';
+import { SendActivationResponseData } from '@pages/api/registration/send-activation';
 import { useAuthContext } from '@state/auth/AuthContext';
 import { useFieldsContext } from '@state/auth/FieldsContext';
 import { useSignUpContext } from '@state/auth/SignUpContext';

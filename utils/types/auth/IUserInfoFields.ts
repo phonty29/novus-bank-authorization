@@ -1,4 +1,4 @@
-import { CheckUsernameResponseData } from "@pages/api/sign-up/check-username";
+import { CheckUsernameResponseData } from "@pages/api/check-middlewares/check-username";
 import AlertMessages from "@utils/enums/AlertMessages";
 import ApiRoutes from "@utils/enums/ApiRoutes";
 import ClientService from "@utils/helpers/fetch-utils";

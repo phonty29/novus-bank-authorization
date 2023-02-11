@@ -28,8 +28,9 @@ class TempService {
     return insertedId.toString();
   }
 
-  async deleteUser() {
-    
+  async deleteUser(userId: string) {
+    let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
+    await tempUserCollection.deleteOne({ "_id": userId });
   }
 }
 

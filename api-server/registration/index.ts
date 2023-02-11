@@ -19,7 +19,10 @@ class RegistrationService {
   async activate(userId: string) {
     let tempUser = await TempService.getUserById(userId);
     let userCollection = await Database.getCollection(Collections.USERS);
-    await userCollection.insertOne({...tempUser});
+    if (tempUser) {
+      await TempService.deleteUser(tempUser._id.toString());
+      await userCollection.insertOne({...tempUser});
+    }
     return true;
   }
 }

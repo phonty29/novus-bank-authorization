@@ -1,4 +1,4 @@
-import logService from '@api-server/log';
+import LogService from '@api-server/log';
 import AuthMessages from '@utils/enums/AlertMessages';
 import ICredentials from '@utils/types/auth/ICredentials';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -21,7 +21,7 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       try {
-        let tokens = await logService.in(req.body as ICredentials);
+        let tokens = await LogService.in(req.body);
         if (tokens)
           res.status(200).json({ ...tokens, message: AuthMessages.SIGN_IN_SUCCESS });
         else

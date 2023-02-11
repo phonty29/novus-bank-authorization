@@ -1,5 +1,6 @@
 import RegistrationService from '@api-server/registration';
 import AuthMessages from '@utils/enums/AlertMessages';
+import PageRoutes from '@utils/enums/PageRoutes';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -12,7 +13,7 @@ export default async function handler(
         try {
             let isActivationSuccessfull = await RegistrationService.activate(userId as string);
             if (isActivationSuccessfull)
-                res.redirect(`${process.env.BASE_URL}/auth/sign-in`);
+                res.redirect(`${process.env.BASE_URL}${PageRoutes.SIGN_IN}`);
             else 
                 res.status(400).json({message: "This link is broken"});
         } catch (error) {

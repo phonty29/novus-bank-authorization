@@ -1,4 +1,4 @@
-import { CheckEmailResponseData } from '@pages/api/sign-up/check-email';
+import { CheckEmailResponseData } from '@pages/api/check-middlewares/check-email';
 import AccountType from '@utils/enums/AccountType';
 import AlertMessages from '@utils/enums/AlertMessages';
 import ApiRoutes from '@utils/enums/ApiRoutes';
