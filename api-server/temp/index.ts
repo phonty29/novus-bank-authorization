@@ -4,12 +4,16 @@ import IUserData from "@utils/types/auth/IUserData";
 import bcrypt from 'bcrypt';
 
 class TempService {
-  async getUser({username}: {username: string}) {
+  async getUserByUsername(username: string) {
     let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
     let tempUser = await tempUserCollection.findOne({ "credentials.username": username });
-    if (!tempUser) return false;
-    console.log(tempUser);
-    return tempUser._id.toString();
+    return tempUser;
+  }
+
+  async getUserById(userId: string) {
+    let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
+    let tempUser = await tempUserCollection.findOne({ "_id": userId });
+    return tempUser;
   }
 
   async addUser(userData: IUserData) {
@@ -21,7 +25,6 @@ class TempService {
       personalInformation, 
       accountInformation
     });
-    if (!insertedId) return false;
     return insertedId.toString();
   }
 
