@@ -1,4 +1,4 @@
-import { CheckEmailResponseData } from '@pages/api/check-middlewares/check-email';
+import { ICheckEmailResponseData } from '@pages/api/check-middlewares/check-email';
 import AccountType from '@utils/enums/AccountType';
 import AlertMessages from '@utils/enums/AlertMessages';
 import ApiRoutes from '@utils/enums/ApiRoutes';
@@ -28,7 +28,7 @@ export const validateActivationFields = async (
   const isPhoneValid = validPhoneRegex.test(activationState.phoneNumber);
   const isEmailValid = validEmailRegex.test(activationState.email);
   const data: {email: string} = { email: activationState.email };
-  const {isEmailAvailable, message}: CheckEmailResponseData = await ClientService.post(data, ApiRoutes.CHECK_EMAIL);
+  const {isEmailAvailable, message}: ICheckEmailResponseData = await ClientService.post(data, ApiRoutes.CHECK_EMAIL);
   if (!isPhoneValid) 
     setAlertMessage(AlertMessages.SIGN_UP_WRONG_PHONE_FORMAT);
   else if (!isEmailValid) 

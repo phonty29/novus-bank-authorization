@@ -1,4 +1,4 @@
-import { CheckUsernameResponseData } from "@pages/api/check-middlewares/check-username";
+import { ICheckUsernameResponseData } from "@pages/api/check-middlewares/check-username";
 import AlertMessages from "@utils/enums/AlertMessages";
 import ApiRoutes from "@utils/enums/ApiRoutes";
 import ClientService from "@utils/helpers/fetch-utils";
@@ -27,7 +27,7 @@ export const validateUserInfoFields = async (userInfoState: IUserInfoFields, set
     const isPasswordValid: boolean = validPasswordRegex.test(userInfoState.userFields.password);
     const isPasswordConfirmationValid: boolean = userInfoState.repeatedPassword === userInfoState.userFields.password;
     const data: {username: string} = { username: userInfoState.userFields.username };
-    const {isUsernameAvailable, message}: CheckUsernameResponseData = 
+    const {isUsernameAvailable, message}: ICheckUsernameResponseData = 
                                     await ClientService.post(data, ApiRoutes.CHECK_USERNAME);
 
     if (!isUsernameValid) 

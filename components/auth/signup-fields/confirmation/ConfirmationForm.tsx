@@ -1,5 +1,5 @@
 import IconNotification from '@components/icons/IconNotification';
-import { SendActivationResponseData } from '@pages/api/registration/send-activation';
+import { ISendActivationResponseData } from '@pages/api/registration/send-activation';
 import { useAuthContext } from '@state/auth/AuthContext';
 import { useFieldsContext } from '@state/auth/FieldsContext';
 import { useSignUpContext } from '@state/auth/SignUpContext';
@@ -19,7 +19,7 @@ const ConfirmationForm: React.FC = () => {
   const sendConfirmation = async () => {
     setButtonText(buttonTextAfterSend);
     setIsActivationLinkSend(true);
-    const {isSendActivationSuccessfull, message}: SendActivationResponseData = 
+    const {isSendActivationSuccessfull, message}: ISendActivationResponseData = 
             await ClientService.post(userData, ApiRoutes.SEND_ACTIVATION);
     if (!isSendActivationSuccessfull) setAlertMessage(message as AuthMessages);
   }

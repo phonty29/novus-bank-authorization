@@ -2,18 +2,18 @@ import CheckService from '@api-server/check';
 import AuthMessages from '@utils/enums/AlertMessages';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-interface CheckUsernameRequestData extends NextApiRequest {
+interface ICheckUsernameRequestData extends NextApiRequest {
   body: {username: string};
 }
 
-export type CheckUsernameResponseData = {
+export type ICheckUsernameResponseData = {
   isUsernameAvailable: boolean;
   message?: AuthMessages;
 };
 
 export default async function handler(
-  req: CheckUsernameRequestData,
-  res: NextApiResponse<CheckUsernameResponseData>
+  req: ICheckUsernameRequestData,
+  res: NextApiResponse<ICheckUsernameResponseData>
 ) {
   switch (req.method) {
     case 'POST':

@@ -2,23 +2,23 @@ import CheckService from '@api-server/check';
 import AuthMessages from '@utils/enums/AlertMessages';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-interface CheckEmailRequestData extends NextApiRequest {
+interface ICheckEmailRequestData extends NextApiRequest {
   body: {email: string};
 }
 
-export type CheckEmailResponseData = {
+export type ICheckEmailResponseData = {
   isEmailAvailable: boolean;
   message?: AuthMessages;
 };
 
 export default async function handler(
-  req: CheckEmailRequestData,
-  res: NextApiResponse<CheckEmailResponseData>
+  req: ICheckEmailRequestData,
+  res: NextApiResponse<ICheckEmailResponseData>
 ) {
   switch (req.method) {
     case 'POST':
       try {
-        let isEmailAvailable = await CheckService.checkEmail(...req.body);
+        let isEmailAvailable = await CheckService.checkEmail(req.body);
         if (isEmailAvailable)
           res.status(200).json({isEmailAvailable});
         else
