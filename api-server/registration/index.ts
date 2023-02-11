@@ -22,8 +22,9 @@ class RegistrationService {
     if (tempUser) {
       await TempService.deleteUser(tempUser._id.toString());
       await userCollection.insertOne({...tempUser});
+      return true;
     }
-    return true;
+    return false;
   }
 }
 

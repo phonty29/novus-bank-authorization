@@ -1,4 +1,4 @@
-import { ICheckEmailResponseData } from '@pages/api/check-middlewares/check-email';
+import { ICheckEmailResponseData } from '@pages/api/check-middlewares/email';
 import AccountType from '@utils/enums/AccountType';
 import AlertMessages from '@utils/enums/AlertMessages';
 import ApiRoutes from '@utils/enums/ApiRoutes';

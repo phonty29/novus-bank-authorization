@@ -2,6 +2,7 @@ import Collections from "@utils/enums/Collections";
 import Database from '@utils/helpers/db-singleton';
 import IUserData from "@utils/types/auth/IUserData";
 import bcrypt from 'bcrypt';
+import { ObjectId } from "mongodb";
 
 class TempService {
   async getUserByUsername(username: string) {
@@ -12,7 +13,7 @@ class TempService {
 
   async getUserById(userId: string) {
     let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
-    let tempUser = await tempUserCollection.findOne({ "_id": userId });
+    let tempUser = await tempUserCollection.findOne({ "_id": new ObjectId(userId) });
     return tempUser;
   }
 
@@ -30,7 +31,7 @@ class TempService {
 
   async deleteUser(userId: string) {
     let tempUserCollection = await Database.getCollection(Collections.TEMP_USERS);
-    await tempUserCollection.deleteOne({ "_id": userId });
+    await tempUserCollection.deleteOne({ "_id": new ObjectId(userId) });
   }
 }
 
