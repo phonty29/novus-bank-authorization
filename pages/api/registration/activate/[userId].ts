@@ -4,7 +4,7 @@ import AuthError from '@utils/helpers/auth-error';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export type IActivationResponse = {
-    message: string;
+    message?: string;
 };
 
 export default async function handler(
@@ -19,11 +19,12 @@ export default async function handler(
                 res.redirect(`${process.env.BASE_URL}${PageRoutes.SIGN_IN}`);
             } catch (error) {
                 if (error instanceof AuthError) 
-                    return res.status(error.status).json({message: error.message})
-                return res.status(500).json({ isUsernameAvailable: false, message: "Произошла ошибка сервера" });
+                    res.status(error.status).json({message: error.message})
+                res.status(500).json({ message: "Произошла ошибка сервера" });
             }
             break;
         default:
+            res.status(400).json({message: "Неверный запрос"});
             break;
     }
 }

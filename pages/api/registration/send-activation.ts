@@ -1,5 +1,4 @@
 import signUpService from '@api-server/registration';
-import AuthMessages from '@utils/enums/AlertMessages';
 import AuthError from '@utils/helpers/auth-error';
 import IUserData from '@utils/types/auth/IUserData';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -9,8 +8,7 @@ interface ISendActivationRequestData extends NextApiRequest {
 }
 
 export type ISendActivationResponseData = {
-  isSendActivationSuccessfull?: boolean;
-  message?: AuthMessages;
+  message?: string;
 };
 
 export default async function handler(
@@ -21,14 +19,15 @@ export default async function handler(
     case 'POST':
       try {
         await signUpService.sendActivation(req.body);
-        res.status(200).json({ isSendActivationSuccessfull: true });
+        res.status(200).json({});
       } catch (error) {
         if (error instanceof AuthError) 
-            return res.status(error.status).json({message: error.message, errors: error.errors})
-        return res.status(500).json({ isUsernameAvailable: false, message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
-    }
+            return res.status(error.status).json({message: error.message })
+        return res.status(500).json({ message: "Произошла внутренняя ошибка сервера" });
+      }
       break;
     default:
+      res.status(400).json({message: "Неверный запрос"});
       break;
   }
 }

@@ -1,5 +1,4 @@
 import LogService from '@api-server/log';
-import AuthMessages from '@utils/enums/AlertMessages';
 import AuthError from '@utils/helpers/auth-error';
 import ICredentials from '@utils/types/auth/ICredentials';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -26,11 +25,12 @@ export default async function handler(
         res.status(200).json({ ...tokens, message: "Пользователь успешно идентицифирован" });
       } catch (error) {
         if (error instanceof AuthError) 
-            return res.status(error.status).json({message: error.message, errors: error.errors})
-        return res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
-    }
+            res.status(error.status).json({message: error.message})
+        res.status(500).json({ message: "Произошла ошибка сервера" });
+      }
       break;
     default:
+      res.status(400).json({message: "Неверный запрос"});
       break;
   }
 }
