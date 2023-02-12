@@ -1,4 +1,4 @@
-import { ICheckUsernameResponseData } from "@pages/api/sign-up/check-username";
+import { ICheckUsernameResponseData } from "@pages/api/check-middlewares/username";
 import AlertMessages from "@utils/enums/AlertMessages";
 import ApiRoutes from "@utils/enums/ApiRoutes";
 import ClientService from "@utils/helpers/fetch-utils";
@@ -30,6 +30,7 @@ export const validateUserInfoFields = async (userInfoState: IUserInfoFields, set
     const {isUsernameAvailable, message}: ICheckUsernameResponseData = 
                                     await ClientService.post(data, ApiRoutes.CHECK_USERNAME);
 
+
     if (!isUsernameValid) 
         setAlertMessage(AlertMessages.SIGN_UP_WRONG_USERNAME_FORMAT);
     else if (!isPasswordValid) 
@@ -37,7 +38,7 @@ export const validateUserInfoFields = async (userInfoState: IUserInfoFields, set
     else if (!isPasswordConfirmationValid)
         setAlertMessage(AlertMessages.SIGN_IN_PASSWORD_DOES_NOT_MATCH);
     else if (!isUsernameAvailable)
-        setAlertMessage(message as AlertMessages);
+        setAlertMessage(message);
     else 
         setAlertMessage(AlertMessages.SIGN_IN_EMPTY_FIELD);
 
