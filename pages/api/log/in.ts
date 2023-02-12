@@ -1,9 +1,10 @@
 import LogService from '@api-server/log';
 import AuthMessages from '@utils/enums/AlertMessages';
+import AuthError from '@utils/helpers/auth-error';
 import ICredentials from '@utils/types/auth/ICredentials';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-interface SignInRequestData extends NextApiRequest {
+interface ISignInRequestData extends NextApiRequest {
   body: ICredentials;
 }
 
@@ -14,7 +15,7 @@ export type ISignInResponseData = {
 };
 
 export default async function handler(
-  req: SignInRequestData,
+  req: ISignInRequestData,
   res: NextApiResponse<ISignInResponseData>
 ) {
 
@@ -22,13 +23,12 @@ export default async function handler(
     case 'POST':
       try {
         let tokens = await LogService.in(req.body);
-        if (tokens)
-          res.status(200).json({ ...tokens, message: AuthMessages.SIGN_IN_SUCCESS });
-        else
-          res.status(401).json({ message: AuthMessages.SIGN_IN_UNAUTHORIZED });
+        res.status(200).json({ ...tokens, message: AuthMessages.SIGN_IN_SUCCESS });
       } catch (error) {
-          res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
-      }
+        if (error instanceof AuthError) 
+            return res.status(error.status).json({message: error.message, errors: error.errors})
+        return res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
+    }
       break;
     default:
       break;
