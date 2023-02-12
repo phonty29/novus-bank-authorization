@@ -1,6 +1,8 @@
 import Collections from "@utils/enums/Collections";
+import AuthError from "@utils/helpers/auth-error";
 import Database from '@utils/helpers/db-singleton';
 import IUserData from "@utils/types/auth/IUserData";
+import { ObjectId } from "mongodb";
 import mailService from '../mail';
 import TempService from '../temp';
 
@@ -19,12 +21,13 @@ class RegistrationService {
   async activate(userId: string) {
     let tempUser = await TempService.getUserById(userId);
     let userCollection = await Database.getCollection(Collections.USERS);
-    if (tempUser) {
-      await TempService.deleteUser(tempUser._id.toString());
-      await userCollection.insertOne({...tempUser});
-      return true;
+    if (!tempUser) {
+      let user =await userCollection.findOne({ "_id": new ObjectId(userId) });
+      throw AuthError.requestTimeout();
     }
-    return false;
+    await TempService.deleteUser(tempUser._id.toString());
+    await userCollection.insertOne({...tempUser});
+    return true;
   }
 }
 

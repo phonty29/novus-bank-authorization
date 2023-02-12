@@ -8,21 +8,21 @@ class AuthError extends Error {
         this.errors = errors;
     }
 
-    static unauthorized() {
-        return new AuthError(401, 'Пользователь не авторизован')
-    }
-
     static badRequest(message: string, errors = []) {
         return new AuthError(400, message, errors);
     }
 
-    // static handle(error: Error) {
-    //     console.error(error);
-    //     if (error instanceof AuthError) {
-    //         return res.status(err.status).json({message: err.message, errors: err.errors})
-    //     }
-    //     return res.status(500).json({message: 'Непредвиденная ошибка'})
-    // }
+    static unauthorized() {
+        return new AuthError(401, "Пользователь не авторизован");
+    }
+
+    static conflict(message: string) {
+        return new AuthError(409, message);
+    }
+
+    static requestTimeout() {
+        return new AuthError(408, "К сожалению срок вашей ссылки истек");
+    }
 };
 
 export default AuthError;
