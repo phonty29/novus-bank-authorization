@@ -1,11 +1,9 @@
 class AuthError extends Error {
     status: number;
-    errors;
 
     constructor(status: number, message: string, errors = []) {
         super(message);
         this.status = status;
-        this.errors = errors;
     }
 
     static badRequest(message: string, errors = []) {

@@ -11,7 +11,7 @@ interface ISignInRequestData extends NextApiRequest {
 export type ISignInResponseData = {
   refreshToken?: string;
   accessToken?: string;
-  message: AuthMessages;
+  message: string;
 };
 
 export default async function handler(
@@ -23,7 +23,7 @@ export default async function handler(
     case 'POST':
       try {
         let tokens = await LogService.in(req.body);
-        res.status(200).json({ ...tokens, message: AuthMessages.SIGN_IN_SUCCESS });
+        res.status(200).json({ ...tokens, message: "Пользователь успешно идентицифирован" });
       } catch (error) {
         if (error instanceof AuthError) 
             return res.status(error.status).json({message: error.message, errors: error.errors})

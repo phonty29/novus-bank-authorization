@@ -1,5 +1,4 @@
 import CheckService from '@api-server/check';
-import AuthMessages from '@utils/enums/AlertMessages';
 import AuthError from '@utils/helpers/auth-error';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -8,8 +7,7 @@ interface ICheckEmailRequestData extends NextApiRequest {
 }
 
 export type ICheckEmailResponseData = {
-  isEmailAvailable: boolean;
-  message?: AuthMessages;
+  message?: string;
 };
 
 export default async function handler(
@@ -19,16 +17,17 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       try {
-        let isEmailAvailable = await CheckService.checkEmail(req.body);
-        res.status(200).json({isEmailAvailable});
+        await CheckService.checkEmail(req.body);
+        res.status(200);
       } catch (error) {
           if (error instanceof AuthError) 
-              return res.status(error.status).json({message: error.message, errors: error.errors})
-          return res.status(500).json({ message: AuthMessages.SIGN_IN_OTHER_PROBLEMS });
+              return res.status(error.status).json({message: error.message})
+          return res.status(500).json({ message: "Произошла ошибка сервера" });
       }
        break;
 
     default:
+      res.status(400).json({message: "Неверный запрос"});
       break;
   }
 }
