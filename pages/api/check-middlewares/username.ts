@@ -7,26 +7,28 @@ interface ICheckUsernameRequestData extends NextApiRequest {
 }
 
 export type ICheckUsernameResponseData = {
-  message?: string;
+  isUsernameAvailable: boolean;
+  message: string;
 };
 
 export default async function handler(
   req: ICheckUsernameRequestData,
   res: NextApiResponse<ICheckUsernameResponseData>
 ) {
+  let isUsernameAvailable: boolean = false;
   switch (req.method) {
     case 'POST':
       try {
-        await CheckService.checkUsername(req.body);
-        res.status(200).json({});
+        isUsernameAvailable = await CheckService.checkUsername(req.body);
+        res.status(200).json({isUsernameAvailable, message: "Данный username доступен"});
       } catch (error) {
-          if (error instanceof AuthError) 
-            res.status(error.status).json({message: error.message});
-          res.status(500).json({ message: "Произошла ошибка сервера" });
+          if (error instanceof AuthError)
+            res.status(error.status).json({isUsernameAvailable, message: error.message});
+          res.status(500).json({isUsernameAvailable, message: "Произошла ошибка сервера" });
       }
       break;
     default:
-      res.status(400).json({message: "Неверный запрос"});
+      res.status(400).json({isUsernameAvailable, message: "Неверный запрос"});
       break;
   }
 }

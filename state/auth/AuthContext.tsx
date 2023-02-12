@@ -4,8 +4,8 @@ import { createContext, Dispatch, SetStateAction, useContext, useState } from 'r
 interface IAuthProvider extends React.ComponentPropsWithoutRef<'div'> {}
 
 interface IAuthContext {
-  alertMessage: AlertMessages;
-  setAlertMessage: Dispatch<SetStateAction<AlertMessages>>;
+  alertMessage: string;
+  setAlertMessage: Dispatch<SetStateAction<string>>;
 }
 
 const authInitialState: IAuthContext = {
@@ -16,7 +16,7 @@ const authInitialState: IAuthContext = {
 const AuthContext = createContext<IAuthContext>(authInitialState);
 
 const AuthProvider: React.FC<IAuthProvider> = ({ children }) => {
-  const [alertMessage, setAlertMessage] = useState<AlertMessages>(authInitialState.alertMessage);
+  const [alertMessage, setAlertMessage] = useState<string>(authInitialState.alertMessage as string);
   
   return (
     <AuthContext.Provider
