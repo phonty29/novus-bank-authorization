@@ -20,7 +20,6 @@ export default async function handler(
     case 'POST':
       try {
         isEmailAvailable = await CheckService.checkEmail(req.body);
-        console.log(isEmailAvailable);
         res.status(200).json({isEmailAvailable, message: "Данный email доступен"});
       } catch (error) {
           if (error instanceof AuthError) 
