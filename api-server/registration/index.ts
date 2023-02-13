@@ -19,13 +19,15 @@ class RegistrationService {
   }
 
   async activate(userId: string) {
+    //отправляет только уникальный айди, не может проверить уникальность полей 
     let tempUser = await TempService.getUserById(userId);
     let userCollection = await Database.getCollection(Collections.USERS);
     if (!tempUser) {
-      let user =await userCollection.findOne({ "_id": new ObjectId(userId) });
+      let user = await userCollection.findOne({ "_id": new ObjectId(userId) });
       if (user) 
         throw AuthError.badRequest("Аккаунт уже активирован по этой ссылке");
-      throw AuthError.requestTimeout();
+      else 
+        throw AuthError.requestTimeout();
     }
     await TempService.deleteUser(tempUser._id.toString());
     await userCollection.insertOne({...tempUser});

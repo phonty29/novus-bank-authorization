@@ -19,7 +19,7 @@ export default async function handler(
     case 'POST':
       try {
         await signUpService.sendActivation(req.body);
-        res.status(200).json({});
+        res.status(200).json({message: "Сообщение удачно отправлено на вашу почту"});
       } catch (error) {
         if (error instanceof AuthError) 
             return res.status(error.status).json({message: error.message })
