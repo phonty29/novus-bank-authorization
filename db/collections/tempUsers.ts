@@ -3,16 +3,29 @@ import ExpireTime from "@utils/enums/ExpireTime";
 import Database from "@utils/helpers/db-singleton";
 import { Collection, Document } from "mongodb";
 
-var tempUsersCollection: Collection<Document>;
+const Singleton = (() => {
+    let tempUsersCollection: Collection<Document>;
+  
+    const createCollection = async () => {
+      const collection = await Database.getCollection(Collections.TEMP_USERS);
+      collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: ExpireTime.TEMP_USERS as number });
+      console.log("TEMP USERS COLLECTION INITIALISED ONCE AGAIN. THAT'S BAD");
+      return collection;
+    }
+  
+    return {
+      getTempUsersCollection: async () => {
+        if (!tempUsersCollection)
+            tempUsersCollection = await createCollection();
+        return tempUsersCollection;
+      }
+    }
+})();
 
 class TempUsersCollection {
     public static async getCollection() {
-        if (!tempUsersCollection) {
-            console.log("TEMP USERS COLLECTION INITIALISED ONCE AGAIN. THAT'S BAD");
-            tempUsersCollection = await Database.getCollection(Collections.TEMP_USERS);
-            tempUsersCollection.createIndex({ createdAt: 1 }, { expireAfterSeconds: ExpireTime.TEMP_USERS as number });
-        }
-        return tempUsersCollection;
+        const collection = await Singleton.getTempUsersCollection();
+        return collection;
     }
 }
 

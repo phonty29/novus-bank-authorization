@@ -1,5 +1,4 @@
 import PrimaryLayout from '@components/layout/primary/PrimaryLayout';
-import Database from '@utils/helpers/db-singleton';
 import clientPromise from '@utils/mongodb';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { NextPageWithLayout } from './page';
@@ -7,7 +6,6 @@ import { NextPageWithLayout } from './page';
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     await clientPromise;
-    await Database.initDb();
     return {
       props: { isConnected: true },
     };

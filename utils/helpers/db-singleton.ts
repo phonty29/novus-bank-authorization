@@ -1,24 +1,27 @@
 import clientPromise from '@utils/mongodb';
 import { Db } from 'mongodb';
 
-var db: Db;
+const Singleton = (() => {
+  let database: Db;
 
-class Database {
-  public static async initDb() {
-    if (db) 
-      return;  
-    try {
-      console.log('DATABASE CREATED ONCE AGAIN. That\'s bad');
-      let client = await clientPromise;
-      db = await client.db(process.env.DB_NAME);
-    } catch (error) {
-      throw Error("500 internal server error. Cannot connect to MongoDB");
-    }
+  const createDatabase = async () => {
+    const client = await clientPromise;
+    console.log("CREATE DATABASE");
+    return client.db(process.env.DB_NAME);
   }
 
+  return {
+    getDB: async () => {
+      if (!database)
+        database = await createDatabase();
+      return database;
+    }
+  }
+})();
+
+class Database {
   public static async getCollection(COLLECTION_NAME: string) {
-    if (!db) 
-      this.initDb();
+    const db: Db = await Singleton.getDB();
     return db.collection(COLLECTION_NAME);
   }
 }
