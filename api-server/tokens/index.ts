@@ -1,4 +1,4 @@
-import JWTExpireTime from '@utils/enums/JWTExpireTime';
+import ExpireTime from '@utils/enums/ExpireTime';
 import ITokens from '@utils/types/auth/ITokens';
 import jwt from 'jsonwebtoken';
 
@@ -6,10 +6,10 @@ import jwt from 'jsonwebtoken';
 class TokenService {
   generateTokens(payload: any): ITokens {
     const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET_KEY as string, {
-      expiresIn: JWTExpireTime.ACCESS_TOKEN,
+      expiresIn: ExpireTime.ACCESS_TOKEN,
     });
     const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET_KEY as string, {
-      expiresIn: JWTExpireTime.REFRESH_TOKEN,
+      expiresIn: ExpireTime.REFRESH_TOKEN,
     });
     return {
       accessToken,
