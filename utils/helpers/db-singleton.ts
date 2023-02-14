@@ -8,7 +8,7 @@ class Database {
     if (db) 
       return;  
     try {
-      console.log('DATABASE CREATED ONCE AGAIN');
+      console.log('DATABASE CREATED ONCE AGAIN. That\'s bad');
       let client = await clientPromise;
       db = await client.db(process.env.DB_NAME);
     } catch (error) {

@@ -1,3 +1,4 @@
+import TempUsersCollection from "@db/collections/tempUsers";
 import Collections from "@utils/enums/Collections";
 import AuthError from "@utils/helpers/auth-error";
 import Database from '@utils/helpers/db-singleton';
@@ -8,7 +9,7 @@ import TempService from '../temp';
 
 class RegistrationService {
   async sendActivation(userData: IUserData) {
-    let tempUser = await TempService.getUserByUsername(userData.credentials.username);
+    let tempUser = await TempUsersCollection.getCollection();
     let userId: string;
     if (!tempUser) 
       userId = await TempService.addUser(userData);
