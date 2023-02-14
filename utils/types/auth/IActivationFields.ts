@@ -19,7 +19,7 @@ export const activationFieldsInitialState: IActivationFields = {
 
 export const validateActivationFields = async (
   activationState: IActivationFields, 
-  setAlertMessage: Dispatch<SetStateAction<AlertMessages>>
+  setAlertMessage: Dispatch<SetStateAction<string>>
 ) => {
   const validPhoneRegex: RegExp =
     /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //eslint-disable-line

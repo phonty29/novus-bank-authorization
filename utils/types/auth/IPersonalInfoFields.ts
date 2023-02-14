@@ -24,7 +24,7 @@ export const personalInfoFieldsInitialState: IPersonalInfoFields = {
   city: '',
 };
 
-export const validatePersonalInfoFields = (personalInfoState: IPersonalInfoFields, setAlertMessage: Dispatch<SetStateAction<AlertMessages>>): boolean => {
+export const validatePersonalInfoFields = (personalInfoState: IPersonalInfoFields, setAlertMessage: Dispatch<SetStateAction<string>>): boolean => {
   const isAgeNotRestricted: boolean = new Date().getFullYear() - personalInfoState.dateOfBirth.getFullYear() > 16;
   if (!isAgeNotRestricted) 
     setAlertMessage(AlertMessages.SIGN_UP_AGE_RESTRICTED);

@@ -20,7 +20,7 @@ export const userInfoFieldsInitialState: IUserInfoFields = {
     emailNotification: false
 };
 
-export const validateUserInfoFields = async (userInfoState: IUserInfoFields, setAlertMessage: Dispatch<SetStateAction<AlertMessages>>): Promise<Promise<boolean>> => {
+export const validateUserInfoFields = async (userInfoState: IUserInfoFields, setAlertMessage: Dispatch<SetStateAction<string>>): Promise<Promise<boolean>> => {
     const validUsernameRegex: RegExp = /^[a-zA-Z0-9]+$/; //eslint-disable-line
     const validPasswordRegex: RegExp = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/; //eslint-disable-line
     const isUsernameValid: boolean = validUsernameRegex.test(userInfoState.userFields.username);
