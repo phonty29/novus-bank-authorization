@@ -6,7 +6,7 @@ import ITokens from '../../utils/types/auth/ITokens';
 import tokenService from '../tokens';
 
 class LogService {
-  public static async in({ username, password }: ICredentials) {
+  public async in({ username, password }: ICredentials) {
     const usersCollection = await UsersCollection.getCollection();
     let user = await usersCollection.findOne({ "credentials.username": username });
     if (!user)
@@ -18,7 +18,7 @@ class LogService {
     return tokens;
   }
 
-  public static async out() {
+  public async out() {
     
   }
 }
