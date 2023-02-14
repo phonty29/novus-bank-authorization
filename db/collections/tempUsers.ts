@@ -1,40 +1,13 @@
+import MongoFactory from "@db/mongodb/mongofactory";
 import Collections from "@utils/enums/Collections";
-import Database from "@utils/helpers/db-singleton";
-import { Collection, Document } from "mongodb";
+import ExpireTime from "@utils/enums/ExpireTime";
 
 class TempUsersCollection {
-  private Singleton: {
-    getTempUsersCollection: () => Promise<Collection<Document>>;
-  };
-  private database: Database;
-  
-  constructor() {
-    this.database = new Database();
-    this.Singleton= (() => {
-        let tempUsersCollection: Collection<Document>;
-        let semaphore: boolean = false;
-      
-        const createCollection = async () => {
-          const collection = await this.database.getCollection(Collections.TEMP_USERS);
-          console.log("CREATE TEMP USERS COLLECTION");
-          console.log(semaphore);
-          return collection;
-        }
-      
-        return {
-          getTempUsersCollection: async () => {
-            if (!tempUsersCollection && !semaphore) {
-              tempUsersCollection = await createCollection();
-              semaphore = true;
-            }
-            return tempUsersCollection;
-          }
-        }
-    })();
-  }
-
-  public async getCollection() {
-    const collection = await this.Singleton.getTempUsersCollection();
+  public static async getCollection() {
+    const mongoutils = MongoFactory.initDb();
+    const db = await mongoutils.getDb();
+    const collection = db.collection(Collections.TEMP_USERS);
+    await collection.createIndex( { "createdAt": 1 }, { expireAfterSeconds: ExpireTime.TEMP_USERS as number });
     return collection;
   }
 }

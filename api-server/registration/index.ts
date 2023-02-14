@@ -1,6 +1,5 @@
-import Collections from "@utils/enums/Collections";
+import UsersCollection from '@db/collections/users';
 import AuthError from "@utils/helpers/auth-error";
-import Database from '@utils/helpers/db-singleton';
 import IUserData from "@utils/types/auth/IUserData";
 import { ObjectId } from "mongodb";
 import mailService from '../mail';
@@ -26,7 +25,7 @@ class RegistrationService {
   public static async activate(userId: string) {
     // пока ничего не активируй
     let tempUser = await TempService.getUserById(userId);
-    let userCollection = await Database.getCollection(Collections.USERS);
+    let userCollection = await UsersCollection.getCollection();
     if (!tempUser) {
       let user = await userCollection.findOne({ "_id": new ObjectId(userId) });
       if (user) 

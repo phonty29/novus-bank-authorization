@@ -1,7 +1,7 @@
 import clientPromise from '@utils/mongodb';
 import { Db } from 'mongodb';
 
-class Database {
+class MongoDB {
   private Singleton: { getDB: () => Promise<Db>; };
   
   constructor() {
@@ -27,13 +27,13 @@ class Database {
     })();
   }
 
-  public async getCollection(COLLECTION_NAME: string) {
+  public async getDb() {
     const db: Db = await this.Singleton.getDB();
-    return db.collection(COLLECTION_NAME);
+    return db;
   }
 }
 
-export default Database;
+export default MongoDB;
 
 //amedov.bekmuhamet@gmail.com
 //ASdf#1234
