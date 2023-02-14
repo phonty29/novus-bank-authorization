@@ -7,7 +7,7 @@ import mailService from '../mail';
 import TempService from '../temp';
 
 class RegistrationService {
-  async sendActivation(userData: IUserData) {
+  public static async sendActivation(userData: IUserData) {
     // реши как лучше отправлять через jwt или айдишник, ульби отправил просто рандомную ссылку
     // значит перед отправкой я проверю, есть ли такой айдишник в коллекции пользователей и есть ли такой айдишник в коллекции временных пользователей
     // потому что может случиться так, что я активировал пользователя по ссылке. Она исчезнет с коллекции временных пользователей. И эти же данные отправятся на почту во второй раз
@@ -23,7 +23,7 @@ class RegistrationService {
     return true;
   }
 
-  async activate(userId: string) {
+  public static async activate(userId: string) {
     // пока ничего не активируй
     let tempUser = await TempService.getUserById(userId);
     let userCollection = await Database.getCollection(Collections.USERS);
@@ -39,9 +39,9 @@ class RegistrationService {
     return true;
   }
 
-  async deactivate() {
+  public static async deactivate() {
     
   }
 }
 
-export default new RegistrationService();
+export default RegistrationService;

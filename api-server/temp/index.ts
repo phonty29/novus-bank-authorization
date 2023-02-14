@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import { ObjectId } from 'mongodb';
 
 class TempService {
-  async getUserByUsername(username: string) {
+  public static async getUserByUsername(username: string) {
     // должен только брать пользователья и возвращать
     const tempUserCollection = await TempUsersCollection.getCollection();
     const tempUser = await tempUserCollection.findOne({
@@ -13,7 +13,7 @@ class TempService {
     return tempUser;
   }
 
-  async getUserById(userId: string) {
+  public static async getUserById(userId: string) {
     // должен только брать пользователья и возвращать
     const tempUserCollection = await TempUsersCollection.getCollection();
     const tempUser = await tempUserCollection.findOne({
@@ -22,7 +22,7 @@ class TempService {
     return tempUser;
   }
 
-  async addUser(userData: IUserData) {
+  public static async addUser(userData: IUserData) {
     //должен только добавить пользователя во временную коллекцию 
     const { credentials, personalInformation, accountInformation } = userData;
     const tempUserCollection = await TempUsersCollection.getCollection();
@@ -35,11 +35,11 @@ class TempService {
     return insertedId.toString();
   }
 
-  async deleteUser(userId: string) {
+  public static async deleteUser(userId: string) {
     // должен только удалять пользователя
     const tempUserCollection = await TempUsersCollection.getCollection();
     await tempUserCollection.deleteOne({ _id: new ObjectId(userId) });
   }
 }
 
-export default new TempService();
+export default TempService;

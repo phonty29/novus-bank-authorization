@@ -20,15 +20,13 @@ export default async function handler(
     case 'POST':
       try {
         isEmailAvailable = await CheckService.checkEmail(req.body);
-        res.status(200).json({isEmailAvailable, message: "Данный email доступен"});
+        return res.status(200).json({isEmailAvailable, message: "Данный email доступен"});
       } catch (error) {
           if (error instanceof AuthError) 
-              res.status(error.status).json({isEmailAvailable, message: error.message})
-          res.status(500).json({isEmailAvailable, message: "Произошла ошибка сервера" });
+              return res.status(error.status).json({isEmailAvailable, message: error.message})
+          return res.status(500).json({isEmailAvailable, message: "Произошла ошибка сервера" });
       }
-      break;
     default:
-      res.status(400).json({isEmailAvailable, message: "Неверный запрос"});
-      break;
+      return res.status(400).json({isEmailAvailable, message: "Неверный запрос"});
   }
 }
