@@ -3,7 +3,6 @@ import { ISendActivationResponseData } from '@pages/api/registration/send-activa
 import { useAuthContext } from '@state/auth/AuthContext';
 import { useFieldsContext } from '@state/auth/FieldsContext';
 import { useSignUpContext } from '@state/auth/SignUpContext';
-import AuthMessages from '@utils/enums/AlertMessages';
 import ApiRoutes from '@utils/enums/ApiRoutes';
 import ClientService from '@utils/helpers/fetch-utils';
 import { useState } from 'react';
@@ -19,9 +18,8 @@ const ConfirmationForm: React.FC = () => {
   const sendConfirmation = async () => {
     setButtonText(buttonTextAfterSend);
     setIsActivationLinkSend(true);
-    const {isSendActivationSuccessfull, message}: ISendActivationResponseData = 
+    const {message}: ISendActivationResponseData = 
             await ClientService.post(userData, ApiRoutes.SEND_ACTIVATION);
-    if (!isSendActivationSuccessfull) setAlertMessage(message as AuthMessages);
   }
 
   return (
