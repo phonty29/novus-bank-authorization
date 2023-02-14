@@ -23,8 +23,6 @@ export default async function handler(
                 res.status(500).json({ message: "Произошла ошибка сервера" });
             }
             break;
-        default:
-            res.status(400).json({message: "Неверный запрос"});
-            break;
+        default: break;
     }
 }

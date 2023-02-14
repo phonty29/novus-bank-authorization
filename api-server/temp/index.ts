@@ -5,8 +5,8 @@ import { ObjectId } from 'mongodb';
 
 class TempService {
   public static async getUserByUsername(username: string) {
-    const tempUserCollection = await TempUsersCollection.getCollection();
-    const tempUser = await tempUserCollection.findOne({
+    const tempUsersCollection = await TempUsersCollection.getCollection();
+    const tempUser = await tempUsersCollection.findOne({
       'credentials.username': username,
     });
     return tempUser;
@@ -22,9 +22,9 @@ class TempService {
 
   public static async addUser(userData: IUserData) {
     const { credentials, personalInformation, accountInformation } = userData;
-    const tempUserCollection = await TempUsersCollection.getCollection();
+    const tempUsersCollection = await TempUsersCollection.getCollection();
     const hashedPassword = await bcrypt.hash(credentials.password, 7);
-    const { insertedId } = await tempUserCollection.insertOne({
+    const { insertedId } = await tempUsersCollection.insertOne({
       credentials: { ...credentials, password: hashedPassword },
       personalInformation,
       accountInformation,
@@ -34,8 +34,8 @@ class TempService {
   }
 
   public static async deleteUser(userId: string) {
-    const tempUserCollection = await TempUsersCollection.getCollection();
-    await tempUserCollection.deleteOne({ _id: new ObjectId(userId) });
+    const tempUsersCollection = await TempUsersCollection.getCollection();
+    await tempUsersCollection.deleteOne({ _id: new ObjectId(userId) });
   }
 }
 

@@ -1,12 +1,11 @@
-import MongoFactory from "@db/mongodb/mongofactory";
+import MongoUtils from "@db/mongodb/mongoutils";
 import Collections from "@utils/enums/Collections";
 
 class UsersCollection {
   public static async getCollection() {
-    console.log("GET COLLECTION");
-    const mongoutils = MongoFactory.initDb();
-    const db = await mongoutils.getDb();
-    return db.collection(Collections.USERS);;
+    const db = await MongoUtils.getDb();
+    const collection = db.collection(Collections.USERS);
+    return collection;
   }
 }
 
