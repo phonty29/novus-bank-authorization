@@ -1,8 +1,11 @@
 import SignUpStages from '@utils/enums/SignUpStages';
-import IActivationFields, { activationFieldsInitialState, validateActivationFields } from '@utils/types/auth/IActivationFields';
+import validateActivationFields from '@utils/helpers/activation-fields-validator';
+import validatePersonalInfoFields from '@utils/helpers/personal-fields-validator';
+import validateUserInfoFields from '@utils/helpers/userinfo-fields-validator';
+import IActivationFields, { activationFieldsInitialState } from '@utils/types/auth/IActivationFields';
 import IFieldsContext from '@utils/types/auth/IFieldsContext';
-import IPersonalInfoFields, { personalInfoFieldsInitialState, validatePersonalInfoFields } from '@utils/types/auth/IPersonalInfoFields';
-import IUserInfoFields, { userInfoFieldsInitialState, validateUserInfoFields } from '@utils/types/auth/IUserInfoFields';
+import IPersonalInfoFields, { personalInfoFieldsInitialState } from '@utils/types/auth/IPersonalInfoFields';
+import IUserInfoFields, { userInfoFieldsInitialState } from '@utils/types/auth/IUserInfoFields';
 import {
   createContext, useContext,
   useState
