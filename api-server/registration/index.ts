@@ -1,4 +1,5 @@
 import UsersCollection from '@db/collections/users';
+import AuthMessages from '@utils/enums/AuthMessages';
 import AuthError from "@utils/helpers/auth-error";
 import IUserData from "@utils/types/auth/IUserData";
 import { ObjectId } from "mongodb";
@@ -31,7 +32,7 @@ class RegistrationService {
     if (!tempUser) {
       let user = await userCollection.findOne({ "_id": new ObjectId(userId) });
       if (user) 
-        throw AuthError.badRequest("Аккаунт уже активирован по этой ссылке");
+        throw AuthError.badRequest(AuthMessages.LINK_IS_ACTIVATED);
       else 
         throw AuthError.requestTimeout();
     }

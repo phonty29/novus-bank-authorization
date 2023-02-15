@@ -1,4 +1,5 @@
 import CheckService from '@api-server/check';
+import AuthMessages from '@utils/enums/AuthMessages';
 import AuthError from '@utils/helpers/auth-error';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -8,7 +9,7 @@ interface ICheckUsernameRequestData extends NextApiRequest {
 
 export type ICheckUsernameResponseData = {
   isUsernameAvailable: boolean;
-  message: string;
+  message?: AuthMessages;
 };
 
 export default async function handler(
@@ -20,15 +21,15 @@ export default async function handler(
     case 'POST':
       try {
         isUsernameAvailable = await CheckService.checkUsername(req.body);
-        res.status(200).json({isUsernameAvailable, message: "Данный username доступен"});
+        res.status(200).json({isUsernameAvailable});
       } catch (error) {
           if (error instanceof AuthError)
             res.status(error.status).json({isUsernameAvailable, message: error.message});
-          res.status(500).json({isUsernameAvailable, message: "Произошла ошибка сервера" });
+          res.status(500).json({isUsernameAvailable, message: AuthMessages.AUTH_SERVER_ERROR });
       }
       break;
     default:
-      res.status(400).json({isUsernameAvailable, message: "Неверный запрос"});
+      res.status(400).json({isUsernameAvailable, message: AuthMessages.AUTH_BAD_REQUEST});
       break;
   }
 }
