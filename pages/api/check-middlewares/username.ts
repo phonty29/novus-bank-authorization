@@ -24,7 +24,7 @@ export default async function handler(
         res.status(200).json({isUsernameAvailable});
       } catch (error) {
           if (error instanceof AuthError)
-            res.status(error.status).json({isUsernameAvailable, message: error.message});
+            res.status(error.status).json({isUsernameAvailable, message: error.message as AuthMessages});
           res.status(500).json({isUsernameAvailable, message: AuthMessages.AUTH_SERVER_ERROR });
       }
       break;

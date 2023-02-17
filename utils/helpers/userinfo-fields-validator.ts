@@ -1,13 +1,13 @@
 import { ICheckUsernameResponseData } from "@pages/api/check-middlewares/username";
-import AlertMessages from "@utils/enums/AlertMessages";
 import ApiRoutes from "@utils/enums/ApiRoutes";
+import AuthMessages from "@utils/enums/AuthMessages";
 import IUserInfoFields from "@utils/types/auth/IUserInfoFields";
 import { Dispatch, SetStateAction } from "react";
 import ClientService from "./fetch-utils";
 
 const validateUserInfoFields = async(
     userInfoState: IUserInfoFields,
-    setAlertMessage: Dispatch<SetStateAction<string>>
+    setAlertMessage: Dispatch<SetStateAction<AuthMessages>>
 ): Promise<Promise<boolean>> => {
     const validUsernameRegex: RegExp = /^[a-zA-Z0-9]+$/; //eslint-disable-line
     const validPasswordRegex: RegExp = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/; //eslint-disable-line
@@ -20,15 +20,13 @@ const validateUserInfoFields = async(
 
 
     if (!isUsernameValid) 
-        setAlertMessage(AlertMessages.SIGN_UP_WRONG_USERNAME_FORMAT);
+        setAlertMessage(AuthMessages.USERNAME_WRONG_FORMAT);
     else if (!isPasswordValid) 
-        setAlertMessage(AlertMessages.SIGN_UP_WRONG_PASSWORD_FORMAT);
+        setAlertMessage(AuthMessages.PASSWORD_WRONG_FORMAT);
     else if (!isPasswordConfirmationValid)
-        setAlertMessage(AlertMessages.SIGN_IN_PASSWORD_DOES_NOT_MATCH);
-    else if (!isUsernameAvailable)
+        setAlertMessage(AuthMessages.PASSWORDS_DONT_MATCH);
+    else if (!isUsernameAvailable && message)
         setAlertMessage(message);
-    else 
-        setAlertMessage(AlertMessages.SIGN_IN_EMPTY_FIELD);
 
     return (
         isUsernameValid &&

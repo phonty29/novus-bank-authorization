@@ -1,16 +1,14 @@
-import AlertMessages from "@utils/enums/AlertMessages";
+import AuthMessages from "@utils/enums/AuthMessages";
 import IPersonalInfoFields from "@utils/types/auth/IPersonalInfoFields";
 import { Dispatch, SetStateAction } from "react";
 
 const validatePersonalInfoFields = (
     personalInfoState: IPersonalInfoFields, 
-    setAlertMessage: Dispatch<SetStateAction<string>>
+    setAlertMessage: Dispatch<SetStateAction<AuthMessages>>
 ): boolean => {
     const isAgeNotRestricted: boolean = new Date().getFullYear() - personalInfoState.dateOfBirth.getFullYear() > 16;
     if (!isAgeNotRestricted) 
-      setAlertMessage(AlertMessages.SIGN_UP_AGE_RESTRICTED);
-    else 
-      setAlertMessage(AlertMessages.SIGN_IN_EMPTY_FIELD);
+      setAlertMessage(AuthMessages.AGE_RESTRICTED);
     return isAgeNotRestricted;
 }
 

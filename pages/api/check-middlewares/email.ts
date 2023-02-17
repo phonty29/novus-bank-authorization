@@ -24,7 +24,7 @@ export default async function handler(
         return res.status(200).json({isEmailAvailable});
       } catch (error) {
           if (error instanceof AuthError) 
-              return res.status(error.status).json({isEmailAvailable, message: error.message})
+              return res.status(error.status).json({isEmailAvailable, message: error.message as AuthMessages})
           return res.status(500).json({isEmailAvailable, message: AuthMessages.AUTH_SERVER_ERROR });
       }
     default:
