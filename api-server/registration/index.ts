@@ -19,9 +19,8 @@ class RegistrationService {
       userId = user._id.toString();
     else if (tempUser) 
       userId = tempUser._id.toString();
-    else {
+    else
       userId = await TempService.addUser(userData);
-    }
     await mailService.sendActivationLink({toEmail: userData.accountInformation.email, userId});
     return true;
   }
