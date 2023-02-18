@@ -56,5 +56,6 @@
     rounded-[10px] 
     md:mr-5 last:mr-0
     bg-[#737272] 
+    hover:bg-[#474747]
     !important;
 }

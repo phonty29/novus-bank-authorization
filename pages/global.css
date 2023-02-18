@@ -16,7 +16,7 @@
     @apply xl:mb-9 lg:mb-7 md:mb-6 sm:mb-5 xs:mb-4 mb-3;
   }
   .green-btn {
-    @apply text-white bg-green-gradient;
+    @apply text-white bg-green-gradient hover:bg-none hover:bg-green !important;
   }
   .text-input {
     @apply font-normal not-italic small-font;
