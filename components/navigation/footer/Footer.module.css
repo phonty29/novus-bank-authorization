@@ -1,0 +1,14 @@
+.footer {
+    @apply  
+    flex items-center max-w-[1155px] justify-between lg:px-[55px] md:px-[40px] sm:px-[30px]
+    px-[20px] max-[1080px]:flex-col flex-row py-[15px] max-[780px]:flex-row h-[70px];
+}
+.footer-copyright {
+    @apply small-font;
+}
+.footer-links {
+    @apply flex text-xs max-[780px]:hidden;
+}
+.footer-link {
+    @apply [&:not(:last-child):after]:content-['|'] after:mx-[10px];
+}

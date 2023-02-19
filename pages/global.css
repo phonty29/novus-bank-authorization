@@ -62,14 +62,12 @@
   input[type='radio'] {
     @apply mr-3 w-5 h-5 accent-green;
   }
-  .footer {
-    @apply h-[70px] w-full;
-  }
+  @import '@components/navigation/footer/Footer.module.css';
 }
 
 @layer components {
-  @import '../components/auth/signup-form/SignUpForm.module.css';
-  @import '../components/auth/signin-form/SignInForm.module.css';
+  @import '@components/auth/signup-form/SignUpForm.module.css';
+  @import '@components/auth/signin-form/SignInForm.module.css';
 }
 
 @layer utilities {

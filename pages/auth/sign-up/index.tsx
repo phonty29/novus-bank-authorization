@@ -11,7 +11,7 @@ export interface ISignUp {}
 const SignUp: NextPageWithLayout<ISignUp> = () => {
   return (
     <SignUpProvider>
-      <main className="sign-up-layout">
+      <div className="sign-up-layout">
         <header className="sign-up-header">
           <Image
             src="/novus_bank_logo.svg"
@@ -26,7 +26,7 @@ const SignUp: NextPageWithLayout<ISignUp> = () => {
         </header>
         <SignUpForm />
         <Footer />
-      </main>
+      </div>
     </SignUpProvider>
   );
 };
