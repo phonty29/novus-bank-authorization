@@ -5,10 +5,10 @@ export interface IFooter extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 const Footer: React.FC<IFooter> = ({
-  fontColor = 'black'
+  fontColor = 'text-black'
 }) => {
   return (
-    <div className={`footer text-${fontColor}`}>
+    <div className={`footer ${fontColor}`}>
       <small className="footer-copyright">
         © All Rights Reserved. HCL Technologies
       </small>

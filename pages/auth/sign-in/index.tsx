@@ -8,8 +8,8 @@ export interface ISignIn {}
 const SignIn: NextPageWithLayout<ISignIn> = () => {
   return (
     <main className="sign-in-layout">
-      <SignInForm />
-      <Footer fontColor='white'/>
+      <SignInForm/>
+      <Footer fontColor='text-white'/>
     </main>
   );
 };
