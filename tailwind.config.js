@@ -19,7 +19,7 @@ module.exports = {
         'grey-br': '#a6a6a6',
         'green': '#076F32',
         'dark-green': '#054820',
-        'white': '#ffffff'
+        'white': '#FFFFFF',
       },
       backgroundColor: {
         'field': '#F0F2FF',
