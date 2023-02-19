@@ -1,6 +1,8 @@
 import { IFooter } from './Footer';
 
-const base: IFooter = {};
+const base: IFooter = {
+  fontColor: 'white'
+};
 
 export const mockFooterProps = {
   base,
