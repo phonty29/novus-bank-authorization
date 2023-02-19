@@ -25,7 +25,7 @@ const SignUp: NextPageWithLayout<ISignUp> = () => {
           </Link>
         </header>
         <SignUpForm />
-        <Footer />
+        <Footer/>
       </div>
     </SignUpProvider>
   );

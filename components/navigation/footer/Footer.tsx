@@ -8,7 +8,7 @@ const Footer: React.FC<IFooter> = ({
   fontColor = 'black'
 }) => {
   return (
-    <footer className={`footer text-${fontColor}`}>
+    <div className={`footer text-${fontColor}`}>
       <small className="footer-copyright">
         © All Rights Reserved. HCL Technologies
       </small>
@@ -23,7 +23,7 @@ const Footer: React.FC<IFooter> = ({
           );
         })}
       </ul>
-    </footer>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ const SignIn: NextPageWithLayout<ISignIn> = () => {
   return (
     <main className="sign-in-layout">
       <SignInForm />
-      <Footer fontColor='white'/>
+      <Footer color='white'/>
     </main>
   );
 };
