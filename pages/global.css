@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  .novusbank {
+    @apply min-h-screen flex flex-col font-roboto;
+  }
+  .novusbank-content {
+    @apply flex-auto;
+  }
   .small-font {
     @apply xs:text-sm text-xs;
   }

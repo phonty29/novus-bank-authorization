@@ -1,10 +1,14 @@
 import footerLinks from './footerLinks.json';
 
-export interface IFooter extends React.ComponentPropsWithoutRef<'div'> {}
+export interface IFooter extends React.ComponentPropsWithoutRef<'div'> {
+  fontColor?: string;
+}
 
-const Footer: React.FC<IFooter> = () => {
+const Footer: React.FC<IFooter> = ({
+  fontColor = '#000'
+}) => {
   return (
-    <footer className="footer">
+    <footer className={`footer text-${fontColor}`}>
       <small className="footer-copyright">
         © All Rights Reserved. HCL Technologies
       </small>

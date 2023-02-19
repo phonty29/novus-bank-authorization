@@ -19,7 +19,7 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
       </Head>
       <div
         {...divProps}
-        className={`min-h-screen flex flex-col font-roboto ${justify}`}
+        className={`novusbank ${justify}`}
       >
         {children}
       </div>

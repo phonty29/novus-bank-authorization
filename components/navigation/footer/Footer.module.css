@@ -4,7 +4,7 @@
     px-[20px] max-[1080px]:flex-col flex-row py-[15px] max-[780px]:flex-row h-[70px];
 }
 .footer-copyright {
-    @apply small-font;
+    @apply small-font lg:mr-[100px] md:mr-[75px];
 }
 .footer-links {
     @apply flex text-xs max-[780px]:hidden;
