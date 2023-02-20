@@ -1,6 +1,5 @@
 import { useSignUpContext } from '@state/auth/SignUpContext';
 import SignUpStages from '@utils/enums/SignUpStages';
-import Link from 'next/link';
 
 const SignUpFieldsHelp: React.FC = () => {
   const { currentStage } = useSignUpContext();
@@ -18,10 +17,7 @@ const SignUpFieldsHelp: React.FC = () => {
         </p>
         <p>Go paperless with up to 25 months of deposit statements.</p>
       </div>
-      <div className="help-more-link mb-11">
-        <Link href={'/information'}>more</Link>
-      </div>
-      <div className="help-item">
+      <div className="help-item mb-11">
         <h3 className="help-item-title">Need Assistance?</h3>
         <p>
           For Online Banking technical assistance, Bill Pay support, or general

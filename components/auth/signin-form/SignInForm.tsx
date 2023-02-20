@@ -34,7 +34,7 @@ const SignInForm: React.FC<ISignInForm> = () => {
           <Link href={`${PageRoutes.SIGN_IN}`}>Sign in</Link>
         </div>
         <div className="link-sign-in green-btn rounded-tr-2xl">
-          <Link href={`${PageRoutes.SIGN_UP}`}>Registration</Link>
+          <Link href={`${PageRoutes.SIGN_UP}`} className="link-to-sign-up">Registration</Link>
         </div>
       </div>
       <div className="input-field">
