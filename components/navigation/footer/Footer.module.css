@@ -12,3 +12,6 @@
 .footer-link {
     @apply [&:not(:last-child):after]:content-['|'] after:mx-[10px];
 }
+.footer-modal-title {
+    @apply text-green flex justify-between;
+}

@@ -17,6 +17,9 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.9",
     "@types/bcrypt": "^5.0.0",
     "@types/node": "18.11.9",
     "@types/nodemailer": "^6.4.7",

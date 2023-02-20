@@ -1,12 +1,33 @@
+import { useState } from 'react';
 import footerLinks from './footerLinks.json';
+import FooterModal from './modal/FooterModal';
 
 export interface IFooter extends React.ComponentPropsWithoutRef<'div'> {
   fontColor?: string;
 }
 
+export interface IModalContent {
+  title: string;
+  text: string;
+}
+
 const Footer: React.FC<IFooter> = ({
   fontColor = 'text-black'
 }) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [content, setContent] = useState<IModalContent>({title: "", text: ""})
+  const handleOpen = (content: IModalContent) => {
+    return () => {
+      setOpen(true);
+      setContent(content);
+    }
+  };
+  const handleClose = () => {
+    return () => {
+      setOpen(false);
+      setContent({title: "", text: ""});
+    };
+  }
   return (
     <div className={`footer ${fontColor}`}>
       <small className="footer-copyright">
@@ -16,12 +37,13 @@ const Footer: React.FC<IFooter> = ({
         {footerLinks.map((link, index) => {
           return (
             <li className="footer-link" key={index}>
-              <a href={link.href}>
-                {link.name}
-              </a>
+              <button onClick={handleOpen({title: link.title, text: link.text})}>
+                {link.title}
+              </button>
             </li>
           );
         })}
+        <FooterModal open={open} content={content} handleClose={handleClose}/>
       </ul>
     </div>
   );

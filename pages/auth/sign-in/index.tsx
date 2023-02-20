@@ -18,7 +18,7 @@ export default SignIn;
 
 SignIn.getLayout = (page) => {
   return (
-    <PrimaryLayout title="Bekonomix Sign-in" justify="items-center">
+    <PrimaryLayout title="Novus Bank" justify="items-center">
       {page}
     </PrimaryLayout>
   );

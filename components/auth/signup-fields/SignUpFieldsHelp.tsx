@@ -19,7 +19,7 @@ const SignUpFieldsHelp: React.FC = () => {
         <p>Go paperless with up to 25 months of deposit statements.</p>
       </div>
       <div className="help-more-link mb-11">
-        <Link href={'/'}>more</Link>
+        <Link href={'/information'}>more</Link>
       </div>
       <div className="help-item">
         <h3 className="help-item-title">Need Assistance?</h3>

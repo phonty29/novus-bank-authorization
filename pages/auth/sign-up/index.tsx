@@ -35,7 +35,7 @@ export default SignUp;
 
 SignUp.getLayout = (page) => {
   return (
-    <PrimaryLayout title="Bekonomix Registration" justify="items-center">
+    <PrimaryLayout title="Novus Bank" justify="items-center">
       {page}
     </PrimaryLayout>
   );
