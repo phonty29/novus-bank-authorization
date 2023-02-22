@@ -1,5 +1,5 @@
+import Genders from '@components/auth/signup-fields/utils/enums/Genders';
 import { useFieldsContext } from '@state/auth/FieldsContext';
-import Genders from '@utils/enums/Genders';
 import countries from '@utils/lists/countries.json';
 import playroles from '@utils/lists/playroles.json';
 

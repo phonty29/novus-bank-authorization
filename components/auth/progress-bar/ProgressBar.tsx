@@ -1,7 +1,7 @@
 import { useSignUpContext } from '@state/auth/SignUpContext';
 import SignUpStages from '@utils/enums/SignUpStages';
 import { useEffect, useState } from 'react';
-import ProgressLine from './ProgressLine';
+import ProgressLine from './line/ProgressLine';
 
 export interface IProgressBar extends React.ComponentProps<'div'> {}
 export interface IProgressBullet extends React.ComponentPropsWithoutRef<'div'> {

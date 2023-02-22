@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import footerLinks from './footerLinks.json';
 import FooterModal from './modal/FooterModal';
+import footerLinks from './utils/footerLinks.json';
 
 export interface IFooter extends React.ComponentPropsWithoutRef<'div'> {
   fontColor?: string;

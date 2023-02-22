@@ -3,10 +3,10 @@ import { useFieldsContext } from '@state/auth/FieldsContext';
 import { useSignUpContext } from '@state/auth/SignUpContext';
 import SignUpStages from '@utils/enums/SignUpStages';
 import ActivationForm from './activation/ActivationForm';
-import Buttons from './Buttons';
+import Buttons from './buttons/Buttons';
 import ConfirmationForm from './confirmation/ConfirmationForm';
+import SignUpFieldsHelp from './help-info/SignUpFieldsHelp';
 import PersonalInfoForm from './personal-info/PersonalInfoForm';
-import SignUpFieldsHelp from './SignUpFieldsHelp';
 import UserInfoForm from './user-info/UserInfoForm';
 
 export interface ISignUpFields {}

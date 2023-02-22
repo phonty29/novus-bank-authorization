@@ -1,4 +1,4 @@
-import AccountType from '@utils/enums/AccountType';
+import AccountType from '@components/auth/signup-fields/utils/enums/AccountType';
 
 interface IActivationFields {
   accountType: string;
